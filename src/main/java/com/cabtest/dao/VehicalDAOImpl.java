@@ -89,6 +89,7 @@ public class VehicalDAOImpl implements VehicalDAO {
 	 */
 	@Override
 	public List<Vehical> getVehicals() {
+		//this return vehical list
 		List list = getSessionFactory().getCurrentSession().createQuery("from Vehical").list();
 		return list;
 	}
