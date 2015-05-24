@@ -10,22 +10,22 @@
 		        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- Beans Declaration -->
-	<bean id="User" class="com.otv.model.User"/>
+	<bean id="Vehicle" class="com.cabtest.model.Vehicle"/>
 	
 	<!-- User Service Declaration -->
-	<bean id="UserService" class="com.otv.user.service.UserService">
-		<property name="userDAO" ref="UserDAO" />
+	<bean id="VehicleService" class="com.cabtest.service.VehicleRegisterServiceImpl">
+		<property name="vehicleDAO" ref="VehicleDAO" />
 	</bean>
 	
 	<!-- User DAO Declaration -->
-	<bean id="UserDAO" class="com.otv.user.dao.UserDAO">
+	<bean id="VehicleDAO" class="com.cabtest.dao.VehicleDAOImpl">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
 	
 	<!-- Data Source Declaration -->
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />	
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Test" />	
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/cab" />	
 		<property name="user" value="root" />	
 		<property name="password" value="root" />	
 		<property name="maxPoolSize" value="10" />
@@ -38,7 +38,7 @@
 		<property name="dataSource" ref="DataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.otv.model.User</value>
+				<value>com.cabtest.model.Vehicle</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

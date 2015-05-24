@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+     xmlns:h="http://java.sun.com/jsf/html"     
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">  
+ <h:head><title>Welcome to OTV_JSF_Spring_Hibernate_Project</title></h:head>  
+ <h:body>
+     <h:form>      
+         <table> 
+             <tr>
+                <td><h:outputLabel for="registrationNumber" value="Registration Number : " /></td>
+                <td><p:inputText id="registrationNumber" value="#{vehicleMB.registrationNumber}">
+                        <f:validateLength minimum="5" /> 
+                         <p:ajax event="blur" update="registrationNumberMsg" />
+                    </p:inputText>
+                    <p:message id="registrationNumberMsg" for="registrationNumber" display="icon"/> 
+                </td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="type" value="Vehicle Type : " /></td>
+                <td><p:inputText id="type" value="#{vehicleMB.type}">
+                        <f:validateLength minimum="5" /> 
+                        <p:ajax event="blur" update="typeMsg" />
+                    </p:inputText>
+                    <p:message id="typeMsg" for="type" display="icon"/> 
+                </td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="modelTxtBox" value="Vehicle Model : " /></td>   
+                <td><p:inputText id="modelTxtBox" value="#{vehicleMB.model}"> 
+                        <f:validateLength minimum="5" /> 
+                        <p:ajax event="blur" update="modelMsg" />  
+                    </p:inputText>
+                    <p:message id="modelMsg" for="modelTxtBox" display="icon"/> 
+                </td>    
+             </tr>            
+             <tr>
+                <td><p:commandButton id="addVehicle" value="Add Vehicle" action="#{vehicleMB.addVehicle}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset" action="#{vehicleMB.reset}" ajax="false"/></td>
+             </tr>   
+         </table>
+     </h:form>      
+</h:body>
+</html> 

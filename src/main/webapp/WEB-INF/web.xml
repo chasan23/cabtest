@@ -36,7 +36,7 @@
 	  
 	  <!-- Welcome Page -->
 	  <welcome-file-list>
-	    <welcome-file>/pages/index.xhtml</welcome-file>
+	    <welcome-file>pages/index.xhtml</welcome-file>
 	  </welcome-file-list>
 	  
 	  <!-- JSF Servlet is defined to container -->
@@ -55,5 +55,9 @@
 	    <servlet-name>Faces Servlet</servlet-name>
 	    <url-pattern>*.faces</url-pattern>
 	  </servlet-mapping>
+	  <servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
 	  
 </web-app>

@@ -3,7 +3,63 @@
 	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
 	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="db/migration"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="/home/prasad/.m2/repository/org/hibernate/hibernate-core/4.3.5.Final/hibernate-core-4.3.5.Final.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.hibernate"/>
+			<attribute name="maven.artifactId" value="hibernate-core"/>
+			<attribute name="maven.version" value="4.3.5.Final"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/prasad/.m2/repository/org/aspectj/aspectjweaver/1.8.5/aspectjweaver-1.8.5.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.aspectj"/>
+			<attribute name="maven.artifactId" value="aspectjweaver"/>
+			<attribute name="maven.version" value="1.8.5"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/prasad/.m2/repository/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+			<attribute name="maven.artifactId" value="spring-context"/>
+			<attribute name="maven.version" value="4.0.3.RELEASE"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/prasad/.m2/repository/org/springframework/spring-beans/4.0.3.RELEASE/spring-beans-4.0.3.RELEASE.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+			<attribute name="maven.artifactId" value="spring-beans"/>
+			<attribute name="maven.version" value="4.0.3.RELEASE"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/prasad/.m2/repository/org/springframework/spring-tx/4.0.3.RELEASE/spring-tx-4.0.3.RELEASE.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+			<attribute name="maven.artifactId" value="spring-tx"/>
+			<attribute name="maven.version" value="4.0.3.RELEASE"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/prasad/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.hibernate.javax.persistence"/>
+			<attribute name="maven.artifactId" value="hibernate-jpa-2.1-api"/>
+			<attribute name="maven.version" value="1.0.0.Final"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/prasad/.m2/repository/com/sun/faces/jsf-api/2.2.10/jsf-api-2.2.10.jar"/>
+	<classpathentry kind="lib" path="/home/prasad/.m2/repository/com/sun/faces/jsf-impl/2.2.10/jsf-impl-2.2.10.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

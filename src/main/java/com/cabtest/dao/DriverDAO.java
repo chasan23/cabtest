@@ -1,5 +1,7 @@
 package com.cabtest.dao;
 
-public class DriverDAO {
+import com.cabtest.model.Driver;
+
+public interface DriverDAO extends GenericDAO<Driver, Integer>{
 
 }
