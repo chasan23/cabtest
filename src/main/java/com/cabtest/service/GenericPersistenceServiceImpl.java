@@ -43,6 +43,11 @@ public  class GenericPersistenceServiceImpl<E, K extends Serializable> implement
 	public void delete(E entity) {
 		genericDAO.delete(entity);
 	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void deleteByKey(K key){
+		genericDAO.deleteByKey(key);
+	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<E> getAll() {

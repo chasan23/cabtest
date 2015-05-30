@@ -9,6 +9,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cabtest.model.Vehicle;
 
 @SuppressWarnings("unchecked")
 @Repository
@@ -50,6 +53,11 @@ public  abstract class GenericDAOImpl<E, K extends Serializable> implements Gene
 
 	public void delete(E entity) {
 		this.getCurrentSession().delete(entity);
+	}
+	
+	public void deleteByKey(K key){
+		E entity = this.findByKey(key);
+		this.delete(entity);
 	}
 
 	public E findByKey(K key) {

@@ -1,5 +1,8 @@
 package com.cabtest.dao;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.cabtest.model.Vehicle;
 
 /**
@@ -12,7 +15,8 @@ import com.cabtest.model.Vehicle;
  *
  */
 
+@Repository
 public class VehicleDAOImpl extends GenericDAOImpl<Vehicle, Integer> implements VehicleDAO {
-
-
+	
+	
 }

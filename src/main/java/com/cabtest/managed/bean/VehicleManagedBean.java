@@ -26,6 +26,7 @@ public class VehicleManagedBean {
 	String registrationNumber;
 	String type;
 	String model;
+	String vehicleId;
 
 	public String addVehicle() {
 		try {
@@ -34,6 +35,31 @@ public class VehicleManagedBean {
 			vehicle.setModel(this.getModel());
 			vehicle.setRegistrationNumber(this.getRegistrationNumber());
 			getVehicleRegisterService().save(vehicle);
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ERROR;
+	}
+	
+	public String updateVehicle() {
+		try {
+			Vehicle vehicle = new Vehicle();
+			vehicle.setVehicalId(Integer.parseInt(this.getVehicleId()));
+			vehicle.setVehicalType(this.getType());
+			vehicle.setModel(this.getModel());
+			vehicle.setRegistrationNumber(this.getRegistrationNumber());
+			getVehicleRegisterService().update(vehicle);
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ERROR;
+	}
+	
+	public String deleteVehicle(){
+		try{
+			getVehicleRegisterService().deleteByKey(Integer.parseInt(this.getVehicleId()));
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,4 +111,14 @@ public class VehicleManagedBean {
 	public void setModel(String model) {
 		this.model = model;
 	}
+
+	public String getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(String vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+	
+	
 }

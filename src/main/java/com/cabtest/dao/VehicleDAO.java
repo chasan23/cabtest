@@ -12,6 +12,6 @@ import com.cabtest.model.Vehicle;
  *
  */
  public interface VehicleDAO extends GenericDAO<Vehicle, Integer> {
-	
-}
+
+ }
 

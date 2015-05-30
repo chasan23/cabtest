@@ -34,7 +34,22 @@
                 <h:outputText value="#{vehicle.model}" />
             </p:column>
         </p:dataTable>
-    </h:form>
+
+		<table>
+			<tr>
+				<td><h:outputLabel for="vehicleId" value="Vehicle ID : " /></td>
+				<td><p:inputText id="vehicleId"
+						value="#{vehicleMB.vehicleId}">
+					</p:inputText></td>
+			</tr>
+			<tr>
+                <td><p:commandButton id="deleteVehicle" value="Delete Vehicle" action="#{vehicleMB.deleteVehicle}" ajax="false"/></td>                
+             </tr>   
+		</table>
+		
+	</h:form>
+    
+    
 </h:body>
  
 </html>
