@@ -26,6 +26,6 @@ public class VehicleRegisterServiceImpl extends GenericPersistenceServiceImpl<Ve
 		super.setGenericDAO((GenericDAO)vehicleDAO);
 		this.vehicleDAO = vehicleDAO;
 	}
-	
+
 }
 
