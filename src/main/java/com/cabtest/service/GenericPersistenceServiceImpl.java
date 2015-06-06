@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cabtest.dao.GenericDAO;
-import com.cabtest.model.Vehicle;
 
 @Service
 public  class GenericPersistenceServiceImpl<E, K extends Serializable> implements GenericPersistenceService<E, K> {
