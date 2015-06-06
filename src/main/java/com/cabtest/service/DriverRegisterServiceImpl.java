@@ -1,29 +1,29 @@
 package com.cabtest.service;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
-import com.cabtest.model.DriverDetails;
+import com.cabtest.dao.GenericDAO;
+import com.cabtest.dao.DriverDAO;
+import com.cabtest.model.Driver;
 
-public class DriverRegisterServiceImpl implements DriverRegisterService {
-
-	public void saveDriver(DriverDetails driverDetails) {
-		// TODO Auto-generated method stub
-		
+@Service
+public class DriverRegisterServiceImpl extends GenericPersistenceServiceImpl<Driver, Integer> implements DriverRegisterService {
+private DriverDAO driverDAO;
+	
+	
+	public DriverRegisterServiceImpl() {
+		super();
 	}
 
-	public void updateDriver(DriverDetails driverDetails) {
-		// TODO Auto-generated method stub
-		
+
+	public DriverDAO getDriverDAO() {
+		return driverDAO;
 	}
 
-	public void deleteDriver(DriverDetails driverDetails) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void getDriverList(List<DriverDetails> driverdetailsList) {
-		// TODO Auto-generated method stub
-		
+	public void setDriverDAO(DriverDAO driverDAO) {
+		super.setGenericDAO((GenericDAO)driverDAO);
+		this.driverDAO = driverDAO;
 	}
 
 }

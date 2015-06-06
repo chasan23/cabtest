@@ -1,8 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:tx="http://www.springframework.org/schema/tx"
-		xmlns:context="http://www.springframework.org/schema/context"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 				http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 				http://www.springframework.org/schema/tx 
 		        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
@@ -10,35 +9,50 @@
 		        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- Beans Declaration -->
-	<bean id="Vehicle" class="com.cabtest.model.Vehicle"/>
-	
-	<!-- User Service Declaration -->
+	<bean id="Vehicle" class="com.cabtest.model.Vehicle" />
+	<bean id="Driver" class="com.cabtest.model.Driver" />
+
+	<!-- Service Declaration -->
 	<bean id="VehicleService" class="com.cabtest.service.VehicleRegisterServiceImpl">
 		<property name="vehicleDAO" ref="VehicleDAO" />
 	</bean>
-	
-	<!-- User DAO Declaration -->
+
+	<bean id="DriverService" class="com.cabtest.service.DriverRegisterServiceImpl">
+		<property name="driverDAO" ref="DriverDAO" />
+	</bean>
+
+
+
+	<!-- DAO Declaration -->
 	<bean id="VehicleDAO" class="com.cabtest.dao.VehicleDAOImpl">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
-	
+
+	<bean id="DriverDAO" class="com.cabtest.dao.DriverDAOImpl">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
 	<!-- Data Source Declaration -->
-	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />	
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/cab" />	
-		<property name="user" value="root" />	
-		<property name="password" value="root" />	
+	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/cab" />
+		<property name="user" value="root" />
+		<property name="password" value="root" />
 		<property name="maxPoolSize" value="10" />
 		<property name="maxStatements" value="0" />
-		<property name="minPoolSize" value="5" /> 
+		<property name="minPoolSize" value="5" />
 	</bean>
-	
+
 	<!-- Session Factory Declaration -->
-	<bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<bean id="SessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="DataSource" />
 		<property name="annotatedClasses">
 			<list>
 				<value>com.cabtest.model.Vehicle</value>
+				<value>com.cabtest.model.Driver</value>
+				<value>com.cabtest.model.Contact</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -48,13 +62,14 @@
 			</props>
 		</property>
 	</bean>
-	
+
 	<!-- Enable the configuration of transactional behavior based on annotations -->
-    <tx:annotation-driven transaction-manager="txManager"/>
+	<tx:annotation-driven transaction-manager="txManager" />
 
 	<!-- Transaction Manager is defined -->
-    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-       <property name="sessionFactory" ref="SessionFactory"/>
-    </bean>
-  
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
 </beans>

@@ -1,10 +1,13 @@
 package com.cabtest.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,8 +28,8 @@ public class Driver {
 	@Column(name = "AGE")
 	int age;
 
-	@Column(name = "CONTACT_ID")
-	int contactId;
+	@OneToOne(mappedBy="driver", cascade=CascadeType.ALL)
+	Contact contact;
 
 	@Column(name = "AVAILABILITY")
 	String availability;
@@ -63,12 +66,12 @@ public class Driver {
 		this.age = age;
 	}
 
-	public int getContactId() {
-		return contactId;
+	public Contact getContact() {
+		return contact;
 	}
 
-	public void setContactId(int contactId) {
-		this.contactId = contactId;
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 
 	public String getAvailability() {

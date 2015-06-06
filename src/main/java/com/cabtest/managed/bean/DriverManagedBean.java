@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import org.hibernate.mapping.Array;
-
+import com.cabtest.model.Contact;
+import com.cabtest.model.Driver;
 import com.cabtest.model.DriverDetails;
-import com.cabtest.model.Vehicle;
+import com.cabtest.model.Driver;
 import com.cabtest.service.DriverRegisterService;
-import com.cabtest.service.VehicleRegisterService;
 
 @ManagedBean(name="driverMB")
 @RequestScoped
@@ -20,6 +20,7 @@ public class DriverManagedBean {
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
 
+	@ManagedProperty(value="#{DriverService}")
 	DriverRegisterService driverRegisterService;
 
 	String driverId;
@@ -35,20 +36,78 @@ public class DriverManagedBean {
 	List<DriverDetails> driverList = new ArrayList<DriverDetails>();
 
 	public String addDriver() {
-		return SUCCESS;
+		try {
+			Driver driver = new Driver();
+			driver.setDriverId(Integer.parseInt(this.getDriverId()));
+			driver.setFirstName(this.getFirstName());
+			driver.setLastName(this.getLastName());
+			driver.setAge(Integer.parseInt(this.getAge()));
+			driver.setAvailability(this.getAvailability());
+			Contact contact = new Contact();
+			contact.setHomePhone(this.getHomePhone());
+			contact.setMobilePhone(this.getMobilePhone());
+		    contact.setEmail(this.getEmail());
+			contact.setAddress(this.getAddress());
+		    driver.setContact(contact);		
+		    contact.setDriver(driver);
+			getDriverRegisterService().save(driver);
+			
+		    return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ERROR;
 	}
 
+	
+	
 	public String deleteDriver() {
-		return SUCCESS;
+		try{
+			getDriverRegisterService().deleteByKey(Integer.parseInt(this.getDriverId()));
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ERROR;
 	}
 
 	public String updateDriver() {
-		return SUCCESS;
+		try {
+			Driver driver = new Driver();
+			driver.setDriverId(Integer.parseInt(this.getDriverId()));
+			driver.setFirstName(this.getFirstName());
+			driver.setLastName(this.getLastName());
+			driver.setAge(Integer.parseInt(this.getAge()));
+			driver.setAvailability(this.getAvailability());
+			Contact contact = new Contact();
+			contact.setHomePhone(this.getHomePhone());
+			contact.setMobilePhone(this.getMobilePhone());
+		    contact.setEmail(this.getEmail());
+			contact.setAddress(this.getAddress());
+		    driver.setContact(contact);
+			
+			
+			getDriverRegisterService().update(driver);
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ERROR;
 	}
 
 	public void reset() {
-
+        this.setDriverId("");
+        this.setFirstName("");
+        this.setLastName("");
+	    this.setAge("");
+	    this.setAvailability("");
+	    this.setHomePhone("");
+	    this.setMobilePhone("");
+	    this.setEmail("");
+	    this.setAddress("");
+	    
 	}
+	
 
 	public DriverRegisterService getDriverRegisterService() {
 		return driverRegisterService;
