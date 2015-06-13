@@ -36,32 +36,39 @@ public abstract class GenericDAOImpl<E, K extends Serializable> implements Gener
         return sessionFactory.getCurrentSession();
     }
 
+    @Override
     public void save(E entity) {
         this.getCurrentSession().save(entity);
     }
 
+    @Override
     public void saveOrUpdate(E entity) {
         this.getCurrentSession().saveOrUpdate(entity);
     }
 
+    @Override
     public void update(E entity) {
         this.getCurrentSession().update(entity);
     }
 
+    @Override
     public void delete(E entity) {
         this.getCurrentSession().delete(entity);
     }
 
+    @Override
     public void deleteByKey(K key) {
         E entity = this.findByKey(key);
         this.delete(entity);
     }
 
+    @Override
     public E findByKey(K key) {
         Session session = this.getCurrentSession();
         return (E) session.load(this.getCurrentClazz(), key);
     }
 
+    @Override
     public List<E> getAll() {
         return this.getCurrentSession().createCriteria(this.getCurrentClazz()).list();
     }

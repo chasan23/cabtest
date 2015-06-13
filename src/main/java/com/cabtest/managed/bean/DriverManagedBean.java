@@ -4,6 +4,8 @@ import com.cabtest.model.Contact;
 import com.cabtest.model.Driver;
 import com.cabtest.model.DriverDetails;
 import com.cabtest.service.DriverRegisterService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -14,13 +16,12 @@ import java.util.List;
 @ManagedBean(name = "driverMB")
 @RequestScoped
 public class DriverManagedBean {
-    private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
+    private static final Log LOG = LogFactory.getLog(DriverManagedBean.class);
 
-    @ManagedProperty(value = "#{DriverService}")
+    @ManagedProperty(value = "#{driverService}")
     DriverRegisterService driverRegisterService;
-
     String driverId;
     String firstName;
     String lastName;
@@ -30,22 +31,15 @@ public class DriverManagedBean {
     String email;
     String address;
     String availability;
-    List<DriverDetails> driverList;
 
     public String addDriver() {
         try {
 
-            Contact contact = new Contact();
-            contact.setHomePhone(this.getHomePhone());
-            contact.setMobilePhone(this.getMobilePhone());
-            contact.setEmail(this.getEmail());
-            contact.setAddress(this.getAddress());
+            Contact contact = getContact();
 
-            Driver driver = new Driver();
+            Driver driver = getDriver();
             driver.setDriverId(Integer.parseInt(this.getDriverId()));
-            driver.setFirstName(this.getFirstName());
-            driver.setLastName(this.getLastName());
-            driver.setAge(Integer.parseInt(this.getAge()));
+
             if ("true".equals(this.availability)) {
                 driver.setAvailability('1');
             } else {
@@ -56,9 +50,18 @@ public class DriverManagedBean {
             getDriverRegisterService().saveDriver(driver);
             return SUCCESS;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Error while trying to add driver.", e);
         }
         return ERROR;
+    }
+
+    private Contact getContact() {
+        Contact contact = new Contact();
+        contact.setHomePhone(this.getHomePhone());
+        contact.setMobilePhone(this.getMobilePhone());
+        contact.setEmail(this.getEmail());
+        contact.setAddress(this.getAddress());
+        return contact;
     }
 
     public String deleteDriver() {
@@ -66,7 +69,7 @@ public class DriverManagedBean {
 //			 getDriverRegisterService().deleteDriverByID(Integer.parseInt(this.getDriverId()));
             return SUCCESS;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Error while trying to delete driver.", e);
         }
         return ERROR;
     }
@@ -74,17 +77,9 @@ public class DriverManagedBean {
     public String updateDriver() {
         try {
 
-            Contact contact = new Contact();
-            contact.setHomePhone(this.getHomePhone());
-            contact.setMobilePhone(this.getMobilePhone());
-            contact.setEmail(this.getEmail());
-            contact.setAddress(this.getAddress());
+            Contact contact = getContact();
 
-            Driver driver = new Driver();
-            driver.setDriverId(Integer.parseInt(this.getDriverId()));
-            driver.setFirstName(this.getFirstName());
-            driver.setLastName(this.getLastName());
-            driver.setAge(Integer.parseInt(this.getAge()));
+            Driver driver = getDriver();
             if ("true".equals(this.availability)) {
                 driver.setAvailability('1');
             } else {
@@ -95,9 +90,17 @@ public class DriverManagedBean {
             getDriverRegisterService().updateDriver(driver);
             return SUCCESS;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Error while trying to update driver.", e);
         }
         return ERROR;
+    }
+
+    private Driver getDriver() {
+        Driver driver = new Driver();
+        driver.setFirstName(this.getFirstName());
+        driver.setLastName(this.getLastName());
+        driver.setAge(Integer.parseInt(this.getAge()));
+        return driver;
     }
 
     public void reset() {
@@ -117,8 +120,7 @@ public class DriverManagedBean {
         return driverRegisterService;
     }
 
-    public void setDriverRegisterService(
-            DriverRegisterService driverRegisterService) {
+    public void setDriverRegisterService(DriverRegisterService driverRegisterService) {
         this.driverRegisterService = driverRegisterService;
     }
 
@@ -196,17 +198,12 @@ public class DriverManagedBean {
 
     public List<DriverDetails> getDriverList() {
         List<Driver> drivers = getDriverRegisterService().getDriverList();
-        List<DriverDetails> driverDetailsList = new ArrayList<DriverDetails>();
+        List<DriverDetails> driverDetailsList = new ArrayList<>();
         for (Driver driver : drivers) {
             DriverDetails driverDetails = new DriverDetails(driver);
             driverDetailsList.add(driverDetails);
-            System.out.println(driverDetails);
         }
         return driverDetailsList;
-    }
-
-    public void setDriverList(List<DriverDetails> driverList) {
-        this.driverList = driverList;
     }
 
 }

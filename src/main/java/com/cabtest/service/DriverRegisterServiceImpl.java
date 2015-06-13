@@ -34,6 +34,7 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
         this.contactDAO = contactDAO;
     }
 
+    @Override
     @Transactional
     public void saveDriver(Driver driver) {
         Contact contact = driver.getContact();
@@ -43,6 +44,7 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
         getDriverDAO().save(driver);
     }
 
+    @Override
     @Transactional
     public void updateDriver(Driver driver) {
         Contact contact = driver.getContact();
@@ -53,16 +55,19 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
 
     }
 
+    @Override
     @Transactional
     public void deleteDriver(Driver driver) {
 
     }
 
+    @Override
     @Transactional
     public List<Driver> getDriverList() {
         return driverDAO.getAll();
     }
 
+    @Override
     @Transactional
     public void deleteDriverByID(Integer id) {
         driverDAO.deleteByKey(id);

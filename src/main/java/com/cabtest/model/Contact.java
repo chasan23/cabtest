@@ -8,15 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "CONTACT", catalog = "cab")
-public class Contact implements Serializable {
-
-    private static final long serialVersionUID = -8352317837315220253L;
+public class Contact {
 
     @Id
     @Column(name = "CONTACT_ID")
@@ -35,8 +32,8 @@ public class Contact implements Serializable {
     @Column(name = "ADDRESS")
     String address;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
-    Set<Driver> drivers = new HashSet<Driver>(0);
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contact")
+    Set<Driver> drivers = new HashSet<>(0);
 
     public int getContactId() {
         return contactId;
@@ -86,4 +83,15 @@ public class Contact implements Serializable {
         this.drivers = drivers;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+               "contactId=" + contactId +
+               ", homePhone='" + homePhone + '\'' +
+               ", mobilePhone='" + mobilePhone + '\'' +
+               ", email='" + email + '\'' +
+               ", address='" + address + '\'' +
+               ", drivers=" + drivers +
+               '}';
+    }
 }
