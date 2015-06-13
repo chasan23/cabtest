@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class BookingRegisterServiceImpl implements BookingRegisterService {
     private BookingDAO bookingDAO;
+
     private ContactDAO contactDAO;
 
     public BookingRegisterServiceImpl() {

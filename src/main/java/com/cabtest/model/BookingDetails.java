@@ -18,6 +18,29 @@ public class BookingDetails {
     private String email;
     private String address;
 
+    public BookingDetails(Booking booking) {
+        this.setBookingId(booking.getBookingId());
+        this.setVehicleType(booking.getVehicleType());
+        this.setTime(booking.getTime());
+        this.setLocation(booking.getLocation());
+
+        Customer customer = booking.getCustomer();
+
+        this.setCustomerId(customer.getCustomerId());
+        this.setFirstName(customer.getFirstName());
+        this.setLastName(customer.getLastName());
+
+        Contact contact = customer.getContact();
+
+        this.setContactId(contact.getContactId());
+        this.setHomePhone(contact.getHomePhone());
+        this.setMobilePhone(contact.getMobilePhone());
+        this.setEmail(contact.getEmail());
+        this.setAddress(contact.getAddress());
+
+    }
+
+
     public int getBookingId() {
         return bookingId;
     }
