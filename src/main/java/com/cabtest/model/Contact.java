@@ -1,17 +1,24 @@
 package com.cabtest.model;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CONTACT")
-public class Contact {
+@Table(name = "CONTACT", catalog = "cab")
+public class Contact implements Serializable {
+
+	private static final long serialVersionUID = -8352317837315220253L;
+
 	@Id
 	@Column(name = "CONTACT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,17 +36,8 @@ public class Contact {
 	@Column(name = "ADDRESS")
 	String address;
 
-	@OneToOne
-	@JoinColumn(name = "CONTACT_ID")
-	Driver driver;
-
-	public Driver getDriver() {
-		return driver;
-	}
-
-	public void setDriver(Driver driver) {
-		this.driver = driver;
-	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
+	Set<Driver> drivers = new HashSet<Driver>(0);
 
 	public int getContactId() {
 		return contactId;
@@ -79,6 +77,14 @@ public class Contact {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public Set<Driver> getDrivers() {
+		return drivers;
+	}
+
+	public void setDrivers(Set<Driver> drivers) {
+		this.drivers = drivers;
 	}
 
 }

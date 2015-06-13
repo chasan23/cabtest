@@ -1,200 +1,212 @@
 package com.cabtest.managed.bean;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.cabtest.model.Contact;
+import com.cabtest.model.Driver;
+import com.cabtest.model.DriverDetails;
+import com.cabtest.service.DriverRegisterService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.cabtest.model.Contact;
-import com.cabtest.model.Driver;
-import com.cabtest.model.DriverDetails;
-import com.cabtest.model.Driver;
-import com.cabtest.service.DriverRegisterService;
-
-@ManagedBean(name="driverMB")
+@ManagedBean(name = "driverMB")
 @RequestScoped
 public class DriverManagedBean {
-	private static final long serialVersionUID = 1L;
-	private static final String SUCCESS = "success";
-	private static final String ERROR = "error";
+    private static final long serialVersionUID = 1L;
+    private static final String SUCCESS = "success";
+    private static final String ERROR = "error";
 
-	@ManagedProperty(value="#{DriverService}")
-	DriverRegisterService driverRegisterService;
+    @ManagedProperty(value = "#{DriverService}")
+    DriverRegisterService driverRegisterService;
 
-	String driverId;
-	String firstName;
-	String lastName;
-	String age;
-	String homePhone;
-	String mobilePhone;
-	String email;
-	String address;
-	String availability;
-	
-	List<DriverDetails> driverList = new ArrayList<DriverDetails>();
+    String driverId;
+    String firstName;
+    String lastName;
+    String age;
+    String homePhone;
+    String mobilePhone;
+    String email;
+    String address;
+    String availability;
+    List<DriverDetails> driverList;
 
-	public String addDriver() {
-		try {
-			Driver driver = new Driver();
-			driver.setDriverId(Integer.parseInt(this.getDriverId()));
-			driver.setFirstName(this.getFirstName());
-			driver.setLastName(this.getLastName());
-			driver.setAge(Integer.parseInt(this.getAge()));
-			driver.setAvailability(this.getAvailability());
-			Contact contact = new Contact();
-			contact.setHomePhone(this.getHomePhone());
-			contact.setMobilePhone(this.getMobilePhone());
-		    contact.setEmail(this.getEmail());
-			contact.setAddress(this.getAddress());
-		    driver.setContact(contact);		
-		    contact.setDriver(driver);
-			getDriverRegisterService().save(driver);
-			
-		    return SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
+    public String addDriver() {
+        try {
 
-	
-	
-	public String deleteDriver() {
-		try{
-			getDriverRegisterService().deleteByKey(Integer.parseInt(this.getDriverId()));
-			return SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
+            Contact contact = new Contact();
+            contact.setHomePhone(this.getHomePhone());
+            contact.setMobilePhone(this.getMobilePhone());
+            contact.setEmail(this.getEmail());
+            contact.setAddress(this.getAddress());
 
-	public String updateDriver() {
-		try {
-			Driver driver = new Driver();
-			driver.setDriverId(Integer.parseInt(this.getDriverId()));
-			driver.setFirstName(this.getFirstName());
-			driver.setLastName(this.getLastName());
-			driver.setAge(Integer.parseInt(this.getAge()));
-			driver.setAvailability(this.getAvailability());
-			Contact contact = new Contact();
-			contact.setHomePhone(this.getHomePhone());
-			contact.setMobilePhone(this.getMobilePhone());
-		    contact.setEmail(this.getEmail());
-			contact.setAddress(this.getAddress());
-		    driver.setContact(contact);
-			
-			
-			getDriverRegisterService().update(driver);
-			return SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
+            Driver driver = new Driver();
+            driver.setDriverId(Integer.parseInt(this.getDriverId()));
+            driver.setFirstName(this.getFirstName());
+            driver.setLastName(this.getLastName());
+            driver.setAge(Integer.parseInt(this.getAge()));
+            if ("true".equals(this.availability)) {
+                driver.setAvailability('1');
+            } else {
+                driver.setAvailability('0');
+            }
+            driver.setContact(contact);
 
-	public void reset() {
+            getDriverRegisterService().saveDriver(driver);
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+
+    public String deleteDriver() {
+        try {
+//			 getDriverRegisterService().deleteDriverByID(Integer.parseInt(this.getDriverId()));
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+
+    public String updateDriver() {
+        try {
+
+            Contact contact = new Contact();
+            contact.setHomePhone(this.getHomePhone());
+            contact.setMobilePhone(this.getMobilePhone());
+            contact.setEmail(this.getEmail());
+            contact.setAddress(this.getAddress());
+
+            Driver driver = new Driver();
+            driver.setDriverId(Integer.parseInt(this.getDriverId()));
+            driver.setFirstName(this.getFirstName());
+            driver.setLastName(this.getLastName());
+            driver.setAge(Integer.parseInt(this.getAge()));
+            if ("true".equals(this.availability)) {
+                driver.setAvailability('1');
+            } else {
+                driver.setAvailability('0');
+            }
+            driver.setContact(contact);
+
+            getDriverRegisterService().updateDriver(driver);
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+
+    public void reset() {
         this.setDriverId("");
         this.setFirstName("");
         this.setLastName("");
-	    this.setAge("");
-	    this.setAvailability("");
-	    this.setHomePhone("");
-	    this.setMobilePhone("");
-	    this.setEmail("");
-	    this.setAddress("");
-	    
-	}
-	
+        this.setAge("");
+        this.setAvailability("");
+        this.setHomePhone("");
+        this.setMobilePhone("");
+        this.setEmail("");
+        this.setAddress("");
 
-	public DriverRegisterService getDriverRegisterService() {
-		return driverRegisterService;
-	}
+    }
 
-	public String getDriverId() {
-		return driverId;
-	}
+    public DriverRegisterService getDriverRegisterService() {
+        return driverRegisterService;
+    }
 
-	public void setDriverId(String driverId) {
-		this.driverId = driverId;
-	}
+    public void setDriverRegisterService(
+            DriverRegisterService driverRegisterService) {
+        this.driverRegisterService = driverRegisterService;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getDriverId() {
+        return driverId;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getAge() {
-		return age;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setAge(String age) {
-		this.age = age;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getHomePhone() {
-		return homePhone;
-	}
+    public String getAge() {
+        return age;
+    }
 
-	public void setHomePhone(String homePhone) {
-		this.homePhone = homePhone;
-	}
+    public void setAge(String age) {
+        this.age = age;
+    }
 
-	public String getMobilePhone() {
-		return mobilePhone;
-	}
+    public String getHomePhone() {
+        return homePhone;
+    }
 
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
-	}
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getAvailability() {
-		return availability;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAvailability(String availability) {
-		this.availability = availability;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public List<DriverDetails> getDriverList() {
-		return driverList;
-	}
+    public String getAvailability() {
+        return availability;
+    }
 
-	public void setDriverList(List<DriverDetails> driverList) {
-		this.driverList = driverList;
-	}
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
 
-	public void setDriverRegisterService(DriverRegisterService driverRegisterService) {
-		this.driverRegisterService = driverRegisterService;
-	}
+    public List<DriverDetails> getDriverList() {
+        List<Driver> drivers = getDriverRegisterService().getDriverList();
+        List<DriverDetails> driverDetailsList = new ArrayList<DriverDetails>();
+        for (Driver driver : drivers) {
+            DriverDetails driverDetails = new DriverDetails(driver);
+            driverDetailsList.add(driverDetails);
+            System.out.println(driverDetails);
+        }
+        return driverDetailsList;
+    }
+
+    public void setDriverList(List<DriverDetails> driverList) {
+        this.driverList = driverList;
+    }
 
 }

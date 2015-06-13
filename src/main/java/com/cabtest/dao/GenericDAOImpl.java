@@ -9,9 +9,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.cabtest.model.Vehicle;
 
 @SuppressWarnings("unchecked")
 @Repository
@@ -40,7 +37,7 @@ public  abstract class GenericDAOImpl<E, K extends Serializable> implements Gene
 	}
 	
 	public void save(E entity) {
-		this.getCurrentSession().persist(entity);
+		this.getCurrentSession().save(entity);
 	}
 
 	public void saveOrUpdate(E entity) {

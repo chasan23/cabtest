@@ -19,6 +19,7 @@
 
 	<bean id="DriverService" class="com.cabtest.service.DriverRegisterServiceImpl">
 		<property name="driverDAO" ref="DriverDAO" />
+		<property name="contactDAO" ref="ContactDAO"/>
 	</bean>
 
 
@@ -29,6 +30,10 @@
 	</bean>
 
 	<bean id="DriverDAO" class="com.cabtest.dao.DriverDAOImpl">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	
+	<bean id="ContactDAO" class="com.cabtest.dao.ContactDAOImpl">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
 

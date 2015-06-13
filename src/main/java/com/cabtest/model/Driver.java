@@ -1,38 +1,49 @@
 package com.cabtest.model;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "DRIVER")
-public class Driver {
-	
+@Table(name = "DRIVER", catalog = "cab")
+public class Driver implements Serializable {
+
+	private static final long serialVersionUID = 7895139095426977088L;
+
 	@Id
-	@Column(name = "DRIVER_ID")
+	@Column(name = "DRIVER_ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int driverId;
+	private int driverId;
 
 	@Column(name = "FIRST_NAME")
-	String firstName;
+	private String firstName;
 
 	@Column(name = "LAST_NAME")
-	String lastName;
+	private String lastName;
 
 	@Column(name = "AGE")
-	int age;
+	private int age;
 
-	@OneToOne(mappedBy="driver", cascade=CascadeType.ALL)
-	Contact contact;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CONTACT_ID", nullable = false)
+	private Contact contact;
 
 	@Column(name = "AVAILABILITY")
-	String availability;
+	private char availability;
 
 	public int getDriverId() {
 		return driverId;
@@ -66,6 +77,14 @@ public class Driver {
 		this.age = age;
 	}
 
+	public char getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(char availability) {
+		this.availability = availability;
+	}
+
 	public Contact getContact() {
 		return contact;
 	}
@@ -73,13 +92,5 @@ public class Driver {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-
-	public String getAvailability() {
-		return availability;
-	}
-
-	public void setAvailability(String availability) {
-		this.availability = availability;
-	}
-
+	
 }

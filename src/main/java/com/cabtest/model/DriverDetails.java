@@ -8,6 +8,21 @@ public class DriverDetails {
 	int age;
 	String availability;
 
+	public DriverDetails(Driver driver) {
+		this.firstName = driver.getFirstName();
+		this.driverId = driver.getDriverId();
+		this.lastName = driver.getLastName();
+		this.age = driver.getAge();
+		
+		if(driver.getAvailability() == '1'){
+			this.setAvailability("true");
+		} else {
+			this.setAvailability("false");
+		}
+		
+		
+	}
+
 	public int getDriverId() {
 		return driverId;
 	}
@@ -47,5 +62,14 @@ public class DriverDetails {
 	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
+
+	@Override
+	public String toString() {
+		return "DriverDetails [driverId=" + driverId + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", age=" + age
+				+ ", availability=" + availability + "]";
+	}
+	
+	
 
 }
