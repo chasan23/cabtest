@@ -21,7 +21,7 @@ public class VehicleRegisterServiceImpl extends GenericPersistenceServiceImpl<Ve
         return vehicleDAO;
     }
 
-
+    @SuppressWarnings("unchecked")
     public void setVehicleDAO(VehicleDAO vehicleDAO) {
         super.setGenericDAO((GenericDAO) vehicleDAO);
         this.vehicleDAO = vehicleDAO;
