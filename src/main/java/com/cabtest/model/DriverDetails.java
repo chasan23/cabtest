@@ -2,17 +2,23 @@ package com.cabtest.model;
 
 public class DriverDetails {
 
-    int driverId;
-    String firstName;
-    String lastName;
-    int age;
-    String availability;
+    private int driverId;
+    private String firstName;
+    private String lastName;
+    private int age;
+    private String availability;
+    private int contactId;
+    private String homePhone;
+    private String mobilePhone;
+    private String email;
+    private String address;
+
 
     public DriverDetails(Driver driver) {
-        this.firstName = driver.getFirstName();
-        this.driverId = driver.getDriverId();
-        this.lastName = driver.getLastName();
-        this.age = driver.getAge();
+        this.setFirstName(driver.getFirstName());
+        this.setDriverId(driver.getDriverId());
+        this.setLastName(driver.getLastName());
+        this.setAge(driver.getAge());
 
         if (driver.getAvailability() == '1') {
             this.setAvailability("true");
@@ -20,7 +26,11 @@ public class DriverDetails {
             this.setAvailability("false");
         }
 
-
+        Contact contact = driver.getContact();
+        this.setAddress(contact.getAddress());
+        this.setEmail(contact.getEmail());
+        this.setHomePhone(contact.getHomePhone());
+        this.setMobilePhone(contact.getMobilePhone());
     }
 
     public int getDriverId() {
@@ -65,10 +75,56 @@ public class DriverDetails {
 
     @Override
     public String toString() {
-        return "DriverDetails [driverId=" + driverId + ", firstName="
-               + firstName + ", lastName=" + lastName + ", age=" + age
-               + ", availability=" + availability + "]";
+        return "DriverDetails{" +
+               "driverId=" + driverId +
+               ", firstName='" + firstName + '\'' +
+               ", lastName='" + lastName + '\'' +
+               ", age=" + age +
+               ", availability='" + availability + '\'' +
+               ", homePhone='" + homePhone + '\'' +
+               ", mobilePhone='" + mobilePhone + '\'' +
+               ", email='" + email + '\'' +
+               ", address='" + address + '\'' +
+               '}';
     }
 
+    public int getContactId() {
+        return contactId;
+    }
 
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

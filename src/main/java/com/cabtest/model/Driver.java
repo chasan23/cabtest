@@ -31,7 +31,7 @@ public class Driver implements Serializable {
     @Column(name = "AGE")
     private int age;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CONTACT_ID", nullable = false)
     private Contact contact;
 

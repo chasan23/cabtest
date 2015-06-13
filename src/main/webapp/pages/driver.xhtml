@@ -67,64 +67,62 @@
     </h:form>
     <h:form>
 
-        <p:dataTable id="driverDetails" var="driver"
+        <p:dataTable id="driverDetails" var="driverDetails"
                      value="#{driverMB.driverList}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="ID"/>
                 </f:facet>
-                <h:outputText value="#{driver.driverId}"/>
+                <h:outputText value="#{driverDetails.driverId}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="First Name"/>
                 </f:facet>
-                <h:outputText value="#{driver.firstName}"/>
+                <h:outputText value="#{driverDetails.firstName}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Last Name"/>
                 </f:facet>
-                <h:outputText value="#{driver.lastName}"/>
+                <h:outputText value="#{driverDetails.lastName}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Age"/>
                 </f:facet>
-                <h:outputText value="#{driver.age}"/>
+                <h:outputText value="#{driverDetails.age}"/>
             </p:column>
-            <!-- 		    <p:column> -->
-            <!-- 				<f:facet name="header"> -->
-            <!-- 					<h:outputText value="Home Phone" /> -->
-            <!-- 				</f:facet> -->
-            <!-- 				<h:outputText value="#{driver.homePhone}" /> -->
-            <!-- 			</p:column> -->
-            <!-- 		    <p:column> -->
-            <!-- 				<f:facet name="header"> -->
-            <!-- 					<h:outputText value="Mobile Phone" /> -->
-            <!-- 				</f:facet> -->
-            <!-- 				<h:outputText value="#{driver.mobilePhone}" /> -->
-            <!-- 			</p:column> -->
-            <!-- 		    <p:column> -->
-            <!-- 				<f:facet name="header"> -->
-            <!-- 					<h:outputText value="Email" /> -->
-            <!-- 				</f:facet> -->
-            <!-- 				<h:outputText value="#{driver.email}" /> -->
-            <!-- 			</p:column> -->
-            <!-- 		    <p:column> -->
-            <!-- 				<f:facet name="header"> -->
-            <!-- 					<h:outputText value="Address" /> -->
-            <!-- 				</f:facet> -->
-            <!-- 				<h:outputText value="#{driver.address}" /> -->
-            <!-- 			</p:column> -->
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Home Phone"/>
+                </f:facet>
+                <h:outputText value="#{driverDetails.homePhone}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Mobile Phone"/>
+                </f:facet>
+                <h:outputText value="#{driverDetails.mobilePhone}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Email"/>
+                </f:facet>
+                <h:outputText value="#{driverDetails.email}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Address"/>
+                </f:facet>
+                <h:outputText value="#{driverDetails.address}"/>
+            </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Availability"/>
                 </f:facet>
-                <h:outputText value="#{driver.availability}"/>
+                <h:outputText value="#{driverDetails.availability}"/>
             </p:column>
-
-
         </p:dataTable>
     </h:form>
 </h:body>

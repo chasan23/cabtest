@@ -203,6 +203,10 @@ public class DriverManagedBean {
             DriverDetails driverDetails = new DriverDetails(driver);
             driverDetailsList.add(driverDetails);
         }
+
+        for (DriverDetails driverDetails : driverDetailsList) {
+            System.out.println(driverDetails.toString());
+        }
         return driverDetailsList;
     }
 
