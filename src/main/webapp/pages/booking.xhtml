@@ -1,0 +1,129 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>CAB MANAGEMENT SYSTEM</title>
+</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputLabel for="bookingId" value="Booking ID : "/></td>
+                <td><p:inputText id="bookingId" value="#{bookingMB.bookingId}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="firstName" value="First Name : "/></td>
+                <td><p:inputText id="firstName" value="#{bookingMB.firstName}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="lastName" value="Last Name : "/></td>
+                <td><p:inputText id="lastName" value="#{bookingMB.lastName}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="age" value="Age : "/></td>
+                <td><p:inputText id="age" value="#{bookingMB.age}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="homePhone" value="Home Phone : "/></td>
+                <td><p:inputText id="homePhone" value="#{bookingMB.homePhone}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="mobilePhone" value="Mobile Phone : "/></td>
+                <td><p:inputText id="mobilePhone" value="#{bookingMB.mobilePhone}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="email" value="Email : "/></td>
+                <td><p:inputText id="email" value="#{bookingMB.email}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="address" value="Address : "/></td>
+                <td><p:inputText id="address" value="#{bookingMB.address}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="availability" value="Availability : "/></td>
+                <td><p:selectBooleanCheckbox id="availability" value="#{bookingMB.availability}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><p:commandButton id="addBooking" value="Add Booking"
+                                     action="#{bookingMB.addBooking}" ajax="false"/></td>
+                <td><p:commandButton id="updateBooking" value="Update Booking"
+                                     action="#{bookingMB.updateBooking}" ajax="false"/></td>
+                <td><p:commandButton id="deleteBooking" value="Delete Booking"
+                                     action="#{bookingMB.deleteBooking}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset"
+                                     action="#{bookingMB.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form>
+
+        <p:dataTable id="bookingDetails" var="bookingDetails"
+                     value="#{bookingMB.bookingList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.bookingId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="First Name"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.firstName}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Last Name"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.lastName}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Age"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.age}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Home Phone"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.homePhone}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Mobile Phone"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.mobilePhone}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Email"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.email}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Address"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.address}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Availability"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.availability}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
