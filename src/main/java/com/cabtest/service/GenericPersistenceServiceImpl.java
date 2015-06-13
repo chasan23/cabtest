@@ -9,7 +9,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Service
-public abstract class GenericPersistenceServiceImpl<E, K extends Serializable> implements GenericPersistenceService<E, K> {
+public abstract class GenericPersistenceServiceImpl<E, K extends Serializable>
+        implements GenericPersistenceService<E, K> {
 
     private GenericDAO<E, Serializable> genericDAO;
 

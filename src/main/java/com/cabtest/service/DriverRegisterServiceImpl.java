@@ -4,6 +4,7 @@ import com.cabtest.dao.ContactDAO;
 import com.cabtest.dao.DriverDAO;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Driver;
+import com.cabtest.model.DriverDetails;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -46,19 +47,36 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
 
     @Override
     @Transactional
-    public void updateDriver(Driver driver) {
-        Contact contact = driver.getContact();
+    public void updateDriver(DriverDetails updatedDriver) {
+        Driver existingDriver = getDriverDAO().findByKey(updatedDriver.getDriverId());
+        existingDriver.setAge(updatedDriver.getAge());
+
+        if ("true".equals(updatedDriver.getAvailability())) {
+            existingDriver.setAvailability('1');
+        } else {
+            existingDriver.setAvailability('0');
+        }
+
+        existingDriver.setFirstName(updatedDriver.getFirstName());
+        existingDriver.setLastName(updatedDriver.getLastName());
+
+        Contact contact = existingDriver.getContact();
+        contact.setHomePhone(updatedDriver.getHomePhone());
+        contact.setMobilePhone(updatedDriver.getMobilePhone());
+        contact.setAddress(updatedDriver.getAddress());
+        contact.setEmail(updatedDriver.getEmail());
+
         getContactDAO().update(contact);
-        driver.setContact(contact);
-        contact.getDrivers().add(driver);
-        getDriverDAO().update(driver);
+        existingDriver.setContact(contact);
+        contact.getDrivers().add(existingDriver);
+        getDriverDAO().update(existingDriver);
 
     }
 
     @Override
     @Transactional
     public void deleteDriver(Driver driver) {
-
+        //not implemented
     }
 
     @Override
