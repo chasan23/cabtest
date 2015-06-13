@@ -1,145 +1,131 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>CAB MANAGEMENT SYSTEM</title>
+    <title>CAB MANAGEMENT SYSTEM</title>
 </h:head>
 <h:body>
-	<h:form>
-		<table>
-			<tr>
-				<td><h:outputLabel for="driverId" value="Driver ID : " /></td>
-				<td><p:inputText id="driverId" value="#{driverMB.driverId}"></p:inputText>
-				</td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="firstName" value="First Name : " /></td>
-				<td><p:inputText id="firstName" value="#{driverMB.firstName}"></p:inputText>
-				</td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="lastName" value="Last Name : " /></td>
-				<td><p:inputText id="lastName" value="#{driverMB.lastName}"></p:inputText>
-				</td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="age" value="Age : " /></td>
-				<td><p:inputText id="age" value="#{driverMB.age}"></p:inputText>
-				</td>
-			</tr>
+    <h:form>
+        <table>
             <tr>
-				<td><h:outputLabel for="homePhone" value="Home Phone : " /></td>
-				<td><p:inputText id="homePhone" value="#{driverMB.homePhone}"></p:inputText>
-				</td>
-			</tr>
+                <td><h:outputLabel for="driverId" value="Driver ID : "/></td>
+                <td><p:inputText id="driverId" value="#{driverMB.driverId}"/>
+                </td>
+            </tr>
             <tr>
-				<td><h:outputLabel for="mobilePhone" value="Mobile Phone : " /></td>
-				<td><p:inputText id="mobilePhone" value="#{driverMB.mobilePhone}"></p:inputText>
-				</td>
-			</tr>
+                <td><h:outputLabel for="firstName" value="First Name : "/></td>
+                <td><p:inputText id="firstName" value="#{driverMB.firstName}"/>
+                </td>
+            </tr>
             <tr>
-				<td><h:outputLabel for="email" value="Email : " /></td>
-				<td><p:inputText id="email" value="#{driverMB.email}"></p:inputText>
-				</td>
-			</tr>
+                <td><h:outputLabel for="lastName" value="Last Name : "/></td>
+                <td><p:inputText id="lastName" value="#{driverMB.lastName}"/>
+                </td>
+            </tr>
             <tr>
-				<td><h:outputLabel for="address" value="Address : " /></td>
-				<td><p:inputText id="address" value="#{driverMB.address}"></p:inputText>
-				</td>
-			</tr>
+                <td><h:outputLabel for="age" value="Age : "/></td>
+                <td><p:inputText id="age" value="#{driverMB.age}"/>
+                </td>
+            </tr>
             <tr>
-				<td><h:outputLabel for="availability" value="Availability : " /></td>
-				<td><p:selectBooleanCheckbox id="availability" value="#{driverMB.availability}"></p:selectBooleanCheckbox>
-				</td>
-			</tr>
-			<tr>
-				<td><p:commandButton id="addDriver" value="Add Driver"
-						action="#{driverMB.addDriver}" ajax="false" /></td>
-				<td><p:commandButton id="updateDriver" value="Update Driver"
-						action="#{driverMB.updateDriver}" ajax="false" /></td>
-				<td><p:commandButton id="deleteDriver" value="Delete Driver"
-						action="#{driverMB.deleteDriver}" ajax="false" /></td>
-				<td><p:commandButton id="reset" value="Reset"
-						action="#{driverMB.reset}" ajax="false" /></td>
-			</tr>
-		</table>
-	</h:form>
-	<h:form>
-		
-		<p:dataTable id="driverDetails" var="driver"
-			value="#{driverMB.driverList}" style="width: 10%">
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="ID" />
-				</f:facet>
-				<h:outputText value="#{driver.driverId}" />
-			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="First Name" />
-				</f:facet>
-				<h:outputText value="#{driver.firstName}" />
-			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="Last Name" />
-				</f:facet>
-				<h:outputText value="#{driver.lastName}" />
-			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="Age" />
-				</f:facet>
-				<h:outputText value="#{driver.age}" />
-			</p:column>
-<!-- 		    <p:column> -->
-<!-- 				<f:facet name="header"> -->
-<!-- 					<h:outputText value="Home Phone" /> -->
-<!-- 				</f:facet> -->
-<!-- 				<h:outputText value="#{driver.homePhone}" /> -->
-<!-- 			</p:column> -->
-<!-- 		    <p:column> -->
-<!-- 				<f:facet name="header"> -->
-<!-- 					<h:outputText value="Mobile Phone" /> -->
-<!-- 				</f:facet> -->
-<!-- 				<h:outputText value="#{driver.mobilePhone}" /> -->
-<!-- 			</p:column> -->
-<!-- 		    <p:column> -->
-<!-- 				<f:facet name="header"> -->
-<!-- 					<h:outputText value="Email" /> -->
-<!-- 				</f:facet> -->
-<!-- 				<h:outputText value="#{driver.email}" /> -->
-<!-- 			</p:column> -->
-<!-- 		    <p:column> -->
-<!-- 				<f:facet name="header"> -->
-<!-- 					<h:outputText value="Address" /> -->
-<!-- 				</f:facet> -->
-<!-- 				<h:outputText value="#{driver.address}" /> -->
-<!-- 			</p:column> -->
-		    <p:column>
-				<f:facet name="header">
-					<h:outputText value="Availability" />
-				</f:facet>
-				<h:outputText value="#{driver.availability}" />
-			</p:column>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		</p:dataTable>
-	</h:form>
+                <td><h:outputLabel for="homePhone" value="Home Phone : "/></td>
+                <td><p:inputText id="homePhone" value="#{driverMB.homePhone}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="mobilePhone" value="Mobile Phone : "/></td>
+                <td><p:inputText id="mobilePhone" value="#{driverMB.mobilePhone}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="email" value="Email : "/></td>
+                <td><p:inputText id="email" value="#{driverMB.email}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="address" value="Address : "/></td>
+                <td><p:inputText id="address" value="#{driverMB.address}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="availability" value="Availability : "/></td>
+                <td><p:selectBooleanCheckbox id="availability" value="#{driverMB.availability}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><p:commandButton id="addDriver" value="Add Driver"
+                                     action="#{driverMB.addDriver}" ajax="false"/></td>
+                <td><p:commandButton id="updateDriver" value="Update Driver"
+                                     action="#{driverMB.updateDriver}" ajax="false"/></td>
+                <td><p:commandButton id="deleteDriver" value="Delete Driver"
+                                     action="#{driverMB.deleteDriver}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset"
+                                     action="#{driverMB.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form>
+
+        <p:dataTable id="driverDetails" var="driver"
+                     value="#{driverMB.driverList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                <h:outputText value="#{driver.driverId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="First Name"/>
+                </f:facet>
+                <h:outputText value="#{driver.firstName}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Last Name"/>
+                </f:facet>
+                <h:outputText value="#{driver.lastName}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Age"/>
+                </f:facet>
+                <h:outputText value="#{driver.age}"/>
+            </p:column>
+            <!-- 		    <p:column> -->
+            <!-- 				<f:facet name="header"> -->
+            <!-- 					<h:outputText value="Home Phone" /> -->
+            <!-- 				</f:facet> -->
+            <!-- 				<h:outputText value="#{driver.homePhone}" /> -->
+            <!-- 			</p:column> -->
+            <!-- 		    <p:column> -->
+            <!-- 				<f:facet name="header"> -->
+            <!-- 					<h:outputText value="Mobile Phone" /> -->
+            <!-- 				</f:facet> -->
+            <!-- 				<h:outputText value="#{driver.mobilePhone}" /> -->
+            <!-- 			</p:column> -->
+            <!-- 		    <p:column> -->
+            <!-- 				<f:facet name="header"> -->
+            <!-- 					<h:outputText value="Email" /> -->
+            <!-- 				</f:facet> -->
+            <!-- 				<h:outputText value="#{driver.email}" /> -->
+            <!-- 			</p:column> -->
+            <!-- 		    <p:column> -->
+            <!-- 				<f:facet name="header"> -->
+            <!-- 					<h:outputText value="Address" /> -->
+            <!-- 				</f:facet> -->
+            <!-- 				<h:outputText value="#{driver.address}" /> -->
+            <!-- 			</p:column> -->
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Availability"/>
+                </f:facet>
+                <h:outputText value="#{driver.availability}"/>
+            </p:column>
+
+
+        </p:dataTable>
+    </h:form>
 </h:body>
 </html>

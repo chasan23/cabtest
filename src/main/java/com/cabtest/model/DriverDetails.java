@@ -2,74 +2,73 @@ package com.cabtest.model;
 
 public class DriverDetails {
 
-	int driverId;
-	String firstName;
-	String lastName;
-	int age;
-	String availability;
+    int driverId;
+    String firstName;
+    String lastName;
+    int age;
+    String availability;
 
-	public DriverDetails(Driver driver) {
-		this.firstName = driver.getFirstName();
-		this.driverId = driver.getDriverId();
-		this.lastName = driver.getLastName();
-		this.age = driver.getAge();
-		
-		if(driver.getAvailability() == '1'){
-			this.setAvailability("true");
-		} else {
-			this.setAvailability("false");
-		}
-		
-		
-	}
+    public DriverDetails(Driver driver) {
+        this.firstName = driver.getFirstName();
+        this.driverId = driver.getDriverId();
+        this.lastName = driver.getLastName();
+        this.age = driver.getAge();
 
-	public int getDriverId() {
-		return driverId;
-	}
+        if (driver.getAvailability() == '1') {
+            this.setAvailability("true");
+        } else {
+            this.setAvailability("false");
+        }
 
-	public void setDriverId(int driverId) {
-		this.driverId = driverId;
-	}
 
-	public String getFirstName() {
-		return firstName;
-	}
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public int getDriverId() {
+        return driverId;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getAvailability() {
-		return availability;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setAvailability(String availability) {
-		this.availability = availability;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	@Override
-	public String toString() {
-		return "DriverDetails [driverId=" + driverId + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", age=" + age
-				+ ", availability=" + availability + "]";
-	}
-	
-	
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    @Override
+    public String toString() {
+        return "DriverDetails [driverId=" + driverId + ", firstName="
+               + firstName + ", lastName=" + lastName + ", age=" + age
+               + ", availability=" + availability + "]";
+    }
+
 
 }

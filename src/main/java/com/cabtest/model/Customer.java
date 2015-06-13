@@ -1,8 +1,8 @@
 package com.cabtest.model;
 
 public class Customer {
-	
-	String firstName;
-	String lastName;
-	
+
+    String firstName;
+    String lastName;
+
 }

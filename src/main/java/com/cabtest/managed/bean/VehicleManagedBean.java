@@ -1,124 +1,123 @@
 package com.cabtest.managed.bean;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.cabtest.model.Vehicle;
+import com.cabtest.service.VehicleRegisterService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.cabtest.model.Vehicle;
-import com.cabtest.service.VehicleRegisterService;
-
-@ManagedBean(name="vehicleMB")
+@ManagedBean(name = "vehicleMB")
 @RequestScoped
 public class VehicleManagedBean {
 
-	private static final long serialVersionUID = 1L;
-	private static final String SUCCESS = "success";
-	private static final String ERROR = "error";
+    private static final long serialVersionUID = 1L;
+    private static final String SUCCESS = "success";
+    private static final String ERROR = "error";
 
-	@ManagedProperty(value="#{VehicleService}")
-	VehicleRegisterService vehicleRegisterService;
+    @ManagedProperty(value = "#{vehicleService}")
+    VehicleRegisterService vehicleRegisterService;
 
-	List<Vehicle> vehicleList;
+    List<Vehicle> vehicleList;
 
-	String registrationNumber;
-	String type;
-	String model;
-	String vehicleId;
+    String registrationNumber;
+    String type;
+    String model;
+    String vehicleId;
 
-	public String addVehicle() {
-		try {
-			Vehicle vehicle = new Vehicle();
-			vehicle.setVehicalType(this.getType());
-			vehicle.setModel(this.getModel());
-			vehicle.setRegistrationNumber(this.getRegistrationNumber());
-			getVehicleRegisterService().save(vehicle);
-			return SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
-	
-	public String updateVehicle() {
-		try {
-			Vehicle vehicle = new Vehicle();
-			vehicle.setVehicalId(Integer.parseInt(this.getVehicleId()));
-			vehicle.setVehicalType(this.getType());
-			vehicle.setModel(this.getModel());
-			vehicle.setRegistrationNumber(this.getRegistrationNumber());
-			getVehicleRegisterService().update(vehicle);
-			return SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
-	
-	public String deleteVehicle(){
-		try{
-			getVehicleRegisterService().deleteByKey(Integer.parseInt(this.getVehicleId()));
-			return SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
-	
-	 public void reset() {
-	        this.setModel("");
-	        this.setRegistrationNumber("");
-	        this.setType("");
-	 }
+    public String addVehicle() {
+        try {
+            Vehicle vehicle = new Vehicle();
+            vehicle.setVehicalType(this.getType());
+            vehicle.setModel(this.getModel());
+            vehicle.setRegistrationNumber(this.getRegistrationNumber());
+            getVehicleRegisterService().save(vehicle);
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
 
-	public List<Vehicle> getVehicleList() {
-		vehicleList = new ArrayList<Vehicle>();
-		vehicleList.addAll(getVehicleRegisterService().getAll());
-		return vehicleList;
-	}
+    public String updateVehicle() {
+        try {
+            Vehicle vehicle = new Vehicle();
+            vehicle.setVehicalId(Integer.parseInt(this.getVehicleId()));
+            vehicle.setVehicalType(this.getType());
+            vehicle.setModel(this.getModel());
+            vehicle.setRegistrationNumber(this.getRegistrationNumber());
+            getVehicleRegisterService().update(vehicle);
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
 
-	public VehicleRegisterService getVehicleRegisterService() {
-		return vehicleRegisterService;
-	}
+    public String deleteVehicle() {
+        try {
+            getVehicleRegisterService().deleteByKey(Integer.parseInt(this.getVehicleId()));
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
 
-	public void setVehicleRegisterService(
-			VehicleRegisterService vehicleRegisterService) {
-		this.vehicleRegisterService = vehicleRegisterService;
-	}
+    public void reset() {
+        this.setModel("");
+        this.setRegistrationNumber("");
+        this.setType("");
+    }
 
-	public String getRegistrationNumber() {
-		return registrationNumber;
-	}
+    public List<Vehicle> getVehicleList() {
+        vehicleList = new ArrayList<Vehicle>();
+        vehicleList.addAll(getVehicleRegisterService().getAll());
+        return vehicleList;
+    }
 
-	public void setRegistrationNumber(String registrationNumber) {
-		this.registrationNumber = registrationNumber;
-	}
+    public VehicleRegisterService getVehicleRegisterService() {
+        return vehicleRegisterService;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setVehicleRegisterService(
+            VehicleRegisterService vehicleRegisterService) {
+        this.vehicleRegisterService = vehicleRegisterService;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
 
-	public String getModel() {
-		return model;
-	}
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
 
-	public void setModel(String model) {
-		this.model = model;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public String getVehicleId() {
-		return vehicleId;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setVehicleId(String vehicleId) {
-		this.vehicleId = vehicleId;
-	}
-	
-	
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
+    }
+
+
 }

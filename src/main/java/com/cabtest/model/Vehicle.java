@@ -8,68 +8,67 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-
 @Entity
 @Table(name = "VEHICLE")
 public class Vehicle {
-	
-	@Id
-	@Column(name = "VEHICLE_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int vehicalId;
-	
-	@Column(name = "REG_NUMBER")
-	String registrationNumber;
-	
-	@Column(name = "VEHICLE_TYPE")
-	String vehicalType;
-	
-	@Column(name = "MODEL")
-	String model;
-	
-	@Column(name = "AVAILABILITY")
-	boolean avilability;
 
-	public Vehicle() {
-	}
-	
-	public int getVehicalId() {
-		return vehicalId;
-	}
+    @Id
+    @Column(name = "VEHICLE_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int vehicalId;
 
-	public void setVehicalId(int vehicalId) {
-		this.vehicalId = vehicalId;
-	}
+    @Column(name = "REG_NUMBER")
+    String registrationNumber;
 
-	public String getRegistrationNumber() {
-		return registrationNumber;
-	}
+    @Column(name = "VEHICLE_TYPE")
+    String vehicalType;
 
-	public void setRegistrationNumber(String registrationNumber) {
-		this.registrationNumber = registrationNumber;
-	}
+    @Column(name = "MODEL")
+    String model;
 
-	public String getVehicalType() {
-		return vehicalType;
-	}
+    @Column(name = "AVAILABILITY")
+    boolean avilability;
 
-	public void setVehicalType(String vehicalType) {
-		this.vehicalType = vehicalType;
-	}
+    public Vehicle() {
+    }
 
-	public String getModel() {
-		return model;
-	}
+    public int getVehicalId() {
+        return vehicalId;
+    }
 
-	public void setModel(String model) {
-		this.model = model;
-	}
+    public void setVehicalId(int vehicalId) {
+        this.vehicalId = vehicalId;
+    }
 
-	public boolean isAvilability() {
-		return avilability;
-	}
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
 
-	public void setAvilability(boolean avilability) {
-		this.avilability = avilability;
-	}
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public String getVehicalType() {
+        return vehicalType;
+    }
+
+    public void setVehicalType(String vehicalType) {
+        this.vehicalType = vehicalType;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public boolean isAvilability() {
+        return avilability;
+    }
+
+    public void setAvilability(boolean avilability) {
+        this.avilability = avilability;
+    }
 }

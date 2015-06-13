@@ -1,55 +1,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Welcome to OTV_JSF_Spring_Hibernate_Project</title>
 </h:head>
 <h:body>
     <h:form>
-        <h:outputText value="Vehicles : "></h:outputText>
+        <h:outputText value="Vehicles : "/>
         <p:dataTable id="vehicles" var="vehicle" value="#{vehicleMB.vehicleList}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="ID" />
+                    <h:outputText value="ID"/>
                 </f:facet>
-                <h:outputText value="#{vehicle.vehicalId}" />
+                <h:outputText value="#{vehicle.vehicalId}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Registration Number" />
+                    <h:outputText value="Registration Number"/>
                 </f:facet>
-                <h:outputText value="#{vehicle.registrationNumber}" />
+                <h:outputText value="#{vehicle.registrationNumber}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Type" />
+                    <h:outputText value="Type"/>
                 </f:facet>
-                <h:outputText value="#{vehicle.vehicalType}" />
+                <h:outputText value="#{vehicle.vehicalType}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Model" />
+                    <h:outputText value="Model"/>
                 </f:facet>
-                <h:outputText value="#{vehicle.model}" />
+                <h:outputText value="#{vehicle.model}"/>
             </p:column>
         </p:dataTable>
 
-		<table>
-			<tr>
-				<td><h:outputLabel for="vehicleId" value="Vehicle ID : " /></td>
-				<td><p:inputText id="vehicleId"
-						value="#{vehicleMB.vehicleId}">
-					</p:inputText></td>
-			</tr>
-			<tr>
-                <td><p:commandButton id="deleteVehicle" value="Delete Vehicle" action="#{vehicleMB.deleteVehicle}" ajax="false"/></td>                
-             </tr>   
-		</table>
-		
-	</h:form>
-    
-    
+        <table>
+            <tr>
+                <td><h:outputLabel for="vehicleId" value="Vehicle ID : "/></td>
+                <td><p:inputText id="vehicleId"
+                                 value="#{vehicleMB.vehicleId}">
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td><p:commandButton id="deleteVehicle" value="Delete Vehicle" action="#{vehicleMB.deleteVehicle}"
+                                     ajax="false"/></td>
+            </tr>
+        </table>
+
+    </h:form>
+
+
 </h:body>
- 
+
 </html>

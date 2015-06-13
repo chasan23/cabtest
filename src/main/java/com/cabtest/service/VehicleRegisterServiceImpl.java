@@ -1,31 +1,31 @@
 package com.cabtest.service;
 
-import org.springframework.stereotype.Service;
-
 import com.cabtest.dao.GenericDAO;
 import com.cabtest.dao.VehicleDAO;
 import com.cabtest.model.Vehicle;
+import org.springframework.stereotype.Service;
 
 @Service
-public class VehicleRegisterServiceImpl extends GenericPersistenceServiceImpl<Vehicle, Integer> implements VehicleRegisterService {
+public class VehicleRegisterServiceImpl extends GenericPersistenceServiceImpl<Vehicle, Integer>
+        implements VehicleRegisterService {
 
-	private VehicleDAO vehicleDAO;
-	
-	
-	public VehicleRegisterServiceImpl() {
-		super();
-	}
+    private VehicleDAO vehicleDAO;
 
 
-	public VehicleDAO getVehicleDAO() {
-		return vehicleDAO;
-	}
+    public VehicleRegisterServiceImpl() {
+        super();
+    }
 
 
-	public void setVehicleDAO(VehicleDAO vehicleDAO) {
-		super.setGenericDAO((GenericDAO)vehicleDAO);
-		this.vehicleDAO = vehicleDAO;
-	}
+    public VehicleDAO getVehicleDAO() {
+        return vehicleDAO;
+    }
+
+
+    public void setVehicleDAO(VehicleDAO vehicleDAO) {
+        super.setGenericDAO((GenericDAO) vehicleDAO);
+        this.vehicleDAO = vehicleDAO;
+    }
 
 }
 
