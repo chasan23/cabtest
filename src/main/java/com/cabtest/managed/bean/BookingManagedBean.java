@@ -1,8 +1,6 @@
 package com.cabtest.managed.bean;
 
-import com.cabtest.model.Booking;
-import com.cabtest.model.Contact;
-import com.cabtest.model.Customer;
+import com.cabtest.model.*;
 import com.cabtest.service.BookingRegisterService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -114,7 +112,18 @@ public class BookingManagedBean {
         return ERROR;
     }
 
-
+    public void reset() {
+        this.setType("");
+        this.setFirstName("");
+        this.setLastName("");
+        this.setTime("");
+        this.setBookingId("");
+        this.setHomePhone("");
+        this.setMobilePhone("");
+        this.setEmail("");
+        this.setAddress("");
+        this.setLocation("");
+    }
 
     public BookingRegisterService getBookingRegisterService() {
         return bookingRegisterService;
@@ -203,4 +212,19 @@ public class BookingManagedBean {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public List<BookingDetails> getBookingList() {
+        List<Booking> bookings = getBookingRegisterService().getBookingList();
+        List<BookingDetails> bookingDetailsList = new ArrayList<>();
+        for (Booking booking : bookings) {
+            BookingDetails bookingDetails = new BookingDetails(booking);
+            bookingDetailsList.add(bookingDetails);
+        }
+
+        for (BookingDetails bookingDetails : bookingDetailsList) {
+            System.out.println(bookingDetails.toString());
+        }
+        return bookingDetailsList;
+    }
+
 }

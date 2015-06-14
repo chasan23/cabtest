@@ -8,6 +8,7 @@
     <!-- Beans Declaration -->
     <bean id="vehicle" class="com.cabtest.model.Vehicle"/>
     <bean id="driver" class="com.cabtest.model.Driver"/>
+    <bean id="booking" class="com.cabtest.model.Booking"/>
 
     <!-- Service Declaration -->
     <bean id="vehicleService" class="com.cabtest.service.VehicleRegisterServiceImpl">
@@ -19,6 +20,11 @@
         <property name="contactDAO" ref="contactDAO"/>
     </bean>
 
+    <bean id="bookingService" class="com.cabtest.service.BookingRegisterServiceImpl">
+        <property name="bookingDAO" ref="bookingDAO"/>
+        <property name="customerDAO" ref="customerDAO"/>
+        <property name="contactDAO" ref="contactDAO"/>
+    </bean>
 
     <!-- DAO Declaration -->
     <bean id="vehicleDAO" class="com.cabtest.dao.VehicleDAOImpl">
@@ -30,6 +36,14 @@
     </bean>
 
     <bean id="contactDAO" class="com.cabtest.dao.ContactDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="bookingDAO" class="com.cabtest.dao.BookingDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="customerDAO" class="com.cabtest.dao.CustomerDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -54,6 +68,8 @@
                 <value>com.cabtest.model.Vehicle</value>
                 <value>com.cabtest.model.Driver</value>
                 <value>com.cabtest.model.Contact</value>
+                <value>com.cabtest.model.Booking</value>
+                <value>com.cabtest.model.Customer</value>
             </list>
         </property>
         <property name="hibernateProperties">

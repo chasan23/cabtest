@@ -2,8 +2,10 @@ package com.cabtest.service;
 
 import com.cabtest.dao.ContactDAO;
 import com.cabtest.dao.BookingDAO;
+import com.cabtest.dao.CustomerDAO;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Booking;
+import com.cabtest.model.Customer;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,6 +14,8 @@ import java.util.List;
 @Service
 public class BookingRegisterServiceImpl implements BookingRegisterService {
     private BookingDAO bookingDAO;
+
+    private CustomerDAO customerDAO;
 
     private ContactDAO contactDAO;
 
@@ -27,6 +31,14 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
         this.bookingDAO = bookingDAO;
     }
 
+    public CustomerDAO getCustomerDAO() {
+        return customerDAO;
+    }
+
+    public void setCustomerDAO(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
+    }
+
     public ContactDAO getContactDAO() {
         return contactDAO;
     }
@@ -38,11 +50,13 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
     @Override
     @Transactional
     public void saveBooking(Booking booking) {
-//        Contact contact = booking.getContact();
-//        getContactDAO().save(contact);
+          Customer customer = booking.getCustomer();
+          getCustomerDAO().save(customer);
+          Contact contact = customer.getContact();
+          getContactDAO().save(contact);
 //        booking.setContact(contact);
 //        contact.getBookings().add(booking);
-//        getBookingDAO().save(booking);
+          getBookingDAO().save(booking);
     }
 
     @Override

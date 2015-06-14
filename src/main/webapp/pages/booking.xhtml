@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td><h:outputLabel for="vehicleType" value="VehicleType : "/></td>
-                <td><p:inputText id="vehicleType" value="#{bookingMB.vehicleType}"/>
+                <td><p:inputText id="vehicleType" value="#{bookingMB.type}"/>
                 </td>
             </tr>
             <tr>
@@ -92,12 +92,7 @@
                 </f:facet>
                 <h:outputText value="#{bookingDetails.lastName}"/>
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Age"/>
-                </f:facet>
-                <h:outputText value="#{bookingDetails.age}"/>
-            </p:column>
+
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Home Phone"/>
@@ -122,12 +117,7 @@
                 </f:facet>
                 <h:outputText value="#{bookingDetails.address}"/>
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Availability"/>
-                </f:facet>
-                <h:outputText value="#{bookingDetails.availability}"/>
-            </p:column>
+
         </p:dataTable>
     </h:form>
 </h:body>
