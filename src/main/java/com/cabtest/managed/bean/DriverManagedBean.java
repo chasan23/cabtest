@@ -6,6 +6,7 @@ import com.cabtest.model.DriverDetails;
 import com.cabtest.service.DriverRegisterService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Hibernate;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -38,7 +39,6 @@ public class DriverManagedBean {
             Contact contact = getContact();
 
             Driver driver = getDriver();
-            driver.setDriverId(Integer.parseInt(this.getDriverId()));
 
             if ("true".equals(this.availability)) {
                 driver.setAvailability('1');
@@ -66,7 +66,7 @@ public class DriverManagedBean {
 
     public String deleteDriver() {
         try {
-//			 getDriverRegisterService().deleteDriverByID(Integer.parseInt(this.getDriverId()));
+            getDriverRegisterService().deleteDriverByID(Integer.parseInt(this.getDriverId()));
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to delete driver.", e);
@@ -75,19 +75,23 @@ public class DriverManagedBean {
     }
 
     public String updateDriver() {
+
         try {
 
             Contact contact = getContact();
 
-            Driver driver = getDriver();
-            if ("true".equals(this.availability)) {
-                driver.setAvailability('1');
-            } else {
-                driver.setAvailability('0');
-            }
-            driver.setContact(contact);
+            Driver updatedDriver = getDriver();
+            updatedDriver.setDriverId(Integer.parseInt(this.getDriverId()));
 
-            getDriverRegisterService().updateDriver(driver);
+            if ("true".equals(this.availability)) {
+                updatedDriver.setAvailability('1');
+            } else {
+                updatedDriver.setAvailability('0');
+            }
+            updatedDriver.setContact(contact);
+
+            DriverDetails driverDetails = new DriverDetails(updatedDriver);
+            getDriverRegisterService().updateDriver(driverDetails);
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to update driver.", e);
@@ -202,10 +206,6 @@ public class DriverManagedBean {
         for (Driver driver : drivers) {
             DriverDetails driverDetails = new DriverDetails(driver);
             driverDetailsList.add(driverDetails);
-        }
-
-        for (DriverDetails driverDetails : driverDetailsList) {
-            System.out.println(driverDetails.toString());
         }
         return driverDetailsList;
     }
