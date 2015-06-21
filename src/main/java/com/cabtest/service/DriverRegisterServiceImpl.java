@@ -91,4 +91,9 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
         driverDAO.deleteByKey(id);
     }
 
+    @Override
+    public Driver getAvailableDriver() {
+        return null;
+    }
+
 }

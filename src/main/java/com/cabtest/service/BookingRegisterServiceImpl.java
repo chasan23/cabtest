@@ -51,9 +51,11 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
     @Transactional
     public void saveBooking(Booking booking) {
           Customer customer = booking.getCustomer();
-          getCustomerDAO().save(customer);
+
           Contact contact = customer.getContact();
           getContactDAO().save(contact);
+          getCustomerDAO().save(customer);
+
 //        booking.setContact(contact);
 //        contact.getBookings().add(booking);
           getBookingDAO().save(booking);

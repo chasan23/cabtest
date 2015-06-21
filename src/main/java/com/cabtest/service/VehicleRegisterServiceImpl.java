@@ -27,5 +27,9 @@ public class VehicleRegisterServiceImpl extends GenericPersistenceServiceImpl<Ve
         this.vehicleDAO = vehicleDAO;
     }
 
+    @Override
+    public Vehicle getAvailableVehicle(String vehicleType) {
+        return null;
+    }
 }
 

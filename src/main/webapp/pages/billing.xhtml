@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>CAB MANAGEMENT SYSTEM</title>
+</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputLabel for="billingId" value="Billing ID : "/></td>
+                <td><p:inputText id="billingId" value="#{billingMB.billingId}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="assignmentId" value="Assignment Id : "/></td>
+                <td><p:inputText id="assignmentId" value="#{billingMB.assignmentId}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="amount" value="Amount : "/></td>
+                <td><p:inputText id="amount" value="#{billingMB.amount}"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td><p:commandButton id="addBilling" value="Add Billing"
+                                     action="#{billingMB.addBilling}" ajax="false"/></td>
+                <td><p:commandButton id="updateBilling" value="Update Billing"
+                                     action="#{billingMB.updateBilling}" ajax="false"/></td>
+                <td><p:commandButton id="deleteBilling" value="Delete Billing"
+                                     action="#{billingMB.deleteBilling}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset"
+                                     action="#{billingMB.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form>
+
+        <p:dataTable id="billingDetails" var="billingDetails"
+                     value="#{billingMB.billingList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                <h:outputText value="#{billingDetails.billingId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Assignment Id"/>
+                </f:facet>
+                <h:outputText value="#{billingDetails.assignmentId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Amount"/>
+                </f:facet>
+                <h:outputText value="#{billingDetails.amount}"/>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

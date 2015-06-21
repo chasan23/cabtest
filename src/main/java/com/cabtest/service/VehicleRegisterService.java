@@ -11,4 +11,6 @@ import com.cabtest.model.Vehicle;
  */
 public interface VehicleRegisterService extends GenericPersistenceService<Vehicle, Integer> {
 
+    Vehicle getAvailableVehicle(String vehicleType);
+
 }

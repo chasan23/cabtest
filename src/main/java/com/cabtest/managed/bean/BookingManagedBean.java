@@ -45,7 +45,6 @@ public class BookingManagedBean {
 
             Booking booking = getBooking();
 
-            booking.setBookingId(Integer.parseInt(this.getBookingId()));
 
             customer.setContact(contact);
             booking.setCustomer(customer);
