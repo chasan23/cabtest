@@ -17,4 +17,5 @@ public interface DriverRegisterService {
 
     void deleteDriverByID(Integer id);
 
+    Driver getAvailableDriver();
 }
