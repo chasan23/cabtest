@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Entity
 @Table(name = "BOOKING", catalog = "cab")
@@ -72,5 +71,36 @@ public class Booking {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Booking booking = (Booking) o;
+
+        return bookingId == booking.bookingId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return bookingId;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+               "bookingId=" + bookingId +
+               ", vehicleType='" + vehicleType + '\'' +
+               ", time=" + time +
+               ", location='" + location + '\'' +
+               ", customer=" + customer +
+               '}';
     }
 }

@@ -33,7 +33,7 @@ public class Contact {
     String address;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "contact")
-    Set<Driver> drivers = new HashSet<>(0);
+    Set<Person> persons = new HashSet<>(0);
 
     public int getContactId() {
         return contactId;
@@ -75,12 +75,12 @@ public class Contact {
         this.address = address;
     }
 
-    public Set<Driver> getDrivers() {
-        return drivers;
+    public Set<Person> getPersons() {
+        return persons;
     }
 
-    public void setDrivers(Set<Driver> drivers) {
-        this.drivers = drivers;
+    public void setPersons(Set<Person> persons) {
+        this.persons = persons;
     }
 
     @Override
@@ -91,7 +91,27 @@ public class Contact {
                ", mobilePhone='" + mobilePhone + '\'' +
                ", email='" + email + '\'' +
                ", address='" + address + '\'' +
-               ", drivers=" + drivers +
+               ", persons=" + persons +
                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Contact contact = (Contact) o;
+
+        return contactId == contact.contactId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return contactId;
     }
 }

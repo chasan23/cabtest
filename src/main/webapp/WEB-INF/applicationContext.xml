@@ -9,6 +9,7 @@
     <bean id="vehicle" class="com.cabtest.model.Vehicle"/>
     <bean id="driver" class="com.cabtest.model.Driver"/>
     <bean id="booking" class="com.cabtest.model.Booking"/>
+    <bean id="customer" class="com.cabtest.model.Customer"/>
 
     <!-- Service Declaration -->
     <bean id="vehicleService" class="com.cabtest.service.VehicleRegisterServiceImpl">
@@ -65,6 +66,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
+                <value>com.cabtest.model.Person</value>
                 <value>com.cabtest.model.Vehicle</value>
                 <value>com.cabtest.model.Driver</value>
                 <value>com.cabtest.model.Contact</value>

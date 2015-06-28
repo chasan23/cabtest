@@ -2,6 +2,7 @@ package com.cabtest.model;
 
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class BookingDetails {
 
@@ -9,7 +10,7 @@ public class BookingDetails {
     private int customerId;
     private int contactId;
     private String vehicleType;
-    private Timestamp time;
+    private Date time;
     private String location;
     private String firstName;
     private String lastName;
@@ -21,7 +22,7 @@ public class BookingDetails {
     public BookingDetails(Booking booking) {
         this.setBookingId(booking.getBookingId());
         this.setVehicleType(booking.getVehicleType());
-        this.setTime(booking.getTime());
+        this.setTime(new Date(booking.getTime().getTime()));
         this.setLocation(booking.getLocation());
 
         Customer customer = booking.getCustomer();
@@ -73,11 +74,11 @@ public class BookingDetails {
         this.vehicleType = vehicleType;
     }
 
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

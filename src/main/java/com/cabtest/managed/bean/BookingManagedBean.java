@@ -1,6 +1,9 @@
 package com.cabtest.managed.bean;
 
-import com.cabtest.model.*;
+import com.cabtest.model.Booking;
+import com.cabtest.model.BookingDetails;
+import com.cabtest.model.Contact;
+import com.cabtest.model.Customer;
 import com.cabtest.service.BookingRegisterService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,6 +13,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @ManagedBean(name = "bookingMB")
@@ -24,9 +28,9 @@ public class BookingManagedBean {
     @ManagedProperty(value = "#{bookingService}")
     BookingRegisterService bookingRegisterService;
 
-    String type;
-    String time;
     String bookingId;
+    String type;
+    Date time;
     String location;
     String firstName;
     String lastName;
@@ -40,12 +44,8 @@ public class BookingManagedBean {
         try {
 
             Customer customer = getCustomer();
-
             Contact contact = getContact();
-
             Booking booking = getBooking();
-
-            booking.setBookingId(Integer.parseInt(this.getBookingId()));
 
             customer.setContact(contact);
             booking.setCustomer(customer);
@@ -53,6 +53,7 @@ public class BookingManagedBean {
             getBookingRegisterService().saveBooking(booking);
             return SUCCESS;
         } catch (Exception e) {
+            e.printStackTrace();
             LOG.error("Error while trying to add booking.", e);
         }
         return ERROR;
@@ -77,14 +78,14 @@ public class BookingManagedBean {
     private Booking getBooking() {
         Booking booking = new Booking();
         booking.setVehicleType(this.getType());
-        booking.setTime(Timestamp.valueOf(this.getTime()));
+        booking.setTime(new Timestamp(this.getTime().getTime()));
         booking.setLocation(this.getLocation());
         return booking;
     }
 
     public String deleteBooking() {
         try {
-//			 getBookingRegisterService().deleteBookingByID(Integer.parseInt(this.getBookingId()));
+            getBookingRegisterService().deleteBookingByID(Integer.parseInt(this.getBookingId()));
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to delete booking.", e);
@@ -96,10 +97,9 @@ public class BookingManagedBean {
         try {
 
             Customer customer = getCustomer();
-
             Contact contact = getContact();
-
             Booking booking = getBooking();
+            booking.setBookingId(Integer.parseInt(this.getBookingId()));
 
             customer.setContact(contact);
             booking.setCustomer(customer);
@@ -116,7 +116,6 @@ public class BookingManagedBean {
         this.setType("");
         this.setFirstName("");
         this.setLastName("");
-        this.setTime("");
         this.setBookingId("");
         this.setHomePhone("");
         this.setMobilePhone("");
@@ -141,11 +140,11 @@ public class BookingManagedBean {
         this.type = type;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -221,9 +220,6 @@ public class BookingManagedBean {
             bookingDetailsList.add(bookingDetails);
         }
 
-        for (BookingDetails bookingDetails : bookingDetailsList) {
-            System.out.println(bookingDetails.toString());
-        }
         return bookingDetailsList;
     }
 
