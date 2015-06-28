@@ -1,13 +1,10 @@
 package com.cabtest.service;
 
-import java.util.List;
-
 import com.cabtest.model.Booking;
 
+import java.util.List;
 
-/**
- * Created by Chamara on 6/13/2015.
- */
+
 public interface BookingRegisterService {
 
     void saveBooking(Booking booking);

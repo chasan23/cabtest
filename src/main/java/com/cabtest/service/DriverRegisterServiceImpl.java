@@ -41,7 +41,7 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
         Contact contact = driver.getContact();
         getContactDAO().save(contact);
         driver.setContact(contact);
-        contact.getDrivers().add(driver);
+        contact.getPersons().add(driver);
         getDriverDAO().save(driver);
     }
 
@@ -60,15 +60,15 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
         existingDriver.setFirstName(updatedDriver.getFirstName());
         existingDriver.setLastName(updatedDriver.getLastName());
 
-        Contact contact = existingDriver.getContact();
-        contact.setHomePhone(updatedDriver.getHomePhone());
-        contact.setMobilePhone(updatedDriver.getMobilePhone());
-        contact.setAddress(updatedDriver.getAddress());
-        contact.setEmail(updatedDriver.getEmail());
+        Contact existingContact = existingDriver.getContact();
+        existingContact.setHomePhone(updatedDriver.getHomePhone());
+        existingContact.setMobilePhone(updatedDriver.getMobilePhone());
+        existingContact.setAddress(updatedDriver.getAddress());
+        existingContact.setEmail(updatedDriver.getEmail());
 
-        getContactDAO().update(contact);
-        existingDriver.setContact(contact);
-        contact.getDrivers().add(existingDriver);
+        getContactDAO().update(existingContact);
+        existingDriver.setContact(existingContact);
+        existingContact.getPersons().add(existingDriver);
         getDriverDAO().update(existingDriver);
 
     }
@@ -76,7 +76,7 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
     @Override
     @Transactional
     public void deleteDriver(Driver driver) {
-        //not implemented
+        driverDAO.delete(driver);
     }
 
     @Override

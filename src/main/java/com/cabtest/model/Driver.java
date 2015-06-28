@@ -13,14 +13,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "DRIVER", catalog = "cab")
-public class Driver implements Serializable {
+public class Driver extends Person implements Serializable {
 
     private static final long serialVersionUID = 7895139095426977088L;
-
-    @Id
-    @Column(name = "DRIVER_ID", unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int driverId;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -31,19 +26,15 @@ public class Driver implements Serializable {
     @Column(name = "AGE")
     private int age;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CONTACT_ID", nullable = false)
-    private Contact contact;
-
     @Column(name = "AVAILABILITY")
     private char availability;
 
     public int getDriverId() {
-        return driverId;
+        return getId();
     }
 
     public void setDriverId(int driverId) {
-        this.driverId = driverId;
+       setId(driverId);
     }
 
     public String getFirstName() {
@@ -76,14 +67,6 @@ public class Driver implements Serializable {
 
     public void setAvailability(char availability) {
         this.availability = availability;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
 }

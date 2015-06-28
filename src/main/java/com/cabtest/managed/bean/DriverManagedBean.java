@@ -6,7 +6,6 @@ import com.cabtest.model.DriverDetails;
 import com.cabtest.service.DriverRegisterService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Hibernate;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -37,7 +36,6 @@ public class DriverManagedBean {
         try {
 
             Contact contact = getContact();
-
             Driver driver = getDriver();
 
             if ("true".equals(this.availability)) {
@@ -45,9 +43,10 @@ public class DriverManagedBean {
             } else {
                 driver.setAvailability('0');
             }
-            driver.setContact(contact);
 
+            driver.setContact(contact);
             getDriverRegisterService().saveDriver(driver);
+
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to add driver.", e);

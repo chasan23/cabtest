@@ -3,44 +3,30 @@ package com.cabtest.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "CUSTOMER", catalog = "cab")
-public class Customer implements Serializable {
+public class Customer extends Person implements Serializable {
 
     private static final long serialVersionUID = 7895139095426977088L;
-
-    @Id
-    @Column(name = "CUSTOMER_ID", unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerId;
-
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
+    Set<Booking> bookings = new HashSet<>(0);
     @Column(name = "FIRST_NAME")
     private String firstName;
-
     @Column(name = "LAST_NAME")
     private String lastName;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CONTACT_ID", nullable = false)
-    private Contact contact;
-
-
-
     public int getCustomerId() {
-        return customerId;
+        return getId();
     }
 
     public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+        setId(customerId);
     }
 
     public String getFirstName() {
@@ -59,11 +45,20 @@ public class Customer implements Serializable {
         this.lastName = lastName;
     }
 
-    public Contact getContact() {
-        return contact;
+    public Set<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+               "firstName='" + firstName + '\'' +
+               ", lastName='" + lastName + '\'' +
+               ", bookings=" + bookings +
+               '}';
     }
 }
