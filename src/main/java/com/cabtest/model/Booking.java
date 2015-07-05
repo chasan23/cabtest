@@ -20,14 +20,23 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
 
+    @Column(name = "ORIGIN_ID")
+    private int originId;
+
+    @Column(name = "ORIGIN_ADDRESS")
+    private String originAddress;
+
+    @Column(name = "DESTINATION_ID")
+    private int destinationId;
+
     @Column(name = "VEHICLE_TYPE")
     private String vehicleType;
 
     @Column(name = "TIMESTAMP")
     private Timestamp time;
 
-    @Column(name = "LOCATION")
-    private String location;
+    @Column(name = "DURATION")
+    private int duration;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CUSTOMER_ID", nullable = false)
@@ -57,13 +66,38 @@ public class Booking {
         this.time = time;
     }
 
-    public String getLocation() {
-        return location;
+    public int getOriginId() {
+        return originId;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setOriginId(int originId) {
+        this.originId = originId;
     }
+
+    public String getOriginAddress() {
+        return originAddress;
+    }
+
+    public void setOriginAddress(String originAddress) {
+        this.originAddress = originAddress;
+    }
+
+    public int getDestinationId() {
+        return destinationId;
+    }
+
+    public void setDestinationId(int destinationId) {
+        this.destinationId = destinationId;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
 
     public Customer getCustomer() {
         return customer;
@@ -72,6 +106,7 @@ public class Booking {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -96,11 +131,13 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking{" +
-               "bookingId=" + bookingId +
-               ", vehicleType='" + vehicleType + '\'' +
-               ", time=" + time +
-               ", location='" + location + '\'' +
-               ", customer=" + customer +
-               '}';
+                "bookingId=" + bookingId +
+                ", originId=" + originId +
+                ", originAddress='" + originAddress + '\'' +
+                ", destinationId=" + destinationId +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", time=" + time +
+                ", customer=" + customer +
+                '}';
     }
 }
