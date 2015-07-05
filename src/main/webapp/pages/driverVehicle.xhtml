@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Welcome to OTV_JSF_Spring_Hibernate_Project</title>
+</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputLabel for="driverId" value="Driver ID : "/></td>
+                <td><p:inputText id="driverId" value="#{driverVehicleMB.driverId}">
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="vehicleId"
+                                   value="Vehicle Id : "/></td>
+                <td><p:inputText id="vehicleId"
+                                 value="#{driverVehicleMB.vehicleId}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="vehicleIdMsg"/>
+                </p:inputText> <p:message id="vehicleIdMsg" for="vehicleIdMsg"
+                                          display="icon"/></td>
+            </tr>
+
+            <tr>
+                <td><p:commandButton id="addDriverVehicle" value="Add DriverVehicle"
+                                     action="#{driverVehicleMB.addDriverVehicle}" ajax="false"/></td>
+                <td><p:commandButton id="updateDriverVehicle" value="Update DriverVehicle"
+                                     action="#{driverVehicleMB.updateDriverVehicle}" ajax="false"/></td>
+                <td><p:commandButton id="deleteDriverVehicle" value="Delete DriverVehicle"
+                                     action="#{driverVehicleMB.deleteDriverVehicle}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset"
+                                     action="#{driverVehicleMB.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form>
+        <h:outputText value="Driver Availabilities : "/>
+        <p:dataTable id="driverVehicles" var="driverVehicle"
+                     value="#{driverVehicleMB.driverVehicleList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="DriverID"/>
+                </f:facet>
+                <h:outputText value="#{driverVehicle.driverId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vehicle Id"/>
+                </f:facet>
+                <h:outputText value="#{driverVehicle.vehicleId}"/>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Welcome to OTV_JSF_Spring_Hibernate_Project</title>
+</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputLabel for="driverId" value="Driver ID : "/></td>
+                <td><p:inputText id="driverId" value="#{driverAvailabilityMB.driverId}">
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="date"
+                                   value="Date : "/></td>
+                <td><p:inputText id="date"
+                                 value="#{driverAvailabilityMB.date}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="dateMsg"/>
+                </p:inputText> <p:message id="dateMsg" for="dateMsg"
+                                          display="icon"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="timeSlot" value="Time Slot : "/></td>
+                <td><p:inputText id="timeSlot" value="#{driverAvailabilityMB.timeSlot}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="timeSlotMsg"/>
+                </p:inputText> <p:message id="timeSlotMsg" for="timeSlot" display="icon"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="locationId" value="Location Id : "/></td>
+                <td><p:inputText id="locationId" value="#{driverAvailabilityMB.locationId}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="locationIdMsg"/>
+                </p:inputText> <p:message id="locationIdMsg" for="locationIdTxtBox" display="icon"/></td>
+            </tr>
+            <tr>
+                <td><p:commandButton id="addDriverAvailability" value="Add DriverAvailability"
+                                     action="#{driverAvailabilityMB.addDriverAvailability}" ajax="false"/></td>
+                <td><p:commandButton id="updateDriverAvailability" value="Update DriverAvailability"
+                                     action="#{driverAvailabilityMB.updateDriverAvailability}" ajax="false"/></td>
+                <td><p:commandButton id="deleteVehicle" value="Delete DriverAvailability"
+                                     action="#{driverAvailabilityMB.deleteDriverAvailability}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset"
+                                     action="#{driverAvailabilityMB.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form>
+        <h:outputText value="Driver Availabilities : "/>
+        <p:dataTable id="driverAvailabilitys" var="driverAvailability"
+                     value="#{driverAvailabilityMB.driverAvailabilityList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="DriverID"/>
+                </f:facet>
+                <h:outputText value="#{driverAvailability.driverId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Date"/>
+                </f:facet>
+                <h:outputText value="#{driverAvailability.date}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="TimeSlot"/>
+                </f:facet>
+                <h:outputText value="#{driverAvailability.timeSlot}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="LocationId"/>
+                </f:facet>
+                <h:outputText value="#{driverAvailability.locationId}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

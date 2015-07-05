@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Welcome to OTV_JSF_Spring_Hibernate_Project</title>
+</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputLabel for="vehicleId" value="Vehicle ID : "/></td>
+                <td><p:inputText id="vehicleId" value="#{vehicleAvailabilityMB.vehicleId}">
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="date"
+                                   value="Date : "/></td>
+                <td><p:inputText id="date"
+                                 value="#{vehicleAvailabilityMB.date}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="dateMsg"/>
+                </p:inputText> <p:message id="dateMsg" for="dateMsg"
+                                          display="icon"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="timeSlot" value="Time Slot : "/></td>
+                <td><p:inputText id="timeSlot" value="#{vehicleAvailabilityMB.timeSlot}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="timeSlotMsg"/>
+                </p:inputText> <p:message id="timeSlotMsg" for="timeSlot" display="icon"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="locationId" value="Location Id : "/></td>
+                <td><p:inputText id="locationId" value="#{vehicleAvailabilityMB.locationId}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="locationIdMsg"/>
+                </p:inputText> <p:message id="locationIdMsg" for="locationIdTxtBox" display="icon"/></td>
+            </tr>
+            <tr>
+                <td><p:commandButton id="addVehicleAvailability" value="Add VehicleAvailability"
+                                     action="#{vehicleAvailabilityMB.addVehicleAvailability}" ajax="false"/></td>
+                <td><p:commandButton id="updateVehicle" value="Update Vehicle"
+                                     action="#{vehicleAvailabilityMB.updateVehicleAvailability}" ajax="false"/></td>
+                <td><p:commandButton id="deleteVehicle" value="Delete Vehicle"
+                                     action="#{vehicleAvailabilityMB.deleteVehicleAvailability}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset"
+                                     action="#{vehicleAvailabilityMB.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form>
+        <h:outputText value="Vehicle Availabilities : "/>
+        <p:dataTable id="vehicleAvailabilitys" var="vehicleAvailability"
+                     value="#{vehicleAvailabilityMB.vehicleAvailabilityList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="VehicleID"/>
+                </f:facet>
+                <h:outputText value="#{vehicleAvailability.vehicleId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Date"/>
+                </f:facet>
+                <h:outputText value="#{vehicleAvailability.date}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="TimeSlot"/>
+                </f:facet>
+                <h:outputText value="#{vehicleAvailability.timeSlot}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="LocationId"/>
+                </f:facet>
+                <h:outputText value="#{vehicleAvailability.locationId}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

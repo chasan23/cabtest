@@ -23,7 +23,7 @@ public class Booking {
     @Column(name = "VEHICLE_TYPE")
     private String vehicleType;
 
-    @Column(name = "TIME")
+    @Column(name = "TIMESTAMP")
     private Timestamp time;
 
     @Column(name = "LOCATION")

@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Welcome to OTV_JSF_Spring_Hibernate_Project</title>
+</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputLabel for="locationA" value="Location A : "/></td>
+                <td><p:inputText id="locationA" value="#{distanceMatrixMB.locationA}">
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="locationB"
+                                   value="Location B : "/></td>
+                <td><p:inputText id="locationB"
+                                 value="#{distanceMatrixMB.locationB}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="locationBMsg"/>
+                </p:inputText> <p:message id="locationBMsg" for="locationBMsg"
+                                          display="icon"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="time" value="Time  : "/></td>
+                <td><p:inputText id="time" value="#{distanceMatrixMB.time}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="timeMsg"/>
+                </p:inputText> <p:message id="timeMsg" for="time" display="icon"/></td>
+            </tr>
+
+            <tr>
+                <td><p:commandButton id="addDistanceMatrix" value="Add DistanceMatrix"
+                                     action="#{distanceMatrixMB.addDistanceMatrix}" ajax="false"/></td>
+                <td><p:commandButton id="updateDistanceMatrix" value="Update DistanceMatrix"
+                                     action="#{distanceMatrixMB.updateDistanceMatrix}" ajax="false"/></td>
+                <td><p:commandButton id="deleteDistanceMatrix" value="Delete DistanceMatrix"
+                                     action="#{distanceMatrixMB.deleteDistanceMatrix}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset"
+                                     action="#{distanceMatrixMB.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form>
+        <h:outputText value="Driver Availabilities : "/>
+        <p:dataTable id="distanceMatrixs" var="distanceMatrix"
+                     value="#{distanceMatrixMB.distanceMatrixList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Location A"/>
+                </f:facet>
+                <h:outputText value="#{distanceMatrix.locationA}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Location B"/>
+                </f:facet>
+                <h:outputText value="#{distanceMatrix.locationB}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Time"/>
+                </f:facet>
+                <h:outputText value="#{distanceMatrix.time}"/>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

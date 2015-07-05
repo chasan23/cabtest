@@ -11,6 +11,11 @@
     <bean id="booking" class="com.cabtest.model.Booking"/>
     <bean id="customer" class="com.cabtest.model.Customer"/>
     <bean id="billing" class="com.cabtest.model.Billing"/>
+    <bean id="driverVehicle" class="com.cabtest.model.DriverVehicle"/>
+    <bean id="driverAvailability" class="com.cabtest.model.DriverAvailability"/>
+    <bean id="vehicleAvailability" class="com.cabtest.model.VehicleAvailability"/>
+    <bean id="distanceMatrix"      class="com.cabtest.model.DistanceMatrix"/>
+
 
     <!-- Service Declaration -->
     <bean id="vehicleService" class="com.cabtest.service.VehicleRegisterServiceImpl">
@@ -31,6 +36,23 @@
     <bean id="billingService" class="com.cabtest.service.BillingRegisterServiceImpl">
         <property name="billingDAO" ref="billingDAO"/>
     </bean>
+
+    <bean id="driverVehicleService" class="com.cabtest.service.DriverVehicleServiceImpl">
+        <property name="driverVehicleDAO" ref="driverVehicleDAO"/>
+    </bean>
+
+    <bean id="driverAvailabilityService" class="com.cabtest.service.DriverAvailabilityServiceImpl">
+        <property name="driverAvailabilityDAO" ref="driverAvailabilityDAO"/>
+    </bean>
+
+    <bean id="vehicleAvailabilityService" class="com.cabtest.service.VehicleAvailabilityServiceImpl">
+        <property name="vehicleAvailabilityDAO" ref="vehicleAvailabilityDAO"/>
+    </bean>
+
+    <bean id="distanceMatrixService" class="com.cabtest.service.DistanceMatrixServiceImpl">
+        <property name="distanceMatrixDAO" ref="distanceMatrixDAO"/>
+    </bean>
+
 
     <!-- DAO Declaration -->
     <bean id="vehicleDAO" class="com.cabtest.dao.VehicleDAOImpl">
@@ -56,6 +78,23 @@
     <bean id="billingDAO" class="com.cabtest.dao.BillingDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <bean id="driverVehicleDAO" class="com.cabtest.dao.DriverVehicleDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="driverAvailabilityDAO" class="com.cabtest.dao.DriverAvailabilityDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="vehicleAvailabilityDAO" class="com.cabtest.dao.VehicleAvailabilityDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="distanceMatrixDAO" class="com.cabtest.dao.DistanceMatrixDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
 
 
     <!-- Data Source Declaration -->
@@ -83,6 +122,10 @@
                 <value>com.cabtest.model.Booking</value>
                 <value>com.cabtest.model.Customer</value>
                 <value>com.cabtest.model.Billing</value>
+                <value>com.cabtest.model.DriverVehicle</value>
+                <value>com.cabtest.model.DriverAvailability</value>
+                <value>com.cabtest.model.VehicleAvailability</value>
+                <value>com.cabtest.model.DistanceMatrix</value>
             </list>
         </property>
         <property name="hibernateProperties">
