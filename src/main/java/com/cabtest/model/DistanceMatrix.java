@@ -1,38 +1,32 @@
 package com.cabtest.model;
 
-    import javax.persistence.Column;
-    import javax.persistence.Entity;
-    import javax.persistence.GeneratedValue;
-    import javax.persistence.GenerationType;
-    import javax.persistence.Id;
-    import javax.persistence.Table;
-    import java.util.Date;
+import javax.persistence.*;
 
 
-    @Entity
-    @Table(name = "DISTANCE_MATRIX")
-    public class DistanceMatrix {
+@Entity
+@Table(name = "DISTANCE_MATRIX")
+public class DistanceMatrix {
 
-        @Id
-        @Column(name = "ID")
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        int id;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
 
-        @Column(name = "LOCATION_A")
-        int locationA;
+    @Column(name = "LOCATION_A")
+    int locationA;
 
-        @Column(name = "LOCATION_B")
-        int locationB;
+    @Column(name = "LOCATION_B")
+    int locationB;
 
-        @Column(name = "TIME")
-        int time;
+    @Column(name = "TIME")
+    int time;
 
 
     public DistanceMatrix() {
     }
 
 
-        public int getLocationA() {
+    public int getLocationA() {
         return locationA;
     }
 
@@ -40,15 +34,15 @@ package com.cabtest.model;
         this.locationA = locationA;
     }
 
-        public int getId() {
-            return id;
-        }
+    public int getId() {
+        return id;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        public int getLocationB() {
+    public int getLocationB() {
         return locationB;
     }
 

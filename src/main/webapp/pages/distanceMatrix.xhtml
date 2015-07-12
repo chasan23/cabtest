@@ -26,7 +26,7 @@
                                    value="Location B : "/></td>
                 <td><p:inputText id="locationB"
                                  value="#{distanceMatrixMB.locationB}">
-                    <f:validateLength minimum="5"/>
+
                     <p:ajax event="blur" update="locationBMsg"/>
                 </p:inputText> <p:message id="locationBMsg" for="locationBMsg"
                                           display="icon"/></td>
@@ -34,7 +34,7 @@
             <tr>
                 <td><h:outputLabel for="time" value="Time  : "/></td>
                 <td><p:inputText id="time" value="#{distanceMatrixMB.time}">
-                    <f:validateLength minimum="3"/>
+
                     <p:ajax event="blur" update="timeMsg"/>
                 </p:inputText> <p:message id="timeMsg" for="time" display="icon"/></td>
             </tr>
@@ -52,33 +52,33 @@
         </table>
     </h:form>
     <h:form>
-        <h:outputText value="Driver Availabilities : "/>
-        <p:dataTable id="distanceMatrixs" var="distanceMatrix"
+
+        <p:dataTable id="distanceMatrixs" var="distanceMatrixDetails"
                      value="#{distanceMatrixMB.distanceMatrixList}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="ID"/>
                 </f:facet>
-                <h:outputText value="#{distanceMatrix.id}"/>
+                <h:outputText value="#{distanceMatrixDetails.id}"/>
             </p:column>
 
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Location A"/>
                 </f:facet>
-                <h:outputText value="#{distanceMatrix.locationA}"/>
+                <h:outputText value="#{distanceMatrixDetails.locationA}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Location B"/>
                 </f:facet>
-                <h:outputText value="#{distanceMatrix.locationB}"/>
+                <h:outputText value="#{distanceMatrixDetails.locationB}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Time"/>
                 </f:facet>
-                <h:outputText value="#{distanceMatrix.time}"/>
+                <h:outputText value="#{distanceMatrixDetails.time}"/>
             </p:column>
 
         </p:dataTable>
