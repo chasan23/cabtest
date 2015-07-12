@@ -1,7 +1,5 @@
 package com.cabtest.service;
 
-import com.cabtest.model.Location;
-
 /**
  * Vehical Service Interface
  *
