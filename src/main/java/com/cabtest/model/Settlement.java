@@ -13,7 +13,7 @@ public class Settlement implements Serializable {
     @Id
     @Column(name = "ID", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private int id;
 
     @Column(name = "DRIVER_ID")
     private int bookingId;
