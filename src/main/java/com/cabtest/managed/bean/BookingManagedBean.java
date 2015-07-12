@@ -31,7 +31,10 @@ public class BookingManagedBean {
     String bookingId;
     String type;
     Date time;
-    String location;
+    String originId;
+    String originAddress;
+    String destinationId;
+    String duration;
     String firstName;
     String lastName;
     String homePhone;
@@ -79,7 +82,10 @@ public class BookingManagedBean {
         Booking booking = new Booking();
         booking.setVehicleType(this.getType());
         booking.setTime(new Timestamp(this.getTime().getTime()));
-        booking.setLocation(this.getLocation());
+        booking.setOriginId(Integer.parseInt(this.getOriginId()));
+        booking.setOriginAddress(this.getOriginAddress());
+        booking.setDestinationId(Integer.parseInt(this.getDestinationId()));
+        booking.setDuration(Integer.parseInt(this.getDuration()));
         return booking;
     }
 
@@ -121,7 +127,10 @@ public class BookingManagedBean {
         this.setMobilePhone("");
         this.setEmail("");
         this.setAddress("");
-        this.setLocation("");
+        this.setOriginAddress("");
+        this.setOriginId("");
+        this.setDestinationId("");
+        this.setDuration("");
     }
 
     public BookingRegisterService getBookingRegisterService() {
@@ -154,14 +163,6 @@ public class BookingManagedBean {
 
     public void setBookingId(String bookingId) {
         this.bookingId = bookingId;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getFirstName() {
@@ -210,6 +211,38 @@ public class BookingManagedBean {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getOriginId() {
+        return originId;
+    }
+
+    public void setOriginId(String originId) {
+        this.originId = originId;
+    }
+
+    public String getOriginAddress() {
+        return originAddress;
+    }
+
+    public void setOriginAddress(String originAddress) {
+        this.originAddress = originAddress;
+    }
+
+    public String getDestinationId() {
+        return destinationId;
+    }
+
+    public void setDestinationId(String destinationId) {
+        this.destinationId = destinationId;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public List<BookingDetails> getBookingList() {

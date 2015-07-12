@@ -9,6 +9,12 @@
     <h:form>
         <table>
             <tr>
+                <td><h:outputLabel for="Id" value="ID : "/></td>
+                <td><p:inputText id="Id" value="#{vehicleAvailabilityMB.id}">
+                </p:inputText></td>
+            </tr>
+
+            <tr>
                 <td><h:outputLabel for="vehicleId" value="Vehicle ID : "/></td>
                 <td><p:inputText id="vehicleId" value="#{vehicleAvailabilityMB.vehicleId}">
                 </p:inputText></td>
@@ -53,6 +59,14 @@
         <h:outputText value="Vehicle Availabilities : "/>
         <p:dataTable id="vehicleAvailabilitys" var="vehicleAvailability"
                      value="#{vehicleAvailabilityMB.vehicleAvailabilityList}" style="width: 10%">
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                <h:outputText value="#{vehicleAvailability.id}"/>
+            </p:column>
+
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="VehicleID"/>

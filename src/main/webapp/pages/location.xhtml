@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Welcome to OTV_JSF_Spring_Hibernate_Project</title>
+</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputLabel for="id" value="Id : "/></td>
+                <td><p:inputText id="id" value="#{locationMB.id}">
+                </p:inputText></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="location"
+                                   value="Location  : "/></td>
+                <td><p:inputText id="location"
+                                 value="#{locationMB.location}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="locationMsg"/>
+                </p:inputText> <p:message id="locationMsg" for="locationMsg"
+                                          display="icon"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="district" value="District  : "/></td>
+                <td><p:inputText id="district" value="#{locationMB.district}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="districtMsg"/>
+                </p:inputText> <p:message id="districtMsg" for="district" display="icon"/></td>
+            </tr>
+
+            <tr>
+                <td><h:outputLabel for="province" value="Province  : "/></td>
+                <td><p:inputText id="province" value="#{locationMB.province}">
+                    <f:validateLength minimum="5"/>
+                    <p:ajax event="blur" update="districtMsg"/>
+                </p:inputText> <p:message id="provinceMsg" for="province" display="icon"/></td>
+            </tr>
+
+
+            <tr>
+                <td><p:commandButton id="addLocation" value="Add Location"
+                                     action="#{locationMB.addLocation}" ajax="false"/></td>
+                <td><p:commandButton id="updateLocation" value="Update Location"
+                                     action="#{locationMB.updateLocation}" ajax="false"/></td>
+                <td><p:commandButton id="deleteLocation" value="Delete Location"
+                                     action="#{locationMB.deleteLocation}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset"
+                                     action="#{locationMB.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+    <h:form>
+
+        <p:dataTable id="locations" var="locationDetails"
+                     value="#{locationMB.locationList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Location ID"/>
+                </f:facet>
+                <h:outputText value="#{locationDetails.id}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Location "/>
+                </f:facet>
+                <h:outputText value="#{locationDetails.location}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="District"/>
+                </f:facet>
+                <h:outputText value="#{locationDetails.district}"/>
+            </p:column>
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Province"/>
+                </f:facet>
+                <h:outputText value="#{locationDetails.province}"/>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

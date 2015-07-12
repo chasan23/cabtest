@@ -53,10 +53,29 @@
                 <td><p:calendar id="time" value="#{bookingMB.time}" pattern="MM/dd/yyyy HH:mm"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="location" value="Location : "/></td>
-                <td><p:inputText id="location" value="#{bookingMB.location}"/>
+                <td><h:outputLabel for="originid" value="Origin Id : "/></td>
+                <td><p:inputText id="originid" value="#{bookingMB.originId}"/>
                 </td>
             </tr>
+
+            <tr>
+                <td><h:outputLabel for="originaddress" value="Origin Address : "/></td>
+                <td><p:inputText id="originaddress" value="#{bookingMB.originAddress}"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td><h:outputLabel for="destinationid" value="Destination Id : "/></td>
+                <td><p:inputText id="destinationid" value="#{bookingMB.destinationId}"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td><h:outputLabel for="duration" value="Duration : "/></td>
+                <td><p:inputText id="duration" value="#{bookingMB.duration}"/>
+                </td>
+            </tr>
+
             <tr>
                 <td><p:commandButton id="addBooking" value="Add Booking"
                                      action="#{bookingMB.addBooking}" ajax="false"/></td>
@@ -131,9 +150,27 @@
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Location"/>
+                    <h:outputText value="OriginID"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.location}"/>
+                <h:outputText value="#{bookingDetails.originId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Origin Address"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.originAddress}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Destinayion Id"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.destinationId}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Duration"/>
+                </f:facet>
+                <h:outputText value="#{bookingDetails.duration}"/>
             </p:column>
         </p:dataTable>
     </h:form>

@@ -28,6 +28,7 @@ public class VehicleAvailabilityManagedBean {
 
     List<VehicleAvailability> vehicleAvailabilityList;
 
+    String id;
     String vehicleId;
     String date;
     String timeSlot;
@@ -59,6 +60,7 @@ public class VehicleAvailabilityManagedBean {
     public String updateVehicleAvailability() {
         try {
             VehicleAvailability vehicleAvailability = new VehicleAvailability();
+            vehicleAvailability.setId(Integer.parseInt(this.getId()));
             vehicleAvailability.setVehicleId(Integer.parseInt(this.getVehicleId()));
             vehicleAvailability.setDate(new Date(this.getDate()));
             vehicleAvailability.setTimeSlot(Integer.parseInt(this.getTimeSlot()));
@@ -73,7 +75,7 @@ public class VehicleAvailabilityManagedBean {
 
     public String deleteVehicleAvailability() {
         try {
-            getVehicleAvailabilityService().deleteByKey(Integer.parseInt(this.getVehicleId()));
+            getVehicleAvailabilityService().deleteByKey(Integer.parseInt(this.getId()));
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to delete vehicleAvailability.", e);
@@ -92,6 +94,14 @@ public class VehicleAvailabilityManagedBean {
 
     public void setVehicleAvailabilityService(VehicleAvailabilityService vehicleAvailabilityService) {
         this.vehicleAvailabilityService = vehicleAvailabilityService;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getVehicleId() {

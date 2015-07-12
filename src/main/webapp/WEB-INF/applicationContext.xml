@@ -15,7 +15,7 @@
     <bean id="driverAvailability" class="com.cabtest.model.DriverAvailability"/>
     <bean id="vehicleAvailability" class="com.cabtest.model.VehicleAvailability"/>
     <bean id="distanceMatrix"      class="com.cabtest.model.DistanceMatrix"/>
-
+    <bean id="location"  class="com.cabtest.model.Location"/>
 
     <!-- Service Declaration -->
     <bean id="vehicleService" class="com.cabtest.service.VehicleRegisterServiceImpl">
@@ -52,6 +52,11 @@
     <bean id="distanceMatrixService" class="com.cabtest.service.DistanceMatrixServiceImpl">
         <property name="distanceMatrixDAO" ref="distanceMatrixDAO"/>
     </bean>
+
+    <bean id="locationService" class="com.cabtest.service.LocationServiceImpl">
+        <property name="locationDAO" ref="locationDAO"/>
+    </bean>
+
 
 
     <!-- DAO Declaration -->
@@ -95,6 +100,9 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="locationDAO" class="com.cabtest.dao.LocationDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 
     <!-- Data Source Declaration -->
@@ -126,6 +134,7 @@
                 <value>com.cabtest.model.DriverAvailability</value>
                 <value>com.cabtest.model.VehicleAvailability</value>
                 <value>com.cabtest.model.DistanceMatrix</value>
+                <value>com.cabtest.model.Location</value>
             </list>
         </property>
         <property name="hibernateProperties">

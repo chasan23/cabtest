@@ -28,11 +28,13 @@ public class DriverVehicleManagedBean {
 
     List<DriverVehicle> driverVehicleList;
 
+    String id;
     String driverId;
     String vehicleId;
 
 
     public void reset() {
+        this.setId("");
         this.setDriverId("");
         this.setVehicleId("");
 
@@ -57,6 +59,7 @@ public class DriverVehicleManagedBean {
     public String updateDriverVehicle() {
         try {
             DriverVehicle driverVehicle = new DriverVehicle();
+            driverVehicle.setId(Integer.parseInt(this.getId()));
             driverVehicle.setDriverId(Integer.parseInt(this.getDriverId()));
             driverVehicle.setVehicleId(Integer.parseInt(this.getVehicleId()));
             getDriverVehicleService().update(driverVehicle);
@@ -69,7 +72,7 @@ public class DriverVehicleManagedBean {
 
     public String deleteDriverVehicle() {
         try {
-            getDriverVehicleService().deleteByKey(Integer.parseInt(this.getDriverId()));
+            getDriverVehicleService().deleteByKey(Integer.parseInt(this.getId()));
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to delete driverVehicle.", e);
@@ -89,6 +92,14 @@ public class DriverVehicleManagedBean {
 
     public void setDriverVehicleService(DriverVehicleService driverVehicleService) {
         this.driverVehicleService = driverVehicleService;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getVehicleId() {

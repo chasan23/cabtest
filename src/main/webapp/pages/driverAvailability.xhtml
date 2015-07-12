@@ -26,7 +26,7 @@
             <tr>
                 <td><h:outputLabel for="timeSlot" value="Time Slot : "/></td>
                 <td><p:inputText id="timeSlot" value="#{driverAvailabilityMB.timeSlot}">
-                    <f:validateLength minimum="5"/>
+                    <f:validateLength minimum="3"/>
                     <p:ajax event="blur" update="timeSlotMsg"/>
                 </p:inputText> <p:message id="timeSlotMsg" for="timeSlot" display="icon"/></td>
             </tr>
@@ -35,7 +35,7 @@
                 <td><p:inputText id="locationId" value="#{driverAvailabilityMB.locationId}">
                     <f:validateLength minimum="5"/>
                     <p:ajax event="blur" update="locationIdMsg"/>
-                </p:inputText> <p:message id="locationIdMsg" for="locationIdTxtBox" display="icon"/></td>
+                </p:inputText> <p:message id="locationIdMsg" for="locationId" display="icon"/></td>
             </tr>
             <tr>
                 <td><p:commandButton id="addDriverAvailability" value="Add DriverAvailability"

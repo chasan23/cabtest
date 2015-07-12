@@ -28,6 +28,7 @@ public class DistanceMatrixManagedBean {
 
     List<DistanceMatrix> distanceMatrixList;
 
+    String id;
     String locationA;
     String locationB;
     String time;
@@ -59,6 +60,7 @@ public class DistanceMatrixManagedBean {
     public String updateDistanceMatrix() {
         try {
             DistanceMatrix distanceMatrix = new DistanceMatrix();
+            distanceMatrix.setId(Integer.parseInt(this.getId()));
             distanceMatrix.setLocationA(Integer.parseInt(this.getLocationA()));
             distanceMatrix.setLocationB(Integer.parseInt(this.getLocationB()));
             distanceMatrix.setTime(Integer.parseInt(this.getTime()));
@@ -72,7 +74,7 @@ public class DistanceMatrixManagedBean {
 
     public String deleteDistanceMatrix() {
         try {
-            getDistanceMatrixService().deleteByKey(Integer.parseInt(this.getLocationA()));
+            getDistanceMatrixService().deleteByKey(Integer.parseInt(this.getId()));
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to delete distanceMatrix.", e);
@@ -93,6 +95,13 @@ public class DistanceMatrixManagedBean {
         this.distanceMatrixService = distanceMatrixService;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getLocationA() {
         return locationA;

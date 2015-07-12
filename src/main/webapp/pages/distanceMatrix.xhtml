@@ -8,6 +8,14 @@
 <h:body>
     <h:form>
         <table>
+
+            <tr>
+                <td><h:outputLabel for="id" value="Id : "/></td>
+                <td><p:inputText id="id" value="#{distanceMatrixMB.id}">
+                </p:inputText></td>
+            </tr>
+
+
             <tr>
                 <td><h:outputLabel for="locationA" value="Location A : "/></td>
                 <td><p:inputText id="locationA" value="#{distanceMatrixMB.locationA}">
@@ -26,7 +34,7 @@
             <tr>
                 <td><h:outputLabel for="time" value="Time  : "/></td>
                 <td><p:inputText id="time" value="#{distanceMatrixMB.time}">
-                    <f:validateLength minimum="5"/>
+                    <f:validateLength minimum="3"/>
                     <p:ajax event="blur" update="timeMsg"/>
                 </p:inputText> <p:message id="timeMsg" for="time" display="icon"/></td>
             </tr>
@@ -47,6 +55,13 @@
         <h:outputText value="Driver Availabilities : "/>
         <p:dataTable id="distanceMatrixs" var="distanceMatrix"
                      value="#{distanceMatrixMB.distanceMatrixList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                <h:outputText value="#{distanceMatrix.id}"/>
+            </p:column>
+
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Location A"/>
