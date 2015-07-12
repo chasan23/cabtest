@@ -55,6 +55,18 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
         return locationDAO;
     }
 
+    public void setDriverDAO(DriverDAO driverDAO) {
+        this.driverDAO = driverDAO;
+    }
+
+    public void setVehicleDAO(VehicleDAO vehicleDAO) {
+        this.vehicleDAO = vehicleDAO;
+    }
+
+    public void setLocationDAO(LocationDAO locationDAO) {
+        this.locationDAO = locationDAO;
+    }
+
     @Override
     public DriverAvailability getDriverAvailability() {
         return null;

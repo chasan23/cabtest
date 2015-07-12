@@ -45,6 +45,8 @@
 
     <bean id="driverAvailabilityService" class="com.cabtest.service.DriverAvailabilityServiceImpl">
         <property name="driverAvailabilityDAO" ref="driverAvailabilityDAO"/>
+        <property name="driverDAO" ref="driverDAO"/>
+        <property name="locationDAO" ref="locationDAO"/>
     </bean>
 
     <bean id="vehicleAvailabilityService" class="com.cabtest.service.VehicleAvailabilityServiceImpl">
