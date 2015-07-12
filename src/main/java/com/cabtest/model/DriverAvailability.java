@@ -25,7 +25,8 @@ public class DriverAvailability {
     @JoinColumn(name = "DRIVER_ID", nullable = false)
     Driver driver;
 
-    @Column(name = "VEHICLE_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "VEHICLE_ID", nullable = false)
     Vehicle vehicle;
 
     @Column(name = "DATE")

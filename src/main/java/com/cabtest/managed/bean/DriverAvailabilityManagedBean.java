@@ -39,8 +39,8 @@ public class DriverAvailabilityManagedBean {
 
     public void reset() {
         this.setDriverId("");
-        this.setDate("");
-        this.setTimeSlot("");
+//        this.setDate("");
+//        this.setTimeSlot("");
         this.setLocationId("");
     }
 
@@ -62,18 +62,18 @@ public class DriverAvailabilityManagedBean {
     }
 
     public String updateDriverAvailability() {
-        try {
-            DriverAvailability driverAvailability = new DriverAvailability();
-            driverAvailability.setId(Integer.parseInt(this.getId()));
-            driverAvailability.setDriverId(Integer.parseInt(this.getDriverId()));
-            driverAvailability.setDate(new Date(this.getDate()));
-            driverAvailability.setTimeSlot(Integer.parseInt(this.getTimeSlot()));
-            driverAvailability.setLocationId(Integer.parseInt(this.getLocationId()));
-            getDriverAvailabilityService().update(driverAvailability);
-            return SUCCESS;
-        } catch (Exception e) {
-            LOG.error("Error while trying to update driverAvailability.", e);
-        }
+//        try {
+//            DriverAvailability driverAvailability = new DriverAvailability();
+//            driverAvailability.setId(Integer.parseInt(this.getId()));
+//            driverAvailability.setDriverId(Integer.parseInt(this.getDriverId()));
+//            driverAvailability.setDate(new Date(this.getDate()));
+//            driverAvailability.setTimeSlot(Integer.parseInt(this.getTimeSlot()));
+//            driverAvailability.setLocationId(Integer.parseInt(this.getLocationId()));
+//            getDriverAvailabilityService().update(driverAvailability);
+//            return SUCCESS;
+//        } catch (Exception e) {
+//            LOG.error("Error while trying to update driverAvailability.", e);
+//        }
         return ERROR;
     }
 
@@ -118,14 +118,6 @@ public class DriverAvailabilityManagedBean {
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getLocationId() {
         return locationId;
     }
@@ -134,12 +126,19 @@ public class DriverAvailabilityManagedBean {
         this.locationId = locationId;
     }
 
-    public String getTimeSlot() {
-        return timeSlot;
+    public Date getTimeTo() {
+        return timeTo;
     }
 
-    public void setTimeSlot(String timeSlot) {
-        this.timeSlot = timeSlot;
+    public void setTimeTo(Date timeTo) {
+        this.timeTo = timeTo;
     }
 
+    public Date getTimeFrom() {
+        return timeFrom;
+    }
+
+    public void setTimeFrom(Date timeFrom) {
+        this.timeFrom = timeFrom;
+    }
 }

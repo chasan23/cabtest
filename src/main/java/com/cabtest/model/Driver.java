@@ -27,6 +27,9 @@ public class Driver extends Person implements Serializable {
     @Column(name = "AGE")
     private int age;
 
+    public Driver() {
+    }
+
     public Driver(int id) {
         setId(id);
     }

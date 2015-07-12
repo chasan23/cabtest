@@ -4,6 +4,7 @@ import com.cabtest.bean.TimeSlot;
 import com.cabtest.dao.DriverAvailabilityDAO;
 import com.cabtest.dao.DriverDAO;
 import com.cabtest.dao.GenericDAO;
+import com.cabtest.dao.LocationDAO;
 import com.cabtest.dao.VehicleDAO;
 import com.cabtest.dto.DriverAvailabilityDTO;
 import com.cabtest.model.Driver;
@@ -25,6 +26,7 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
     private DriverAvailabilityDAO driverAvailabilityDAO;
     private DriverDAO driverDAO;
     private VehicleDAO vehicleDAO;
+    private LocationDAO locationDAO;
 
     public DriverAvailabilityServiceImpl() {
         super();
@@ -49,6 +51,10 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
         return vehicleDAO;
     }
 
+    public LocationDAO getLocationDAO() {
+        return locationDAO;
+    }
+
     @Override
     public DriverAvailability getDriverAvailability() {
         return null;
@@ -56,13 +62,17 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
 
     public void save(DriverAvailabilityDTO driverAvailabilityDTO) {
         DriverAvailability driverAvailability = new DriverAvailability();
+
         Driver driver = getDriverDAO().findByKey(Integer.parseInt(driverAvailabilityDTO.getDriverId()));
         Vehicle vehicle = getVehicleDAO().findByKey(Integer.parseInt(driverAvailabilityDTO.getVehicleId()));
+        Location location = getLocationDAO().findByKey(Integer.parseInt(driverAvailabilityDTO.getLocationId()));
+
         driverAvailability.setDriver(driver);
         driverAvailability.setVehicle(vehicle);
         driverAvailability.setDate(new Date(driverAvailabilityDTO.getDate().getTime()));
         driverAvailability.setTimeSlot(TimeSlotUtil.getTimeSlotPeriodString(driverAvailabilityDTO.getTimeFrom(),
                                                                             driverAvailabilityDTO.getTimeTo()));
+        driverAvailability.setLocation(location);
 
         super.save(driverAvailability);
     }

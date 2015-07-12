@@ -30,7 +30,7 @@ public class VehicleAvailabilityServiceImpl extends GenericPersistenceServiceImp
 
     @Override
     public VehicleAvailability getVehicleAvailability() {
-        return getFirstAvailableDriver(null, null, null, null);
+        return null;
     }
 }
 

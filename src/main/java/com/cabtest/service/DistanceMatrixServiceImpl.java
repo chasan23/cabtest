@@ -35,12 +35,12 @@ public class DistanceMatrixServiceImpl extends GenericPersistenceServiceImpl<Dis
 
     @Override
     public DistanceMatrix getDistanceMatrix() {
-        return getFirstAvailableDriver(null, null, null, null);
+        return null;
     }
 
     @Override
     public Map<TimeSlot, List<Location>> getLocations(int originId, TimeSlot travelTime) {
-        return getFirstAvailableDriver(null, null, null, null);
+        return null;
     }
 }
 

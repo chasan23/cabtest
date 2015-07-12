@@ -3,11 +3,8 @@ package com.cabtest.agent;
 import com.cabtest.bean.TimeSlot;
 import com.cabtest.model.Assignment;
 import com.cabtest.model.Booking;
-import com.cabtest.model.DistanceMatrix;
-import com.cabtest.model.Driver;
 import com.cabtest.model.DriverVehicle;
 import com.cabtest.model.Location;
-import com.cabtest.model.Vehicle;
 import com.cabtest.service.AssignmentService;
 import com.cabtest.service.BookingRegisterService;
 import com.cabtest.service.DistanceMatrixService;
@@ -40,8 +37,6 @@ public class AssignmentAgent implements Runnable {
     private void performAssignment(Booking booking) {
 
         int hireDuration = booking.getDuration();
-
-
         Timestamp hireStartTime = booking.getTime();
 
         TimeSlot startTime = TimeSlotUtil.convertTimeStampToTimeSlots(hireStartTime, false);
@@ -53,11 +48,12 @@ public class AssignmentAgent implements Runnable {
         int originId = booking.getOriginId();
 
         Map<TimeSlot, List<Location>> allowedDriverLocations = distanceMatrixService.getLocations(originId,
-                                                                                                maxArriveTime);
+                                                                                                  maxArriveTime);
         for (TimeSlot arrivalTime : allowedDriverLocations.keySet()) {
-            DriverVehicle driver = driverAvailabilityService.getFirstAvailableDriver(allowedDriverLocations.get(arrivalTime),
-                                                                          startTime, endTime, booking.getVehicleType());
-            if(driver != null){
+            DriverVehicle driver = driverAvailabilityService.getFirstAvailableDriver(TimeSlotUtil.getDate
+                    (hireStartTime), allowedDriverLocations.get(arrivalTime), startTime, endTime, booking.getVehicleType());
+
+            if (driver != null) {
                 Assignment assignment = new Assignment();
                 assignment.setDriver(driver.getDriver());
                 assignment.setVehicle(driver.getVehicle());

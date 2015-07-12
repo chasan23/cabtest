@@ -2,10 +2,14 @@ package com.cabtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -26,8 +30,8 @@ public class Vehicle {
     @Column(name = "MODEL")
     String model;
 
-    @Column(name = "AVAILABILITY")
-    boolean avilability;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "vehicle")
+    Set<DriverAvailability> availability = new HashSet<>(0);
 
     public Vehicle() {
     }
@@ -64,11 +68,11 @@ public class Vehicle {
         this.model = model;
     }
 
-    public boolean isAvilability() {
-        return avilability;
+    public Set<DriverAvailability> getAvailability() {
+        return availability;
     }
 
-    public void setAvilability(boolean avilability) {
-        this.avilability = avilability;
+    public void setAvailability(Set<DriverAvailability> availability) {
+        this.availability = availability;
     }
 }

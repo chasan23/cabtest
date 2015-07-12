@@ -53,12 +53,6 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
         Driver existingDriver = getDriverDAO().findByKey(updatedDriver.getDriverId());
         existingDriver.setAge(updatedDriver.getAge());
 
-        if ("true".equals(updatedDriver.getAvailability())) {
-            existingDriver.setAvailability('1');
-        } else {
-            existingDriver.setAvailability('0');
-        }
-
         existingDriver.setFirstName(updatedDriver.getFirstName());
         existingDriver.setLastName(updatedDriver.getLastName());
 
