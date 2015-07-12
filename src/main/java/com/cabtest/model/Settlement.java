@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "ASSIGNMENT", catalog = "cab")
+@Table(name = "SETTLEMENT", catalog = "cab")
 public class Settlement implements Serializable {
 
     private static final long serialVersionUID = 7895139095426977088L;

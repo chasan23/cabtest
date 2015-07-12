@@ -31,6 +31,9 @@ public class DriverAvailability {
     @Column(name = "LOCATION_ID")
     int locationId;
 
+//    @Column(name = "VEHICLE_ID")
+
+
     public DriverAvailability() {
     }
 
