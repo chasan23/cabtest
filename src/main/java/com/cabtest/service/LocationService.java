@@ -11,6 +11,4 @@ import com.cabtest.model.Location;
  */
 public interface LocationService extends GenericPersistenceService<Location, Integer> {
 
-    Location getLocation(int id);
-
 }

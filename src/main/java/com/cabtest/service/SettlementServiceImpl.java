@@ -1,37 +1,38 @@
 package com.cabtest.service;
 
+import com.cabtest.dao.GenericDAO;
 import com.cabtest.dao.SettlementDAO;
 
 import com.cabtest.model.Settlement;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.List;
-
 @Service
-public class SettlementServiceImpl implements SettlementService {
-    @Override
-    public void saveSettlement(Settlement settlement) {
+public class SettlementServiceImpl extends GenericPersistenceServiceImpl<Settlement, Integer>
+        implements SettlementService {
 
+    private SettlementDAO settlementDAO;
+
+
+    public SettlementServiceImpl() {
+        super();
     }
 
-    @Override
-    public void updateSettlement(Settlement settlement) {
 
+    public SettlementDAO getSettlementDAO() {
+        return settlementDAO;
     }
 
-    @Override
-    public void deleteSettlement(Settlement settlement) {
-
+    @SuppressWarnings("unchecked")
+    public void setSettlementDAO(SettlementDAO settlementDAO) {
+        super.setGenericDAO((GenericDAO) settlementDAO);
+        this.settlementDAO = settlementDAO;
     }
 
-    @Override
-    public List<Settlement> getSettlementList() {
-        return null;
-    }
 
-    @Override
-    public void deleteSettlementByID(Integer id) {
-
-    }
 }
+
+
+
+
+
+

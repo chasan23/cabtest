@@ -15,9 +15,6 @@ public class Settlement implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "DRIVER_ID")
-    private int bookingId;
-
     @Column(name = "VEHICLE_ID")
     private int vehicleId;
 
@@ -38,14 +35,6 @@ public class Settlement implements Serializable {
 
     @Column(name = "VEHICLE_CHARGE")
     private float vehicleCharge;
-
-    public int getBookingId() {
-        return bookingId;
-    }
-
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
-    }
 
     public int getVehicleId() {
         return vehicleId;
@@ -101,5 +90,13 @@ public class Settlement implements Serializable {
 
     public void setVehicleCharge(float vehicleCharge) {
         this.vehicleCharge = vehicleCharge;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
