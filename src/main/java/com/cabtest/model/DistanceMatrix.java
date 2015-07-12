@@ -13,6 +13,10 @@ package com.cabtest.model;
     @Table(name = "DISTANCE_MATRIX")
     public class DistanceMatrix {
 
+        @Id
+        @Column(name = "ID")
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        int id;
 
         @Column(name = "LOCATION_A")
         int locationA;
@@ -27,7 +31,8 @@ package com.cabtest.model;
     public DistanceMatrix() {
     }
 
-    public int getLocationA() {
+
+        public int getLocationA() {
         return locationA;
     }
 
@@ -35,7 +40,15 @@ package com.cabtest.model;
         this.locationA = locationA;
     }
 
-    public int getLocationB() {
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getLocationB() {
         return locationB;
     }
 

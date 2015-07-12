@@ -11,7 +11,10 @@ public class BookingDetails {
     private int contactId;
     private String vehicleType;
     private Date time;
-    private String location;
+    private int originId;
+    private String originAddress;
+    private int destinationId;
+    private int duration;
     private String firstName;
     private String lastName;
     private String homePhone;
@@ -23,7 +26,10 @@ public class BookingDetails {
         this.setBookingId(booking.getBookingId());
         this.setVehicleType(booking.getVehicleType());
         this.setTime(new Date(booking.getTime().getTime()));
-        this.setLocation(booking.getLocation());
+        this.setOriginId(booking.getOriginId());
+        this.setOriginAddress(booking.getOriginAddress());
+        this.setDestinationId(booking.getDestinationId());
+        this.setDuration(booking.getDuration());
 
         Customer customer = booking.getCustomer();
 
@@ -82,14 +88,6 @@ public class BookingDetails {
         this.time = time;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -136,6 +134,38 @@ public class BookingDetails {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getOriginId() {
+        return originId;
+    }
+
+    public void setOriginId(int originId) {
+        this.originId = originId;
+    }
+
+    public String getOriginAddress() {
+        return originAddress;
+    }
+
+    public void setOriginAddress(String originAddress) {
+        this.originAddress = originAddress;
+    }
+
+    public int getDestinationId() {
+        return destinationId;
+    }
+
+    public void setDestinationId(int destinationId) {
+        this.destinationId = destinationId;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
 

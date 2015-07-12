@@ -13,6 +13,11 @@ import java.util.Date;
 @Table(name = "DRIVER_AVAILABILITY")
 public class DriverAvailability {
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
 
     @Column(name = "DRIVER_ID")
     int driverId;
@@ -27,6 +32,14 @@ public class DriverAvailability {
     int locationId;
 
     public DriverAvailability() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getDriverId() {
