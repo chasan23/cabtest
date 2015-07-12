@@ -9,73 +9,73 @@
     <h:form>
         <table>
             <tr>
-                <td><h:outputLabel for="vehicleId" value="Vehicle ID : "/></td>
-                <td><p:inputText id="vehicleId" value="#{vehicleMB.vehicleId}">
+                <td><h:outputLabel for="settlementId" value="Settlement ID : "/></td>
+                <td><p:inputText id="settlementId" value="#{settlementMB.settlementId}">
                 </p:inputText></td>
             </tr>
             <tr>
                 <td><h:outputLabel for="registrationNumber"
                                    value="Registration Number : "/></td>
                 <td><p:inputText id="registrationNumber"
-                                 value="#{vehicleMB.registrationNumber}">
+                                 value="#{settlementMB.registrationNumber}">
                     <f:validateLength minimum="5"/>
                     <p:ajax event="blur" update="registrationNumberMsg"/>
                 </p:inputText> <p:message id="registrationNumberMsg" for="registrationNumber"
                                           display="icon"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="type" value="Vehicle Type : "/></td>
-                <td><p:inputText id="type" value="#{vehicleMB.type}">
+                <td><h:outputLabel for="type" value="Settlement Type : "/></td>
+                <td><p:inputText id="type" value="#{settlementMB.type}">
                     <f:validateLength minimum="5"/>
                     <p:ajax event="blur" update="typeMsg"/>
                 </p:inputText> <p:message id="typeMsg" for="type" display="icon"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="modelTxtBox" value="Vehicle Model : "/></td>
-                <td><p:inputText id="modelTxtBox" value="#{vehicleMB.model}">
+                <td><h:outputLabel for="modelTxtBox" value="Settlement Model : "/></td>
+                <td><p:inputText id="modelTxtBox" value="#{settlementMB.model}">
                     <f:validateLength minimum="5"/>
                     <p:ajax event="blur" update="modelMsg"/>
                 </p:inputText> <p:message id="modelMsg" for="modelTxtBox" display="icon"/></td>
             </tr>
             <tr>
-                <td><p:commandButton id="addVehicle" value="Add Vehicle"
-                                     action="#{vehicleMB.addVehicle}" ajax="false"/></td>
-                <td><p:commandButton id="updateVehicle" value="Update Vehicle"
-                                     action="#{vehicleMB.updateVehicle}" ajax="false"/></td>
-                <td><p:commandButton id="deleteVehicle" value="Delete Vehicle"
-                                     action="#{vehicleMB.deleteVehicle}" ajax="false"/></td>
+                <td><p:commandButton id="addSettlement" value="Add Settlement"
+                                     action="#{settlementMB.addSettlement}" ajax="false"/></td>
+                <td><p:commandButton id="updateSettlement" value="Update Settlement"
+                                     action="#{settlementMB.updateSettlement}" ajax="false"/></td>
+                <td><p:commandButton id="deleteSettlement" value="Delete Settlement"
+                                     action="#{settlementMB.deleteSettlement}" ajax="false"/></td>
                 <td><p:commandButton id="reset" value="Reset"
-                                     action="#{vehicleMB.reset}" ajax="false"/></td>
+                                     action="#{settlementMB.reset}" ajax="false"/></td>
             </tr>
         </table>
     </h:form>
     <h:form>
-        <h:outputText value="Vehicles : "/>
-        <p:dataTable id="vehicles" var="vehicle"
-                     value="#{vehicleMB.vehicleList}" style="width: 10%">
+        <h:outputText value="Settlements : "/>
+        <p:dataTable id="settlements" var="settlementDetails"
+                     value="#{settlementMB.settlementList}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="ID"/>
                 </f:facet>
-                <h:outputText value="#{vehicle.vehicalId}"/>
+                <h:outputText value="#{settlementDetails.vehicalId}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Registration Number"/>
                 </f:facet>
-                <h:outputText value="#{vehicle.registrationNumber}"/>
+                <h:outputText value="#{settlementDetails.registrationNumber}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Type"/>
                 </f:facet>
-                <h:outputText value="#{vehicle.vehicalType}"/>
+                <h:outputText value="#{settlementDetails.vehicalType}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Model"/>
                 </f:facet>
-                <h:outputText value="#{vehicle.model}"/>
+                <h:outputText value="#{settlementDetails.model}"/>
             </p:column>
         </p:dataTable>
     </h:form>

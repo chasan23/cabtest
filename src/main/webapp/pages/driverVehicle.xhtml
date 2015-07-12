@@ -25,7 +25,7 @@
                                    value="Vehicle Id : "/></td>
                 <td><p:inputText id="vehicleId"
                                  value="#{driverVehicleMB.vehicleId}">
-                    <f:validateLength minimum="5"/>
+
                     <p:ajax event="blur" update="vehicleIdMsg"/>
                 </p:inputText> <p:message id="vehicleIdMsg" for="vehicleIdMsg"
                                           display="icon"/></td>
@@ -44,28 +44,28 @@
         </table>
     </h:form>
     <h:form>
-        <h:outputText value="Driver Availabilities : "/>
-        <p:dataTable id="driverVehicles" var="driverVehicle"
+
+        <p:dataTable id="driverVehicles" var="driverVehicleDetails"
                      value="#{driverVehicleMB.driverVehicleList}" style="width: 10%">
 
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="ID"/>
                 </f:facet>
-                <h:outputText value="#{driverVehicle.id}"/>
+                <h:outputText value="#{driverVehicleDetails.id}"/>
             </p:column>
 
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="DriverID"/>
                 </f:facet>
-                <h:outputText value="#{driverVehicle.driverId}"/>
+                <h:outputText value="#{driverVehicleDetails.driverId}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Vehicle Id"/>
                 </f:facet>
-                <h:outputText value="#{driverVehicle.vehicleId}"/>
+                <h:outputText value="#{driverVehicleDetails.vehicleId}"/>
             </p:column>
 
         </p:dataTable>
