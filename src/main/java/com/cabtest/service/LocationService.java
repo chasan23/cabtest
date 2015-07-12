@@ -1,5 +1,7 @@
 package com.cabtest.service;
 
+import com.cabtest.model.Location;
+
 /**
  * Vehical Service Interface
  *
@@ -8,7 +10,5 @@ package com.cabtest.service;
  * @since 25 Mar 2012
  */
 public interface LocationService extends GenericPersistenceService<Location, Integer> {
-
-    Location getLocation(int id);
 
 }

@@ -10,25 +10,25 @@
         <table>
             <tr>
                 <td><h:outputLabel for="settlementId" value="Settlement ID : "/></td>
-                <td><p:inputText id="settlementId" value="#{settlementMB.settlementId}">
+                <td><p:inputText id="settlementId" value="#{settlementMB.id}">
                 </p:inputText></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="registrationNumber"
-                                   value="Registration Number : "/></td>
-                <td><p:inputText id="registrationNumber"
-                                 value="#{settlementMB.registrationNumber}">
-                    <f:validateLength minimum="5"/>
-                    <p:ajax event="blur" update="registrationNumberMsg"/>
-                </p:inputText> <p:message id="registrationNumberMsg" for="registrationNumber"
+                <td><h:outputLabel for="driverId"
+                                   value="Driver Id : "/></td>
+                <td><p:inputText id="driverId"
+                                 value="#{settlementMB.driverId}">
+
+                    <p:ajax event="blur" update="driverIdMsg"/>
+                </p:inputText> <p:message id="driverIdMsg" for="driverId"
                                           display="icon"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="type" value="Settlement Type : "/></td>
-                <td><p:inputText id="type" value="#{settlementMB.type}">
-                    <f:validateLength minimum="5"/>
-                    <p:ajax event="blur" update="typeMsg"/>
-                </p:inputText> <p:message id="typeMsg" for="type" display="icon"/></td>
+                <td><h:outputLabel for="type" value="Vehicle Id : "/></td>
+                <td><p:inputText id="type" value="#{settlementMB.vehicleId}">
+
+                    <p:ajax event="blur" update="vehicleIdMsg"/>
+                </p:inputText> <p:message id="vehicleIdMsg" for="vehicleId" display="icon"/></td>
             </tr>
             <tr>
                 <td><h:outputLabel for="modelTxtBox" value="Settlement Model : "/></td>

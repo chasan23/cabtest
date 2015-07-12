@@ -1,5 +1,7 @@
 package com.cabtest.dao;
 
+import com.cabtest.model.Location;
+
 /**
  * Vehical DAO Interface
  *

@@ -1,6 +1,7 @@
 package com.cabtest.managed.bean;
 
 
+import com.cabtest.model.Location;
 import com.cabtest.service.LocationService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

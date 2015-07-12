@@ -25,32 +25,40 @@ public class SettlementManagedBean {
 
     List<Settlement> settlementList;
 
-    String registrationNumber;
-    String type;
-    String model;
-    String settlementId;
+    String id;
+    String driverId;
+    String vehicleId;
+    String fromDate;
+    String toDate;
+    String driverCharge;
+    String serviceCharge;
+    String vehicleCharge;
 
-    public String addSettlement() {
-        try {
-            Settlement settlement = new Settlement();
-            settlement.setVehicalType(this.getType());
-            settlement.setModel(this.getModel());
-            settlement.setRegistrationNumber(this.getRegistrationNumber());
-            getSettlementService().save(settlement);
-            return SUCCESS;
-        } catch (Exception e) {
-            LOG.error("Error while trying to add settlement.", e);
-        }
-        return ERROR;
-    }
+//    public String addSettlement() {
+//        try {
+//            Settlement settlement = new Settlement();
+//            settlement.setId(Integer.parseInt(this.getId()));
+//            settlement.setDriverId(Integer.parseInt(this.getDriverId()));
+//            settlement.setVehicleId(Integer.parseInt(this.getVehicleId()));
+//            settlement.setFromDate();
+//            getSettlementService().save(settlement);
+//            return SUCCESS;
+//        } catch (Exception e) {
+//            LOG.error("Error while trying to add settlement.", e);
+//        }
+//        return ERROR;
+//    }
 
     public String updateSettlement() {
         try {
             Settlement settlement = new Settlement();
-            settlement.setVehicalId(Integer.parseInt(this.getSettlementId()));
-            settlement.setVehicalType(this.getType());
-            settlement.setModel(this.getModel());
-            settlement.setRegistrationNumber(this.getRegistrationNumber());
+            settlement.setId(Integer.parseInt(this.getId()));
+            settlement.setDriverId(Integer.parseInt(this.getDriverId()));
+            settlement.setVehicleId(Integer.parseInt(this.getVehicleId()));
+            settlement.setDriverCharge(Float.parseFloat(this.getDriverCharge()));
+            settlement.setServiceCharge(Float.parseFloat(this.getServiceCharge()));
+            settlement.setVehicleCharge(Float.parseFloat(this.getVehicleCharge()));
+
             getSettlementService().update(settlement);
             return SUCCESS;
         } catch (Exception e) {
@@ -61,7 +69,7 @@ public class SettlementManagedBean {
 
     public String deleteSettlement() {
         try {
-            getSettlementService().deleteByKey(Integer.parseInt(this.getSettlementId()));
+            getSettlementService().deleteByKey(Integer.parseInt(this.getId()));
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to delete settlement.", e);
@@ -70,9 +78,7 @@ public class SettlementManagedBean {
     }
 
     public void reset() {
-        this.setModel("");
-        this.setRegistrationNumber("");
-        this.setType("");
+
     }
 
     public List<Settlement> getSettlementList() {
@@ -90,38 +96,68 @@ public class SettlementManagedBean {
         this.settlementService = settlementService;
     }
 
-    public String getRegistrationNumber() {
-        return registrationNumber;
+    public String getId() {
+        return id;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getDriverId() {
+        return driverId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
     }
 
-    public String getModel() {
-        return model;
+    public String getVehicleId() {
+        return vehicleId;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
-    public String getSettlementId() {
-        return settlementId;
+    public String getFromDate() {
+        return fromDate;
     }
 
-    public void setSettlementId(String settlementId) {
-        this.settlementId = settlementId;
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
     }
 
+    public String getToDate() {
+        return toDate;
+    }
 
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
+    }
+
+    public String getDriverCharge() {
+        return driverCharge;
+    }
+
+    public void setDriverCharge(String driverCharge) {
+        this.driverCharge = driverCharge;
+    }
+
+    public String getServiceCharge() {
+        return serviceCharge;
+    }
+
+    public void setServiceCharge(String serviceCharge) {
+        this.serviceCharge = serviceCharge;
+    }
+
+    public String getVehicleCharge() {
+        return vehicleCharge;
+    }
+
+    public void setVehicleCharge(String vehicleCharge) {
+        this.vehicleCharge = vehicleCharge;
+    }
 }
 
