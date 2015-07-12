@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 
 @Entity
@@ -19,13 +18,18 @@ public class DriverVehicle {
     int id;
 
     @Column(name = "DRIVER_ID")
-    int driverId;
+    Driver driver;
 
     @Column(name = "VEHICLE_ID")
-    int vehicleId;
+    Vehicle vehicle;
 
-public DriverVehicle () {
-}
+    public DriverVehicle() {
+    }
+
+    public DriverVehicle(Driver driver, Vehicle vehicle) {
+        this.driver = driver;
+        this.vehicle = vehicle;
+    }
 
     public int getId() {
         return id;
@@ -35,20 +39,20 @@ public DriverVehicle () {
         this.id = id;
     }
 
-    public int getDriverId() {
-        return driverId;
+    public Driver getDriver() {
+        return driver;
     }
 
-    public void setDriverId(int driverId) {
-        this.driverId = driverId;
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
-    public int getVehicleId() {
-        return vehicleId;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleId(int vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }
 
