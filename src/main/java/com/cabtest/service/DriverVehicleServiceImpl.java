@@ -30,7 +30,7 @@ public class DriverVehicleServiceImpl extends GenericPersistenceServiceImpl<Driv
 
     @Override
     public DriverVehicle getDriverVehicle(int driverId) {
-        return null;
+        return getFirstAvailableDriver(null, null, null, null);
     }
 }
 

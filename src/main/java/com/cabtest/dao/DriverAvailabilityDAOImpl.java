@@ -1,7 +1,14 @@
 package com.cabtest.dao;
 
+import com.cabtest.model.Driver;
 import com.cabtest.model.DriverAvailability;
+import com.cabtest.model.Location;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Vehical DAO
@@ -15,4 +22,12 @@ import org.springframework.stereotype.Repository;
 public class DriverAvailabilityDAOImpl extends GenericDAOImpl<DriverAvailability, Integer> implements DriverAvailabilityDAO {
 
 
+    @Override
+    public List<DriverAvailability> getAvailableDrivers(Date date, List<Location> locations) {
+        Query query = getCurrentSession().createQuery("from DriverAvailability where date = :date and location in " +
+                                                      ":locations");
+        query.setParameter("date", date);
+        query.setParameter("locations", locations);
+        return (ArrayList<DriverAvailability>)query.list();
+    }
 }

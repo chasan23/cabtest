@@ -1,6 +1,9 @@
 package com.cabtest.service;
 
+import com.cabtest.bean.TimeSlot;
 import com.cabtest.dao.GenericDAO;
+import com.cabtest.model.Driver;
+import com.cabtest.model.Location;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

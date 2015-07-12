@@ -29,7 +29,7 @@ public class LocationServiceImpl extends GenericPersistenceServiceImpl<Location,
 
     @Override
     public Location getLocation(int id) {
-        return null;
+        return getFirstAvailableDriver(null, null, null, null);
     }
 }
 

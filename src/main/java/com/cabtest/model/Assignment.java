@@ -1,6 +1,7 @@
 package com.cabtest.model;
 
 import javax.persistence.*;
+import java.awt.print.Book;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -16,7 +17,7 @@ public class Assignment implements Serializable {
     private int assignmentId;
 
     @Column(name = "BOOKING_ID")
-    private int bookingId;
+    private Booking booking;
 
     @Column(name = "VEHICLE_ID")
     private Vehicle vehicle;
@@ -51,12 +52,12 @@ public class Assignment implements Serializable {
         this.assignmentId = assignmentId;
     }
 
-    public int getBookingId() {
-        return bookingId;
+    public Booking getBooking() {
+        return booking;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
     public Timestamp getTime() {

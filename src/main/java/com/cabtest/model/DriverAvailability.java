@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import java.sql.Date;
 
 
 @Entity
@@ -20,16 +20,18 @@ public class DriverAvailability {
 
 
     @Column(name = "DRIVER_ID")
-    int driverId;
+    Driver driver;
+
+    Vehicle vehicle;
 
     @Column(name = "DATE")
     Date date;
 
     @Column(name = "TIME_SLOT")
-    int timeSlot;
+    String timeSlot;
 
     @Column(name = "LOCATION_ID")
-    int locationId;
+    Location location;
 
 //    @Column(name = "VEHICLE_ID")
 
@@ -45,12 +47,12 @@ public class DriverAvailability {
         this.id = id;
     }
 
-    public int getDriverId() {
-        return driverId;
+    public Driver getDriver() {
+        return driver;
     }
 
-    public void setDriverId(int driverId) {
-        this.driverId = driverId;
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
     public Date getDate() {
@@ -61,19 +63,27 @@ public class DriverAvailability {
         this.date = date;
     }
 
-    public int getTimeSlot() {
+    public String getTimeSlot() {
         return timeSlot;
     }
 
-    public void setTimeSlot(int timeSlot) {
+    public void setTimeSlot(String timeSlot) {
         this.timeSlot = timeSlot;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }
