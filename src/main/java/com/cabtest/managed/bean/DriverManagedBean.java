@@ -38,12 +38,6 @@ public class DriverManagedBean {
             Contact contact = getContact();
             Driver driver = getDriver();
 
-            if ("true".equals(this.availability)) {
-                driver.setAvailability('1');
-            } else {
-                driver.setAvailability('0');
-            }
-
             driver.setContact(contact);
             getDriverRegisterService().saveDriver(driver);
 
@@ -81,12 +75,6 @@ public class DriverManagedBean {
 
             Driver updatedDriver = getDriver();
             updatedDriver.setDriverId(Integer.parseInt(this.getDriverId()));
-
-            if ("true".equals(this.availability)) {
-                updatedDriver.setAvailability('1');
-            } else {
-                updatedDriver.setAvailability('0');
-            }
             updatedDriver.setContact(contact);
 
             DriverDetails driverDetails = new DriverDetails(updatedDriver);

@@ -1,7 +1,6 @@
 package com.cabtest.model;
 
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class BookingDetails {

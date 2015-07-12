@@ -32,6 +32,10 @@ public class TimeSlotUtil {
         }
     }
 
+    public static TimeSlot convertDateToTimeSlots(java.util.Date date, boolean ceiling) {
+        return convertTimeStampToTimeSlots(new Timestamp(date.getTime()), ceiling);
+    }
+
     public static TimeSlot convertMinutesToTimeSlots(int minutes, boolean ceiling) {
         if (ceiling) {
             return new TimeSlot(Math.ceil(minutes / ConfigurationBuilder.getTimeSlotSizeInMinutes()));
@@ -49,18 +53,29 @@ public class TimeSlotUtil {
         return new Date(timestamp.getTime());
     }
 
-    public static BigInteger getTimeSlotPeriodBinaryValue(TimeSlot statTime, TimeSlot endTime) {
+    public static String getTimeSlotPeriodString(TimeSlot fromTime, TimeSlot toTime) {
         char[] array = new char[getTimeSlotsPerDay()];
-        for(int i = 0; i < array.length; i++){
-            if(i >= statTime.getValue() - 1 && i <= endTime.getValue() - 1){
+        for (int i = 0; i < array.length; i++) {
+            if (i >= fromTime.getValue() - 1 && i <= toTime.getValue() - 1) {
                 array[i] = '1';
             } else {
                 array[i] = '0';
             }
         }
+        return new String(array);
+    }
 
-        String bitString = new String(array);
+    public static BigInteger getTimeSlotPeriodBinaryValue(TimeSlot fromTime, TimeSlot toTime) {
+        String bitString = getTimeSlotPeriodString(fromTime, toTime);
         return new BigInteger(bitString, 2);
+    }
+
+    public static String getTimeSlotPeriodString(java.util.Date fromTime, java.util.Date toTime) {
+        TimeSlot fromTimeSlot = convertDateToTimeSlots(fromTime, false);
+        TimeSlot toTimeSlot = convertDateToTimeSlots(toTime, true);
+
+        return getTimeSlotPeriodString(fromTimeSlot, toTimeSlot);
+
     }
 
     public static int getTimeSlotsPerDay() {
