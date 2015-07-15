@@ -24,19 +24,45 @@
                                           display="icon"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="type" value="Vehicle Id : "/></td>
-                <td><p:inputText id="type" value="#{settlementMB.vehicleId}">
+                <td><h:outputLabel for="vehicleId" value="Vehicle Id : "/></td>
+                <td><p:inputText id="vehicleId" value="#{settlementMB.vehicleId}">
 
                     <p:ajax event="blur" update="vehicleIdMsg"/>
                 </p:inputText> <p:message id="vehicleIdMsg" for="vehicleId" display="icon"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="modelTxtBox" value="Settlement Model : "/></td>
-                <td><p:inputText id="modelTxtBox" value="#{settlementMB.model}">
-                    <f:validateLength minimum="5"/>
-                    <p:ajax event="blur" update="modelMsg"/>
-                </p:inputText> <p:message id="modelMsg" for="modelTxtBox" display="icon"/></td>
+                <td><h:outputLabel for="fromDate" value="From Date : "/></td>
+                <td><p:inputText id="fromDate" value="#{settlementMB.fromDate}">
+
+                    <p:ajax event="blur" update="fromDateMsg"/>
+                </p:inputText> <p:message id="fromDateMsg" for="fromDateTxtBox" display="icon"/></td>
             </tr>
+
+            <tr>
+                <td><h:outputLabel for="toDate" value="To Date : "/></td>
+                <td><p:inputText id="toDate" value="#{settlementMB.toDate}">
+
+                    <p:ajax event="blur" update="fromDateMsg"/>
+                </p:inputText> <p:message id="toDateMsg" for="toDateTxtBox" display="icon"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="driverCharge" value="Driver Charge : "/></td>
+                <td><p:inputText id="driverCharge" value="#{settlementMB.driverCharge}">
+                </p:inputText></td>
+            </tr>
+
+            <tr>
+                <td><h:outputLabel for="vehicleCharge" value="Vehicle Charge : "/></td>
+                <td><p:inputText id="vehicleCharge" value="#{settlementMB.vehicleCharge}">
+                </p:inputText></td>
+            </tr>
+
+            <tr>
+                <td><h:outputLabel for="serviceCharge" value="Service Charge : "/></td>
+                <td><p:inputText id="serviceCharge" value="#{settlementMB.serviceCharge}">
+                </p:inputText></td>
+            </tr>
+
             <tr>
                 <td><p:commandButton id="addSettlement" value="Add Settlement"
                                      action="#{settlementMB.addSettlement}" ajax="false"/></td>
