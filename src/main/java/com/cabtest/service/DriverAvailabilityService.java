@@ -2,7 +2,6 @@ package com.cabtest.service;
 
 import com.cabtest.bean.TimeSlot;
 import com.cabtest.dto.DriverAvailabilityDTO;
-import com.cabtest.model.Driver;
 import com.cabtest.model.DriverAvailability;
 import com.cabtest.model.DriverVehicle;
 import com.cabtest.model.Location;

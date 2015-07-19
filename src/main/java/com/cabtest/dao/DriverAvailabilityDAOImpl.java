@@ -1,6 +1,5 @@
 package com.cabtest.dao;
 
-import com.cabtest.model.Driver;
 import com.cabtest.model.DriverAvailability;
 import com.cabtest.model.Location;
 import org.hibernate.Query;
@@ -19,7 +18,8 @@ import java.util.List;
  */
 
 @Repository
-public class DriverAvailabilityDAOImpl extends GenericDAOImpl<DriverAvailability, Integer> implements DriverAvailabilityDAO {
+public class DriverAvailabilityDAOImpl extends GenericDAOImpl<DriverAvailability, Integer>
+        implements DriverAvailabilityDAO {
 
 
     @Override
@@ -28,6 +28,6 @@ public class DriverAvailabilityDAOImpl extends GenericDAOImpl<DriverAvailability
                                                       ":locations");
         query.setParameter("date", date);
         query.setParameter("locations", locations);
-        return (ArrayList<DriverAvailability>)query.list();
+        return (ArrayList<DriverAvailability>) query.list();
     }
 }

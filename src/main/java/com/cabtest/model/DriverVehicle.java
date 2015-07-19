@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DRIVER_VEHICLE")
+@Deprecated
 public class DriverVehicle {
 
     @Id

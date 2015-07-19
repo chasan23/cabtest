@@ -1,11 +1,10 @@
 package com.cabtest.service;
 
 import com.cabtest.bean.TimeSlot;
-import com.cabtest.dao.GenericDAO;
 import com.cabtest.dao.DistanceMatrixDAO;
+import com.cabtest.dao.GenericDAO;
 import com.cabtest.model.DistanceMatrix;
 import com.cabtest.model.Location;
-import com.cabtest.model.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

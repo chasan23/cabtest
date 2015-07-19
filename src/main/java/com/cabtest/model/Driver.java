@@ -1,8 +1,12 @@
 package com.cabtest.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -26,6 +30,12 @@ public class Driver extends Person implements Serializable {
 
     @Column(name = "AGE")
     private int age;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "DRIVER_VEHICLE", catalog = "cab", joinColumns = {
+            @JoinColumn(name = "DRIVER_ID", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "VEHICLE_ID", nullable = false, updatable = false) })
+    Set<Vehicle> vehicles = new HashSet<>(0);
 
     public Driver() {
     }

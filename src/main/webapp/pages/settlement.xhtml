@@ -24,22 +24,19 @@
                                           display="icon"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="type" value="Vehicle Id : "/></td>
-                <td><p:inputText id="type" value="#{settlementMB.vehicleId}">
-
+                <td><h:outputLabel for="vehicleId" value="Vehicle Id : "/></td>
+                <td><p:inputText id="vehicleId" value="#{settlementMB.vehicleId}">
                     <p:ajax event="blur" update="vehicleIdMsg"/>
                 </p:inputText> <p:message id="vehicleIdMsg" for="vehicleId" display="icon"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="modelTxtBox" value="Settlement Model : "/></td>
-                <td><p:inputText id="modelTxtBox" value="#{settlementMB.model}">
+                <td><h:outputLabel for="modelTxtBox" value="From Date : "/></td>
+                <td><p:inputText id="modelTxtBox" value="#{settlementMB.fromDate}">
                     <f:validateLength minimum="5"/>
                     <p:ajax event="blur" update="modelMsg"/>
                 </p:inputText> <p:message id="modelMsg" for="modelTxtBox" display="icon"/></td>
             </tr>
             <tr>
-                <td><p:commandButton id="addSettlement" value="Add Settlement"
-                                     action="#{settlementMB.addSettlement}" ajax="false"/></td>
                 <td><p:commandButton id="updateSettlement" value="Update Settlement"
                                      action="#{settlementMB.updateSettlement}" ajax="false"/></td>
                 <td><p:commandButton id="deleteSettlement" value="Delete Settlement"
@@ -57,7 +54,7 @@
                 <f:facet name="header">
                     <h:outputText value="ID"/>
                 </f:facet>
-                <h:outputText value="#{settlementDetails.vehicalId}"/>
+                <h:outputText value="#{settlementDetails.vehicleId}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
@@ -69,7 +66,7 @@
                 <f:facet name="header">
                     <h:outputText value="Type"/>
                 </f:facet>
-                <h:outputText value="#{settlementDetails.vehicalType}"/>
+                <h:outputText value="#{settlementDetails.vehicleType}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">

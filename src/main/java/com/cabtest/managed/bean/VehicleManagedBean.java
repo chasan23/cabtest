@@ -33,7 +33,7 @@ public class VehicleManagedBean {
     public String addVehicle() {
         try {
             Vehicle vehicle = new Vehicle();
-            vehicle.setVehicalType(this.getType());
+            vehicle.setVehicleType(this.getType());
             vehicle.setModel(this.getModel());
             vehicle.setRegistrationNumber(this.getRegistrationNumber());
             getVehicleRegisterService().save(vehicle);
@@ -47,8 +47,8 @@ public class VehicleManagedBean {
     public String updateVehicle() {
         try {
             Vehicle vehicle = new Vehicle();
-            vehicle.setVehicalId(Integer.parseInt(this.getVehicleId()));
-            vehicle.setVehicalType(this.getType());
+            vehicle.setVehicleId(Integer.parseInt(this.getVehicleId()));
+            vehicle.setVehicleType(this.getType());
             vehicle.setModel(this.getModel());
             vehicle.setRegistrationNumber(this.getRegistrationNumber());
             getVehicleRegisterService().update(vehicle);

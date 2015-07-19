@@ -11,7 +11,6 @@
     <bean id="booking" class="com.cabtest.model.Booking"/>
     <bean id="customer" class="com.cabtest.model.Customer"/>
     <bean id="billing" class="com.cabtest.model.Billing"/>
-    <bean id="driverVehicle" class="com.cabtest.model.DriverVehicle"/>
     <bean id="driverAvailability" class="com.cabtest.model.DriverAvailability"/>
     <bean id="vehicleAvailability" class="com.cabtest.model.VehicleAvailability"/>
     <bean id="distanceMatrix"      class="com.cabtest.model.DistanceMatrix"/>
@@ -37,10 +36,6 @@
 
     <bean id="billingService" class="com.cabtest.service.BillingRegisterServiceImpl">
         <property name="billingDAO" ref="billingDAO"/>
-    </bean>
-
-    <bean id="driverVehicleService" class="com.cabtest.service.DriverVehicleServiceImpl">
-        <property name="driverVehicleDAO" ref="driverVehicleDAO"/>
     </bean>
 
     <bean id="driverAvailabilityService" class="com.cabtest.service.DriverAvailabilityServiceImpl">
@@ -91,10 +86,6 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="driverVehicleDAO" class="com.cabtest.dao.DriverVehicleDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
     <bean id="driverAvailabilityDAO" class="com.cabtest.dao.DriverAvailabilityDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
@@ -114,6 +105,20 @@
     <bean id="settlementDAO" class="com.cabtest.dao.SettlementDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="1" />
+        <property name="maxPoolSize" value="1" />
+        <property name="queueCapacity" value="25" />
+    </bean>
+
+    <bean id="agentExecutor" class="com.cabtest.agent.AgentExecutor">
+        <constructor-arg type="org.springframework.core.task.TaskExecutor" ref="taskExecutor"/>
+        <constructor-arg type="com.cabtest.agent.AssignmentAgent" ref="assignmentAgent"/>
+        <constructor-arg type="com.cabtest.service.BookingRegisterService" ref="bookingService"/>
+    </bean>
+
+    <bean id="assignmentAgent" class="com.cabtest.agent.AssignmentAgent"/>
 
     <!-- Data Source Declaration -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -140,7 +145,6 @@
                 <value>com.cabtest.model.Booking</value>
                 <value>com.cabtest.model.Customer</value>
                 <value>com.cabtest.model.Billing</value>
-                <value>com.cabtest.model.DriverVehicle</value>
                 <value>com.cabtest.model.DriverAvailability</value>
                 <value>com.cabtest.model.VehicleAvailability</value>
                 <value>com.cabtest.model.DistanceMatrix</value>

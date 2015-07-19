@@ -2,7 +2,6 @@ package com.cabtest.managed.bean;
 
 
 import com.cabtest.dto.DriverAvailabilityDTO;
-import com.cabtest.model.Driver;
 import com.cabtest.model.DriverAvailability;
 import com.cabtest.service.DriverAvailabilityService;
 import org.apache.commons.logging.Log;
@@ -140,5 +139,21 @@ public class DriverAvailabilityManagedBean {
 
     public void setTimeFrom(Date timeFrom) {
         this.timeFrom = timeFrom;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 }

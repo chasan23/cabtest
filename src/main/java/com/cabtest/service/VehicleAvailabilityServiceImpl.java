@@ -3,7 +3,6 @@ package com.cabtest.service;
 import com.cabtest.dao.GenericDAO;
 import com.cabtest.dao.VehicleAvailabilityDAO;
 import com.cabtest.model.VehicleAvailability;
-
 import org.springframework.stereotype.Service;
 
 @Service

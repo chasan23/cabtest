@@ -12,6 +12,8 @@ import com.cabtest.service.DriverAvailabilityService;
 import com.cabtest.service.DriverRegisterService;
 import com.cabtest.service.VehicleRegisterService;
 import com.cabtest.util.TimeSlotUtil;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -19,8 +21,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingDeque;
 
+@Component
+@Scope("prototype")
 public class AssignmentAgent implements Runnable {
-    private BlockingDeque<Booking> BookingQueue;
+    private BlockingDeque<Booking> bookingQueue;
     private DriverRegisterService driverRegisterService;
     private DriverAvailabilityService driverAvailabilityService;
     private BookingRegisterService bookingRegisterService;
@@ -31,7 +35,17 @@ public class AssignmentAgent implements Runnable {
 
     @Override
     public void run() {
+        while (true){
+            try {
+                Booking booking = bookingQueue.take();
+                if(booking != null) {
+                    performAssignment(booking);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+        }
     }
 
     private void performAssignment(Booking booking) {
@@ -64,5 +78,8 @@ public class AssignmentAgent implements Runnable {
         }
     }
 
+    public void setBookingQueue(BlockingDeque<Booking> bookingQueue) {
+        this.bookingQueue = bookingQueue;
+    }
 }
 

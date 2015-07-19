@@ -2,7 +2,6 @@ package com.cabtest.managed.bean;
 
 
 import com.cabtest.model.DriverVehicle;
-
 import com.cabtest.service.DriverVehicleService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,8 +11,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Timestamp;
-import java.util.Date;
 @ManagedBean(name = "driverVehicleMB")
 @RequestScoped
 public class DriverVehicleManagedBean {
