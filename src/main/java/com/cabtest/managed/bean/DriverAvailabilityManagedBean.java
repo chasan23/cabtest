@@ -1,8 +1,8 @@
 package com.cabtest.managed.bean;
 
 
+import com.cabtest.dto.DriverAvailabilityDTO;
 import com.cabtest.model.DriverAvailability;
-
 import com.cabtest.service.DriverAvailabilityService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,9 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
-import java.util.List;
-import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
+
 @ManagedBean(name = "driverAvailabilityMB")
 @RequestScoped
 public class DriverAvailabilityManagedBean {
@@ -30,26 +30,29 @@ public class DriverAvailabilityManagedBean {
 
     String id;
     String driverId;
-    String date;
-    String timeSlot;
+    String vehicleId;
+    Date date;
+    Date timeFrom;
+    Date timeTo;
     String locationId;
 
     public void reset() {
         this.setDriverId("");
-        this.setDate("");
-        this.setTimeSlot("");
+//        this.setDate("");
+//        this.setTimeSlot("");
         this.setLocationId("");
     }
 
 
     public String addDriverAvailability() {
         try {
-            DriverAvailability driverAvailability = new DriverAvailability();
-            driverAvailability.setDriverId(Integer.parseInt(this.getDriverId()));
-            driverAvailability.setDate(new Date(this.getDate()));
-            driverAvailability.setTimeSlot(Integer.parseInt(this.getTimeSlot()));
-            driverAvailability.setLocationId(Integer.parseInt(this.getLocationId()));
-            getDriverAvailabilityService().save(driverAvailability);
+            DriverAvailabilityDTO driverAvailabilityDTO = new DriverAvailabilityDTO();
+            driverAvailabilityDTO.setDriverId(driverId);
+            driverAvailabilityDTO.setDate(date);
+            driverAvailabilityDTO.setTimeFrom(timeFrom);
+            driverAvailabilityDTO.setTimeTo(timeTo);
+            driverAvailabilityDTO.setLocationId(locationId);
+            getDriverAvailabilityService().save(driverAvailabilityDTO);
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to add driverAvailability.", e);
@@ -58,18 +61,18 @@ public class DriverAvailabilityManagedBean {
     }
 
     public String updateDriverAvailability() {
-        try {
-            DriverAvailability driverAvailability = new DriverAvailability();
-            driverAvailability.setId(Integer.parseInt(this.getId()));
-            driverAvailability.setDriverId(Integer.parseInt(this.getDriverId()));
-            driverAvailability.setDate(new Date(this.getDate()));
-            driverAvailability.setTimeSlot(Integer.parseInt(this.getTimeSlot()));
-            driverAvailability.setLocationId(Integer.parseInt(this.getLocationId()));
-            getDriverAvailabilityService().update(driverAvailability);
-            return SUCCESS;
-        } catch (Exception e) {
-            LOG.error("Error while trying to update driverAvailability.", e);
-        }
+//        try {
+//            DriverAvailability driverAvailability = new DriverAvailability();
+//            driverAvailability.setId(Integer.parseInt(this.getId()));
+//            driverAvailability.setDriverId(Integer.parseInt(this.getDriverId()));
+//            driverAvailability.setDate(new Date(this.getDate()));
+//            driverAvailability.setTimeSlot(Integer.parseInt(this.getTimeSlot()));
+//            driverAvailability.setLocationId(Integer.parseInt(this.getLocationId()));
+//            getDriverAvailabilityService().update(driverAvailability);
+//            return SUCCESS;
+//        } catch (Exception e) {
+//            LOG.error("Error while trying to update driverAvailability.", e);
+//        }
         return ERROR;
     }
 
@@ -82,12 +85,13 @@ public class DriverAvailabilityManagedBean {
         }
         return ERROR;
     }
+
     public List<DriverAvailability> getDriverAvailabilityList() {
         driverAvailabilityList = new ArrayList<DriverAvailability>();
         driverAvailabilityList.addAll(getDriverAvailabilityService().getAll());
         return driverAvailabilityList;
     }
-    
+
     public DriverAvailabilityService getDriverAvailabilityService() {
         return driverAvailabilityService;
     }
@@ -95,7 +99,6 @@ public class DriverAvailabilityManagedBean {
     public void setDriverAvailabilityService(DriverAvailabilityService driverAvailabilityService) {
         this.driverAvailabilityService = driverAvailabilityService;
     }
-
 
 
     public String getDriverId() {
@@ -114,14 +117,6 @@ public class DriverAvailabilityManagedBean {
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getLocationId() {
         return locationId;
     }
@@ -130,12 +125,35 @@ public class DriverAvailabilityManagedBean {
         this.locationId = locationId;
     }
 
-    public String getTimeSlot() {
-        return timeSlot;
+    public Date getTimeTo() {
+        return timeTo;
     }
 
-    public void setTimeSlot(String timeSlot) {
-        this.timeSlot = timeSlot;
+    public void setTimeTo(Date timeTo) {
+        this.timeTo = timeTo;
     }
 
+    public Date getTimeFrom() {
+        return timeFrom;
+    }
+
+    public void setTimeFrom(Date timeFrom) {
+        this.timeFrom = timeFrom;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
+    }
 }

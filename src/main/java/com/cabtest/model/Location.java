@@ -2,10 +2,14 @@ package com.cabtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -25,6 +29,9 @@ public class Location {
 
     @Column(name = "PROVINCE")
     String province;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "location")
+    Set<DriverAvailability> availability = new HashSet<>(0);
 
     public Location() {
     }
@@ -59,5 +66,13 @@ public class Location {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public Set<DriverAvailability> getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(Set<DriverAvailability> availability) {
+        this.availability = availability;
     }
 }

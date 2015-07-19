@@ -2,7 +2,6 @@ package com.cabtest.managed.bean;
 
 
 import com.cabtest.model.DriverVehicle;
-
 import com.cabtest.service.DriverVehicleService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,8 +11,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Timestamp;
-import java.util.Date;
 @ManagedBean(name = "driverVehicleMB")
 @RequestScoped
 public class DriverVehicleManagedBean {
@@ -44,8 +41,8 @@ public class DriverVehicleManagedBean {
     public String addDriverVehicle() {
         try {
             DriverVehicle driverVehicle = new DriverVehicle();
-            driverVehicle.setDriverId(Integer.parseInt(this.getDriverId()));
-            driverVehicle.setVehicleId(Integer.parseInt(this.getVehicleId()));
+//            driverVehicle.setDriverId(Integer.parseInt(this.getDriverId()));
+//            driverVehicle.setVehicleId(Integer.parseInt(this.getVehicleId()));
 
 
             getDriverVehicleService().save(driverVehicle);
@@ -60,8 +57,8 @@ public class DriverVehicleManagedBean {
         try {
             DriverVehicle driverVehicle = new DriverVehicle();
             driverVehicle.setId(Integer.parseInt(this.getId()));
-            driverVehicle.setDriverId(Integer.parseInt(this.getDriverId()));
-            driverVehicle.setVehicleId(Integer.parseInt(this.getVehicleId()));
+//            driverVehicle.setDriverId(Integer.parseInt(this.getDriverId()));
+//            driverVehicle.setVehicleId(Integer.parseInt(this.getVehicleId()));
             getDriverVehicleService().update(driverVehicle);
             return SUCCESS;
         } catch (Exception e) {

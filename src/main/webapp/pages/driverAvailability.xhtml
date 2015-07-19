@@ -14,21 +14,11 @@
                 </p:inputText></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="date"
-                                   value="Date : "/></td>
-                <td><p:inputText id="date"
-                                 value="#{driverAvailabilityMB.date}">
+                <td><h:outputLabel for="date" value="Date : "/></td>
+                <td><p:inputText id="date" value="#{driverAvailabilityMB.date}">
                     <f:validateLength minimum="5"/>
                     <p:ajax event="blur" update="dateMsg"/>
-                </p:inputText> <p:message id="dateMsg" for="dateMsg"
-                                          display="icon"/></td>
-            </tr>
-            <tr>
-                <td><h:outputLabel for="timeSlot" value="Time Slot : "/></td>
-                <td><p:inputText id="timeSlot" value="#{driverAvailabilityMB.timeSlot}">
-                    <f:validateLength minimum="3"/>
-                    <p:ajax event="blur" update="timeSlotMsg"/>
-                </p:inputText> <p:message id="timeSlotMsg" for="timeSlot" display="icon"/></td>
+                </p:inputText> <p:message id="dateMsg" for="dateMsg" display="icon"/></td>
             </tr>
             <tr>
                 <td><h:outputLabel for="locationId" value="Location Id : "/></td>

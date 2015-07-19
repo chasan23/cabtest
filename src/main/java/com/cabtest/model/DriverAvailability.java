@@ -2,9 +2,12 @@ package com.cabtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.sql.Date;
 
@@ -18,10 +21,12 @@ public class DriverAvailability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-
-    @Column(name = "DRIVER_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DRIVER_ID", nullable = false)
     Driver driver;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "VEHICLE_ID", nullable = false)
     Vehicle vehicle;
 
     @Column(name = "DATE")
@@ -30,11 +35,9 @@ public class DriverAvailability {
     @Column(name = "TIME_SLOT")
     String timeSlot;
 
-    @Column(name = "LOCATION_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "LOCATION_ID", nullable = false)
     Location location;
-
-//    @Column(name = "VEHICLE_ID")
-
 
     public DriverAvailability() {
     }

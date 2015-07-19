@@ -1,5 +1,6 @@
 package com.cabtest.dao;
 
+import com.cabtest.model.Location;
 import org.springframework.stereotype.Repository;
 
 /**

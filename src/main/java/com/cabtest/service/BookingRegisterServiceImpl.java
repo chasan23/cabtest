@@ -3,7 +3,6 @@ package com.cabtest.service;
 import com.cabtest.dao.BookingDAO;
 import com.cabtest.dao.ContactDAO;
 import com.cabtest.dao.CustomerDAO;
-import com.cabtest.model.Contact;
 import com.cabtest.model.Booking;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Customer;

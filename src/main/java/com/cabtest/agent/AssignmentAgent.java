@@ -3,11 +3,8 @@ package com.cabtest.agent;
 import com.cabtest.bean.TimeSlot;
 import com.cabtest.model.Assignment;
 import com.cabtest.model.Booking;
-import com.cabtest.model.DistanceMatrix;
-import com.cabtest.model.Driver;
 import com.cabtest.model.DriverVehicle;
 import com.cabtest.model.Location;
-import com.cabtest.model.Vehicle;
 import com.cabtest.service.AssignmentService;
 import com.cabtest.service.BookingRegisterService;
 import com.cabtest.service.DistanceMatrixService;
@@ -15,6 +12,8 @@ import com.cabtest.service.DriverAvailabilityService;
 import com.cabtest.service.DriverRegisterService;
 import com.cabtest.service.VehicleRegisterService;
 import com.cabtest.util.TimeSlotUtil;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -22,8 +21,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingDeque;
 
+@Component
+@Scope("prototype")
 public class AssignmentAgent implements Runnable {
-    private BlockingDeque<Booking> BookingQueue;
+    private BlockingDeque<Booking> bookingQueue;
     private DriverRegisterService driverRegisterService;
     private DriverAvailabilityService driverAvailabilityService;
     private BookingRegisterService bookingRegisterService;
@@ -34,14 +35,22 @@ public class AssignmentAgent implements Runnable {
 
     @Override
     public void run() {
+        while (true){
+            try {
+                Booking booking = bookingQueue.take();
+                if(booking != null) {
+                    performAssignment(booking);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+        }
     }
 
     private void performAssignment(Booking booking) {
 
         int hireDuration = booking.getDuration();
-
-
         Timestamp hireStartTime = booking.getTime();
 
         TimeSlot startTime = TimeSlotUtil.convertTimeStampToTimeSlots(hireStartTime, false);
@@ -53,11 +62,12 @@ public class AssignmentAgent implements Runnable {
         int originId = booking.getOriginId();
 
         Map<TimeSlot, List<Location>> allowedDriverLocations = distanceMatrixService.getLocations(originId,
-                                                                                                maxArriveTime);
+                                                                                                  maxArriveTime);
         for (TimeSlot arrivalTime : allowedDriverLocations.keySet()) {
-            DriverVehicle driver = driverAvailabilityService.getFirstAvailableDriver(allowedDriverLocations.get(arrivalTime),
-                                                                          startTime, endTime, booking.getVehicleType());
-            if(driver != null){
+            DriverVehicle driver = driverAvailabilityService.getFirstAvailableDriver(TimeSlotUtil.getDate
+                    (hireStartTime), allowedDriverLocations.get(arrivalTime), startTime, endTime, booking.getVehicleType());
+
+            if (driver != null) {
                 Assignment assignment = new Assignment();
                 assignment.setDriver(driver.getDriver());
                 assignment.setVehicle(driver.getVehicle());
@@ -68,5 +78,8 @@ public class AssignmentAgent implements Runnable {
         }
     }
 
+    public void setBookingQueue(BlockingDeque<Booking> bookingQueue) {
+        this.bookingQueue = bookingQueue;
+    }
 }
 

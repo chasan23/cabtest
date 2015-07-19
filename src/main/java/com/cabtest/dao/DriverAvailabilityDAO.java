@@ -1,6 +1,5 @@
 package com.cabtest.dao;
 
-import com.cabtest.model.Driver;
 import com.cabtest.model.DriverAvailability;
 import com.cabtest.model.Location;
 

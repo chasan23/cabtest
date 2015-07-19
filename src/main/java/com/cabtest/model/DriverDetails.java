@@ -6,7 +6,6 @@ public class DriverDetails {
     private String firstName;
     private String lastName;
     private int age;
-    private String availability;
     private int contactId;
     private String homePhone;
     private String mobilePhone;
@@ -19,12 +18,6 @@ public class DriverDetails {
         this.setDriverId(driver.getDriverId());
         this.setLastName(driver.getLastName());
         this.setAge(driver.getAge());
-
-        if (driver.getAvailability() == '1') {
-            this.setAvailability("true");
-        } else {
-            this.setAvailability("false");
-        }
 
         Contact contact = driver.getContact();
         this.setAddress(contact.getAddress());
@@ -63,29 +56,6 @@ public class DriverDetails {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
-    @Override
-    public String toString() {
-        return "DriverDetails{" +
-               "driverId=" + driverId +
-               ", firstName='" + firstName + '\'' +
-               ", lastName='" + lastName + '\'' +
-               ", age=" + age +
-               ", availability='" + availability + '\'' +
-               ", homePhone='" + homePhone + '\'' +
-               ", mobilePhone='" + mobilePhone + '\'' +
-               ", email='" + email + '\'' +
-               ", address='" + address + '\'' +
-               '}';
     }
 
     public int getContactId() {

@@ -2,7 +2,6 @@ package com.cabtest.service;
 
 import com.cabtest.dao.GenericDAO;
 import com.cabtest.dao.LocationDAO;
-
 import com.cabtest.model.Location;
 import org.springframework.stereotype.Service;
 

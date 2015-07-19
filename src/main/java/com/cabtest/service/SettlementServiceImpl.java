@@ -2,7 +2,6 @@ package com.cabtest.service;
 
 import com.cabtest.dao.GenericDAO;
 import com.cabtest.dao.SettlementDAO;
-
 import com.cabtest.model.Settlement;
 import org.springframework.stereotype.Service;
 

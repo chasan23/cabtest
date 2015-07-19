@@ -1,12 +1,10 @@
 package com.cabtest.service;
 
-import com.cabtest.bean.TimeSlot;
 import com.cabtest.dao.ContactDAO;
 import com.cabtest.dao.DriverDAO;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Driver;
 import com.cabtest.model.DriverDetails;
-import com.cabtest.model.Location;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -52,12 +50,6 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
     public void updateDriver(DriverDetails updatedDriver) {
         Driver existingDriver = getDriverDAO().findByKey(updatedDriver.getDriverId());
         existingDriver.setAge(updatedDriver.getAge());
-
-        if ("true".equals(updatedDriver.getAvailability())) {
-            existingDriver.setAvailability('1');
-        } else {
-            existingDriver.setAvailability('0');
-        }
 
         existingDriver.setFirstName(updatedDriver.getFirstName());
         existingDriver.setLastName(updatedDriver.getLastName());

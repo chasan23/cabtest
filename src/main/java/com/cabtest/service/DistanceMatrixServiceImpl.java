@@ -1,11 +1,10 @@
 package com.cabtest.service;
 
 import com.cabtest.bean.TimeSlot;
-import com.cabtest.dao.GenericDAO;
 import com.cabtest.dao.DistanceMatrixDAO;
+import com.cabtest.dao.GenericDAO;
 import com.cabtest.model.DistanceMatrix;
 import com.cabtest.model.Location;
-import com.cabtest.model.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,12 +34,12 @@ public class DistanceMatrixServiceImpl extends GenericPersistenceServiceImpl<Dis
 
     @Override
     public DistanceMatrix getDistanceMatrix() {
-        return getFirstAvailableDriver(null, null, null, null);
+        return null;
     }
 
     @Override
     public Map<TimeSlot, List<Location>> getLocations(int originId, TimeSlot travelTime) {
-        return getFirstAvailableDriver(null, null, null, null);
+        return null;
     }
 }
 

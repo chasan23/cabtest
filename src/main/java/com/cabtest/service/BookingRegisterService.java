@@ -1,8 +1,8 @@
 package com.cabtest.service;
 
-        import com.cabtest.model.Booking;
+import com.cabtest.model.Booking;
 
-        import java.util.List;
+import java.util.List;
 
 
 public interface BookingRegisterService {
