@@ -2,9 +2,12 @@ package com.cabtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -20,80 +23,73 @@ public class Settlement implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "VEHICLE_ID")
-    private int vehicleId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "VEHICLE_ID", nullable = false)
+    private Vehicle vehicle;
 
-    @Column(name = "DRIVER_ID")
-    private int driverId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DRIVER_ID", nullable = false)
+    private Driver driver;
 
-    @Column(name = "FROM_DATE")
-    private Timestamp fromDate;
-
-    @Column(name = "TO_DATE")
-    private Timestamp toDate;
+    @Column(name = "DATE")
+    private Timestamp date;
 
     @Column(name = "DRIVER_CHARGE")
-    private float driverCharge;
+    private double driverCharge;
 
     @Column(name = "SERVICE_CHARGE")
-    private float serviceCharge;
+    private double serviceCharge;
 
     @Column(name = "VEHICLE_CHARGE")
-    private float vehicleCharge;
+    private double vehicleCharge;
 
-    public int getVehicleId() {
-        return vehicleId;
+    public boolean isProcessed;
+
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleId(int vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
-    public int getDriverId() {
-        return driverId;
+    public Driver getDriver() {
+        return driver;
     }
 
-    public void setDriverId(int driverId) {
-        this.driverId = driverId;
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
-    public Timestamp getFromDate() {
-        return fromDate;
+    public Timestamp getDate() {
+        return date;
     }
 
-    public void setFromDate(Timestamp fromDate) {
-        this.fromDate = fromDate;
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
-    public Timestamp getToDate() {
-        return toDate;
-    }
-
-    public void setToDate(Timestamp toDate) {
-        this.toDate = toDate;
-    }
-
-    public float getDriverCharge() {
+    public double getDriverCharge() {
         return driverCharge;
     }
 
-    public void setDriverCharge(float driverCharge) {
+    public void setDriverCharge(double driverCharge) {
         this.driverCharge = driverCharge;
     }
 
-    public float getServiceCharge() {
+    public double getServiceCharge() {
         return serviceCharge;
     }
 
-    public void setServiceCharge(float serviceCharge) {
+    public void setServiceCharge(double serviceCharge) {
         this.serviceCharge = serviceCharge;
     }
 
-    public float getVehicleCharge() {
+    public double getVehicleCharge() {
         return vehicleCharge;
     }
 
-    public void setVehicleCharge(float vehicleCharge) {
+    public void setVehicleCharge(double vehicleCharge) {
         this.vehicleCharge = vehicleCharge;
     }
 
@@ -103,5 +99,26 @@ public class Settlement implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isProcessed() {
+        return isProcessed;
+    }
+
+    public void setIsProcessed(boolean isProcessed) {
+        this.isProcessed = isProcessed;
+    }
+
+    @Override
+    public String toString() {
+        return "Settlement{" +
+                "id=" + id +
+                ", vehicle=" + vehicle +
+                ", driver=" + driver +
+                ", date=" + date +
+                ", driverCharge=" + driverCharge +
+                ", serviceCharge=" + serviceCharge +
+                ", vehicleCharge=" + vehicleCharge +
+                '}';
     }
 }

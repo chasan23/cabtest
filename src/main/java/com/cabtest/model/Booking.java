@@ -8,8 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "BOOKING", catalog = "cab")
@@ -41,6 +44,9 @@ public class Booking {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CUSTOMER_ID", nullable = false)
     private Customer customer;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "booking")
+    private Set<Assignment> assignments = new HashSet<>();
 
     public int getBookingId() {
         return bookingId;
@@ -107,6 +113,13 @@ public class Booking {
         this.customer = customer;
     }
 
+    public Set<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(Set<Assignment> assignments) {
+        this.assignments = assignments;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -137,7 +150,9 @@ public class Booking {
                 ", destinationId=" + destinationId +
                 ", vehicleType='" + vehicleType + '\'' +
                 ", time=" + time +
+                ", duration=" + duration +
                 ", customer=" + customer +
+                ", assignments=" + assignments +
                 '}';
     }
 }

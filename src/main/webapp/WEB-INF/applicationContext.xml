@@ -16,6 +16,7 @@
     <bean id="distanceMatrix"      class="com.cabtest.model.DistanceMatrix"/>
     <bean id="location"  class="com.cabtest.model.Location"/>
     <bean id="settlement" class="com.cabtest.model.Settlement"/>
+    <bean id="assignment" class="com.cabtest.model.Assignment"/>
 
 
     <!-- Service Declaration -->
@@ -41,6 +42,7 @@
     <bean id="driverAvailabilityService" class="com.cabtest.service.DriverAvailabilityServiceImpl">
         <property name="driverAvailabilityDAO" ref="driverAvailabilityDAO"/>
         <property name="driverDAO" ref="driverDAO"/>
+        <property name="vehicleDAO" ref="vehicleDAO"/>
         <property name="locationDAO" ref="locationDAO"/>
     </bean>
 
@@ -58,6 +60,10 @@
 
     <bean id="settlementService" class="com.cabtest.service.SettlementServiceImpl">
         <property name="settlementDAO" ref="settlementDAO"/>
+    </bean>
+
+    <bean id="assignmentService" class="com.cabtest.service.AssignmentServiceImpl">
+        <property name="assignmentDAO" ref="assignmentDAO"/>
     </bean>
 
 
@@ -106,6 +112,10 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="assignmentDAO" class="com.cabtest.dao.AssignmentDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
     <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <property name="corePoolSize" value="1" />
         <property name="maxPoolSize" value="1" />
@@ -118,7 +128,11 @@
         <constructor-arg type="com.cabtest.service.BookingRegisterService" ref="bookingService"/>
     </bean>
 
-    <bean id="assignmentAgent" class="com.cabtest.agent.AssignmentAgent"/>
+    <bean id="assignmentAgent" class="com.cabtest.agent.AssignmentAgent">
+        <property name="distanceMatrixService" ref="distanceMatrixService"/>
+        <property name="driverAvailabilityService" ref="driverAvailabilityService"/>
+        <property name="assignmentService" ref="assignmentService"/>
+    </bean>
 
     <!-- Data Source Declaration -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -150,6 +164,7 @@
                 <value>com.cabtest.model.DistanceMatrix</value>
                 <value>com.cabtest.model.Location</value>
                 <value>com.cabtest.model.Settlement</value>
+                <value>com.cabtest.model.Assignment</value>
             </list>
         </property>
         <property name="hibernateProperties">

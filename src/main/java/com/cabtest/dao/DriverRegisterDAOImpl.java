@@ -1,28 +1,28 @@
 package com.cabtest.dao;
 
-import com.cabtest.model.DriverDetails;
+import com.cabtest.dto.DriverDTO;
 
 import java.util.List;
 
 public class DriverRegisterDAOImpl implements DriverRegisterDAO {
 
     @Override
-    public void saveDriver(DriverDetails driverDetails) {
+    public void saveDriver(DriverDTO driverDTO) {
 
     }
 
     @Override
-    public void updateDriver(DriverDetails driverDetails) {
+    public void updateDriver(DriverDTO driverDTO) {
 
     }
 
     @Override
-    public void deleteDriver(DriverDetails driverDetails) {
+    public void deleteDriver(DriverDTO driverDTO) {
 
     }
 
     @Override
-    public void getDriverList(List<DriverDetails> driverdetailsList) {
+    public void getDriverList(List<DriverDTO> driverdetailsList) {
 
     }
 

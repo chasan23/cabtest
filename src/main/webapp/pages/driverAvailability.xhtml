@@ -10,22 +10,29 @@
         <table>
             <tr>
                 <td><h:outputLabel for="driverId" value="Driver ID : "/></td>
-                <td><p:inputText id="driverId" value="#{driverAvailabilityMB.driverId}">
-                </p:inputText></td>
+                <td><p:inputText id="driverId" value="#{driverAvailabilityMB.driverId}"> </p:inputText></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="vehicleId" value="Vehicle ID : "/></td>
+                <td><p:inputText id="vehicleId" value="#{driverAvailabilityMB.vehicleId}"> </p:inputText></td>
             </tr>
             <tr>
                 <td><h:outputLabel for="date" value="Date : "/></td>
-                <td><p:inputText id="date" value="#{driverAvailabilityMB.date}">
-                    <f:validateLength minimum="5"/>
-                    <p:ajax event="blur" update="dateMsg"/>
-                </p:inputText> <p:message id="dateMsg" for="dateMsg" display="icon"/></td>
+                <td><p:calendar id="date" value="#{driverAvailabilityMB.date}" pattern="MM/dd/yyyy"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="timeFrom" value="Time From : "/></td>
+                <td><p:calendar id="timeFrom" value="#{driverAvailabilityMB.timeFrom}" pattern="HH:mm" timeOnly="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="timeTo" value="Time To : "/></td>
+                <td><p:calendar id="timeTo" value="#{driverAvailabilityMB.timeTo}" pattern="HH:mm" timeOnly="true"/>
+                </td>
             </tr>
             <tr>
                 <td><h:outputLabel for="locationId" value="Location Id : "/></td>
-                <td><p:inputText id="locationId" value="#{driverAvailabilityMB.locationId}">
-                    <f:validateLength minimum="5"/>
-                    <p:ajax event="blur" update="locationIdMsg"/>
-                </p:inputText> <p:message id="locationIdMsg" for="locationId" display="icon"/></td>
+                <td><p:inputText id="locationId" value="#{driverAvailabilityMB.locationId}"/></td>
             </tr>
             <tr>
                 <td><p:commandButton id="addDriverAvailability" value="Add DriverAvailability"
@@ -39,43 +46,221 @@
             </tr>
         </table>
     </h:form>
-    <h:form>
-        <h:outputText value="Driver Availabilities : "/>
-        <p:dataTable id="driverAvailabilitys" var="driverAvailability"
-                     value="#{driverAvailabilityMB.driverAvailabilityList}" style="width: 10%">
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="DriverID"/>
-                </f:facet>
-                <h:outputText value="#{driverAvailability.driverId}"/>
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Date"/>
-                </f:facet>
-                <h:outputText value="#{driverAvailability.date}"/>
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="TimeSlot"/>
-                </f:facet>
-                <h:outputText value="#{driverAvailability.timeSlot}"/>
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="LocationId"/>
-                </f:facet>
-                <h:outputText value="#{driverAvailability.locationId}"/>
-            </p:column>
+    <table>
+        <tr>
+            <td>
+                <h:form>
+                    <h:outputText value="Driver Availabilities : "/>
+                    <p:dataTable id="driverAvailabilitys" var="driverAvailabilityDTO"
+                                 value="#{driverAvailabilityMB.driverAvailabilityList}" style="width: 10%">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="DriverID"/>
+                            </f:facet>
+                            <h:outputText value="#{driverAvailabilityDTO.driverId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date"/>
+                            </f:facet>
+                            <h:outputText value="#{driverAvailabilityDTO.dateString}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Time From"/>
+                            </f:facet>
+                            <h:outputText value="#{driverAvailabilityDTO.timeFromString}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Time To"/>
+                            </f:facet>
+                            <h:outputText value="#{driverAvailabilityDTO.timeToString}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Location"/>
+                            </f:facet>
+                            <h:outputText value="#{driverAvailabilityDTO.locationId}"/>
+                        </p:column>
 
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="VehicleId"/>
-                </f:facet>
-                <h:outputText value="#{driverAvailability.vehicleId}"/>
-            </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Vehicle"/>
+                            </f:facet>
+                            <h:outputText value="#{driverAvailabilityDTO.vehicleId}"/>
+                        </p:column>
 
-        </p:dataTable>
-    </h:form>
+                    </p:dataTable>
+                </h:form>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <h:form>
+                    <p:dataTable id="driverDTO" var="driverDTO"
+                                 value="#{driverMB.driverList}" style="width: 10%">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>
+                            </f:facet>
+                            <h:outputText value="#{driverDTO.driverId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="First Name"/>
+                            </f:facet>
+                            <h:outputText value="#{driverDTO.firstName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Last Name"/>
+                            </f:facet>
+                            <h:outputText value="#{driverDTO.lastName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Age"/>
+                            </f:facet>
+                            <h:outputText value="#{driverDTO.age}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Home Phone"/>
+                            </f:facet>
+                            <h:outputText value="#{driverDTO.homePhone}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Mobile Phone"/>
+                            </f:facet>
+                            <h:outputText value="#{driverDTO.mobilePhone}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{driverDTO.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Address"/>
+                            </f:facet>
+                            <h:outputText value="#{driverDTO.address}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <h:form>
+                    <p:dataTable id="locations" var="locationDetails"
+                                 value="#{locationMB.locationList}" style="width: 10%">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Location ID"/>
+                            </f:facet>
+                            <h:outputText value="#{locationDetails.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Location "/>
+                            </f:facet>
+                            <h:outputText value="#{locationDetails.location}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="District"/>
+                            </f:facet>
+                            <h:outputText value="#{locationDetails.district}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Province"/>
+                            </f:facet>
+                            <h:outputText value="#{locationDetails.province}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </td>
+            <td>
+                <h:form>
+                    <h:outputText value="Vehicles : "/>
+                    <p:dataTable id="vehicles" var="vehicleDetails"
+                                 value="#{vehicleMB.vehicleList}" style="width: 10%">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>
+                            </f:facet>
+                            <h:outputText value="#{vehicleDetails.vehicleId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Registration Number"/>
+                            </f:facet>
+                            <h:outputText value="#{vehicleDetails.registrationNumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Type"/>
+                            </f:facet>
+                            <h:outputText value="#{vehicleDetails.vehicleType}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Model"/>
+                            </f:facet>
+                            <h:outputText value="#{vehicleDetails.model}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </td>
+        </tr>
+    </table>
+    <!--<h:form>-->
+    <!--<h:outputText value="Driver Availabilities : "/>-->
+    <!--<p:dataTable id="driverAvailabilitys" var="driverAvailabilityDTO"-->
+    <!--value="#{driverAvailabilityMB.driverAvailabilityList}" style="width: 10%">-->
+    <!--<p:column>-->
+    <!--<f:facet name="header">-->
+    <!--<h:outputText value="DriverID"/>-->
+    <!--</f:facet>-->
+    <!--<h:outputText value="#{driverAvailabilityDTO.driverId}"/>-->
+    <!--</p:column>-->
+    <!--<p:column>-->
+    <!--<f:facet name="header">-->
+    <!--<h:outputText value="Date"/>-->
+    <!--</f:facet>-->
+    <!--<h:outputText value="#{driverAvailabilityDTO.dateString}"/>-->
+    <!--</p:column>-->
+    <!--<p:column>-->
+    <!--<f:facet name="header">-->
+    <!--<h:outputText value="TimeSlot"/>-->
+    <!--</f:facet>-->
+    <!--<h:outputText value="#{driverAvailabilityDTO.timeSlot}"/>-->
+    <!--</p:column>-->
+    <!--<p:column>-->
+    <!--<f:facet name="header">-->
+    <!--<h:outputText value="Location"/>-->
+    <!--</f:facet>-->
+    <!--<h:outputText value="#{driverAvailabilityDTO.locationId}"/>-->
+    <!--</p:column>-->
+
+    <!--<p:column>-->
+    <!--<f:facet name="header">-->
+    <!--<h:outputText value="Vehicle"/>-->
+    <!--</f:facet>-->
+    <!--<h:outputText value="#{driverAvailabilityDTO.vehicleId}"/>-->
+    <!--</p:column>-->
+
+    <!--</p:dataTable>-->
+    <!--</h:form>-->
 </h:body>
 </html>

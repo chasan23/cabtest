@@ -25,10 +25,7 @@ import java.util.concurrent.BlockingDeque;
 @Scope("prototype")
 public class AssignmentAgent implements Runnable {
     private BlockingDeque<Booking> bookingQueue;
-    private DriverRegisterService driverRegisterService;
     private DriverAvailabilityService driverAvailabilityService;
-    private BookingRegisterService bookingRegisterService;
-    private VehicleRegisterService vehicleRegisterService;
     private AssignmentService assignmentService;
     private DistanceMatrixService distanceMatrixService;
     private TimeSlot maxArriveTime = new TimeSlot(4);
@@ -36,8 +33,11 @@ public class AssignmentAgent implements Runnable {
     @Override
     public void run() {
         while (true){
+            System.out.println("running task 1 ");
             try {
+                System.out.println("running task 2");
                 Booking booking = bookingQueue.take();
+                System.out.println("running task 3");
                 if(booking != null) {
                     performAssignment(booking);
                 }
@@ -80,6 +80,18 @@ public class AssignmentAgent implements Runnable {
 
     public void setBookingQueue(BlockingDeque<Booking> bookingQueue) {
         this.bookingQueue = bookingQueue;
+    }
+
+    public void setDistanceMatrixService(DistanceMatrixService distanceMatrixService) {
+        this.distanceMatrixService = distanceMatrixService;
+    }
+
+    public void setDriverAvailabilityService(DriverAvailabilityService driverAvailabilityService) {
+        this.driverAvailabilityService = driverAvailabilityService;
+    }
+
+    public void setAssignmentService(AssignmentService assignmentService) {
+        this.assignmentService = assignmentService;
     }
 }
 

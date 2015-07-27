@@ -32,7 +32,24 @@ public class TimeSlotUtil {
         }
     }
 
-    public static TimeSlot convertDateToTimeSlots(java.util.Date date, boolean ceiling) {
+    public static java.util.Date convertTimeSlotToTime(Date date, TimeSlot timeSlot, boolean ceiling) {
+        Calendar midnight = new GregorianCalendar();
+        midnight.setTime(date);
+        midnight.set(Calendar.HOUR_OF_DAY, 0);
+        midnight.set(Calendar.MINUTE, 0);
+        midnight.set(Calendar.SECOND, 0);
+        midnight.set(Calendar.MILLISECOND, 0);
+
+        if (ceiling) {
+            midnight.add(Calendar.MINUTE, (int) ConfigurationBuilder.getTimeSlotSizeInMinutes() * timeSlot.getValue());
+        } else {
+            midnight.add(Calendar.MINUTE, (int) ConfigurationBuilder.getTimeSlotSizeInMinutes()
+                    * (timeSlot.getValue() - 1));
+        }
+        return midnight.getTime();
+    }
+
+    public static TimeSlot convertTimeToTimeSlots(java.util.Date date, boolean ceiling) {
         return convertTimeStampToTimeSlots(new Timestamp(date.getTime()), ceiling);
     }
 
@@ -42,6 +59,10 @@ public class TimeSlotUtil {
         } else {
             return new TimeSlot(Math.floor(minutes / ConfigurationBuilder.getTimeSlotSizeInMinutes()));
         }
+    }
+
+    public static int convertTimeSlotsToMinutes(TimeSlot timeSlot) {
+        return (int) (timeSlot.getValue() * ConfigurationBuilder.getTimeSlotSizeInMinutes());
     }
 
     public static String getDateFromTimestamp(Timestamp timestamp) {
@@ -71,9 +92,8 @@ public class TimeSlotUtil {
     }
 
     public static String getTimeSlotPeriodString(java.util.Date fromTime, java.util.Date toTime) {
-        TimeSlot fromTimeSlot = convertDateToTimeSlots(fromTime, false);
-        TimeSlot toTimeSlot = convertDateToTimeSlots(toTime, true);
-
+        TimeSlot fromTimeSlot = convertTimeToTimeSlots(fromTime, true);
+        TimeSlot toTimeSlot = convertTimeToTimeSlots(toTime, false);
         return getTimeSlotPeriodString(fromTimeSlot, toTimeSlot);
 
     }
@@ -82,5 +102,27 @@ public class TimeSlotUtil {
         return (int) ((24 * 60) / ConfigurationBuilder.getTimeSlotSizeInMinutes());
     }
 
+    public static java.util.Date getFromTimeFromTimeSlotString(Date date, String timeSlot) {
+        char[] array = timeSlot.toCharArray();
+        TimeSlot fromTime;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == '1') {
+                return convertTimeSlotToTime(date, new TimeSlot(i + 1), true);
+            }
+        }
+        return null;
+    }
+
+    public static java.util.Date getToTimeFromTimeSlotString(Date date, String timeSlot) {
+        char[] array = timeSlot.toCharArray();
+        TimeSlot fromTime;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == '1' && ((i + 1 < array.length && array[i + 1] == '0') || (i + 1 == array.length))) {
+                return convertTimeSlotToTime(date, new TimeSlot(i + 1), true);
+
+            }
+        }
+        return null;
+    }
 
 }

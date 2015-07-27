@@ -37,6 +37,12 @@ public class Driver extends Person implements Serializable {
             inverseJoinColumns = { @JoinColumn(name = "VEHICLE_ID", nullable = false, updatable = false) })
     Set<Vehicle> vehicles = new HashSet<>(0);
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "driver")
+    Set<Assignment> assignments = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "driver")
+    Set<Settlement> settlements = new HashSet<>();
+
     public Driver() {
     }
 
@@ -82,5 +88,22 @@ public class Driver extends Person implements Serializable {
 
     public void setAvailability(Set<DriverAvailability> availability) {
         this.availability = availability;
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Driver{" +
+                "age=" + age +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

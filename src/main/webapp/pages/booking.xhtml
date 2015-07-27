@@ -90,61 +90,61 @@
     </h:form>
     <h:form>
 
-        <p:dataTable id="bookingDetails" var="bookingDetails"
+        <p:dataTable id="bookingDTO" var="bookingDTO"
                      value="#{bookingMB.bookingList}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="ID"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.bookingId}"/>
+                <h:outputText value="#{bookingDTO.bookingId}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="First Name"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.firstName}"/>
+                <h:outputText value="#{bookingDTO.firstName}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Last Name"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.lastName}"/>
+                <h:outputText value="#{bookingDTO.lastName}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Vehicle Type"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.vehicleType}"/>
+                <h:outputText value="#{bookingDTO.vehicleType}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Home Phone"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.homePhone}"/>
+                <h:outputText value="#{bookingDTO.homePhone}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Mobile Phone"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.mobilePhone}"/>
+                <h:outputText value="#{bookingDTO.mobilePhone}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Email"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.email}"/>
+                <h:outputText value="#{bookingDTO.email}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Address"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.address}"/>
+                <h:outputText value="#{bookingDTO.address}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Time"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.time}">
+                <h:outputText value="#{bookingDTO.time}">
                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
                 </h:outputText>
             </p:column>
@@ -152,25 +152,25 @@
                 <f:facet name="header">
                     <h:outputText value="OriginID"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.originId}"/>
+                <h:outputText value="#{bookingDTO.originId}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Origin Address"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.originAddress}"/>
+                <h:outputText value="#{bookingDTO.originAddress}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Destinayion Id"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.destinationId}"/>
+                <h:outputText value="#{bookingDTO.destinationId}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Duration"/>
                 </f:facet>
-                <h:outputText value="#{bookingDetails.duration}"/>
+                <h:outputText value="#{bookingDTO.duration}"/>
             </p:column>
         </p:dataTable>
     </h:form>

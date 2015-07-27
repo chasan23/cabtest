@@ -2,9 +2,12 @@ package com.cabtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -17,26 +20,19 @@ public class DistanceMatrix {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(name = "LOCATION_A")
-    int locationA;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID", nullable = false)
+    Location locationA;
 
-    @Column(name = "LOCATION_B")
-    int locationB;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID", nullable = false)
+    Location locationB;
 
     @Column(name = "TIME")
     int time;
 
 
     public DistanceMatrix() {
-    }
-
-
-    public int getLocationA() {
-        return locationA;
-    }
-
-    public void setLocationA(int locationA) {
-        this.locationA = locationA;
     }
 
     public int getId() {
@@ -47,11 +43,19 @@ public class DistanceMatrix {
         this.id = id;
     }
 
-    public int getLocationB() {
+    public Location getLocationA() {
+        return locationA;
+    }
+
+    public void setLocationA(Location locationA) {
+        this.locationA = locationA;
+    }
+
+    public Location getLocationB() {
         return locationB;
     }
 
-    public void setLocationB(int locationB) {
+    public void setLocationB(Location locationB) {
         this.locationB = locationB;
     }
 

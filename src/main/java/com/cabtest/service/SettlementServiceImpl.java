@@ -5,6 +5,9 @@ import com.cabtest.dao.SettlementDAO;
 import com.cabtest.model.Settlement;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class SettlementServiceImpl extends GenericPersistenceServiceImpl<Settlement, Integer>
         implements SettlementService {
@@ -28,6 +31,10 @@ public class SettlementServiceImpl extends GenericPersistenceServiceImpl<Settlem
     }
 
 
+    @Override
+    public List<Settlement> getEntriesToSettle(Date settlementDate) {
+        return getSettlementDAO().getUnprocessedSettlements(new java.sql.Date(settlementDate.getTime()));
+    }
 }
 
 

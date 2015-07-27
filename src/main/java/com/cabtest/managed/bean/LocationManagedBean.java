@@ -5,6 +5,7 @@ import com.cabtest.model.Location;
 import com.cabtest.service.LocationService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -19,7 +20,7 @@ public class LocationManagedBean {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
-    private static final Log LOG = LogFactory.getLog(LocationManagedBean.class);
+    private static final Logger LOG = Logger.getLogger(LocationManagedBean.class);
 
     @ManagedProperty(value = "#{locationService}")
     LocationService locationService;

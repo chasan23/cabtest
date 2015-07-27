@@ -5,8 +5,11 @@ import com.cabtest.dao.DistanceMatrixDAO;
 import com.cabtest.dao.GenericDAO;
 import com.cabtest.model.DistanceMatrix;
 import com.cabtest.model.Location;
+import com.cabtest.util.TimeSlotUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +41,23 @@ public class DistanceMatrixServiceImpl extends GenericPersistenceServiceImpl<Dis
     }
 
     @Override
-    public Map<TimeSlot, List<Location>> getLocations(int originId, TimeSlot travelTime) {
-        return null;
+    public Map<TimeSlot, List<Location>> getLocations(int originId, TimeSlot maxTravelTime) {
+        int maxTravelTimeInMinutes = TimeSlotUtil.convertTimeSlotsToMinutes(maxTravelTime);
+        Map<TimeSlot, List<Location>> locationsByTimeSlots = new HashMap<>();
+        Map<Integer, Location> locationsByTime = distanceMatrixDAO.getLocations(originId, maxTravelTimeInMinutes);
+        for (Integer travelTimeMinutes : locationsByTime.keySet()) {
+            TimeSlot travelTime = TimeSlotUtil.convertMinutesToTimeSlots(travelTimeMinutes, true);
+
+            List<Location> locations = locationsByTimeSlots.get(travelTime);
+            if(locations != null) {
+                locations.add(locationsByTime.get(travelTimeMinutes));
+            } else {
+                List<Location> locationsForTravelTime = new ArrayList<>();
+                locationsForTravelTime.add(locationsByTime.get(travelTimeMinutes));
+                locationsByTimeSlots.put(travelTime, locationsForTravelTime);
+            }
+        }
+        return locationsByTimeSlots;
     }
 }
 

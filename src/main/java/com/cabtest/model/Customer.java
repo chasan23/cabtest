@@ -14,10 +14,13 @@ import java.util.Set;
 public class Customer extends Person implements Serializable {
 
     private static final long serialVersionUID = 7895139095426977088L;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
     Set<Booking> bookings = new HashSet<>(0);
+
     @Column(name = "FIRST_NAME")
     private String firstName;
+
     @Column(name = "LAST_NAME")
     private String lastName;
 

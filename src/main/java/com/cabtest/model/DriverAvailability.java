@@ -89,4 +89,16 @@ public class DriverAvailability {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+    @Override
+    public String toString() {
+        return "DriverAvailability{" +
+                "id=" + id +
+                ", driver=" + driver +
+                ", vehicle=" + vehicle +
+                ", date=" + date +
+                ", timeSlot='" + timeSlot + '\'' +
+                ", location=" + location +
+                '}';
+    }
 }

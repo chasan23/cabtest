@@ -3,8 +3,7 @@ package com.cabtest.managed.bean;
 
 import com.cabtest.model.Billing;
 import com.cabtest.service.BillingRegisterService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -19,7 +18,7 @@ public class BillingManagedBean {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
-    private static final Log LOG = LogFactory.getLog(BillingManagedBean.class);
+    private static final Logger LOG = Logger.getLogger(BillingManagedBean.class);
 
     @ManagedProperty(value = "#{billingService}")
     BillingRegisterService billingRegisterService;
@@ -33,7 +32,7 @@ public class BillingManagedBean {
     public String addBilling() {
         try {
             Billing billing = new Billing();
-            billing.setAssignmentId(Integer.parseInt(this.getAssignmentId()));
+//            billing.setAssignmentId(Integer.parseInt(this.getAssignmentId()));
             billing.setAmount(Integer.parseInt(this.getAmount()));
 
             getBillingRegisterService().save(billing);
@@ -48,7 +47,7 @@ public class BillingManagedBean {
         try {
             Billing billing = new Billing();
             billing.setBillingId(Integer.parseInt(this.getBillingId()));
-            billing.setAssignmentId(Integer.parseInt(this.getAssignmentId()));
+//            billing.setAssignmentId(Integer.parseInt(this.getAssignmentId()));
             billing.setAmount(Integer.parseInt(this.getAmount()));
             getBillingRegisterService().update(billing);
             return SUCCESS;
@@ -80,6 +79,9 @@ public class BillingManagedBean {
         return billingList;
     }
 
+    public void setBillingList(List<Billing> billingList) {
+        this.billingList = billingList;
+    }
 
     public BillingRegisterService getBillingRegisterService() {
         return billingRegisterService;
@@ -87,11 +89,6 @@ public class BillingManagedBean {
 
     public void setBillingRegisterService(BillingRegisterService billingRegisterService) {
         this.billingRegisterService = billingRegisterService;
-    }
-
-
-    public void setBillingList(List<Billing> billingList) {
-        this.billingList = billingList;
     }
 
     public String getBillingId() {

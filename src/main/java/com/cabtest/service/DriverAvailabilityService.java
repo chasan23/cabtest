@@ -13,8 +13,10 @@ public interface DriverAvailabilityService extends GenericPersistenceService<Dri
 
     void save(DriverAvailabilityDTO driverAvailabilityDTO);
 
-    DriverAvailability getDriverAvailability ();
+    DriverAvailability getDriverAvailability();
 
     DriverVehicle getFirstAvailableDriver(Date date, List<Location> locations, TimeSlot startTime, TimeSlot endTime,
                                           String vehicleType);
+
+    List<DriverAvailabilityDTO> getAllDriverAvailabilities();
 }

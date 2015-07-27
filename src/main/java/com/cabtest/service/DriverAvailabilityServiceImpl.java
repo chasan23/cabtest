@@ -14,9 +14,12 @@ import com.cabtest.model.Location;
 import com.cabtest.model.Vehicle;
 import com.cabtest.util.TimeSlotUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,20 +50,20 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
         return driverDAO;
     }
 
-    public VehicleDAO getVehicleDAO() {
-        return vehicleDAO;
-    }
-
-    public LocationDAO getLocationDAO() {
-        return locationDAO;
-    }
-
     public void setDriverDAO(DriverDAO driverDAO) {
         this.driverDAO = driverDAO;
     }
 
+    public VehicleDAO getVehicleDAO() {
+        return vehicleDAO;
+    }
+
     public void setVehicleDAO(VehicleDAO vehicleDAO) {
         this.vehicleDAO = vehicleDAO;
+    }
+
+    public LocationDAO getLocationDAO() {
+        return locationDAO;
     }
 
     public void setLocationDAO(LocationDAO locationDAO) {
@@ -72,6 +75,8 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
         return null;
     }
 
+    @Override
+    @Transactional
     public void save(DriverAvailabilityDTO driverAvailabilityDTO) {
         DriverAvailability driverAvailability = new DriverAvailability();
 
@@ -83,7 +88,7 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
         driverAvailability.setVehicle(vehicle);
         driverAvailability.setDate(new Date(driverAvailabilityDTO.getDate().getTime()));
         driverAvailability.setTimeSlot(TimeSlotUtil.getTimeSlotPeriodString(driverAvailabilityDTO.getTimeFrom(),
-                                                                            driverAvailabilityDTO.getTimeTo()));
+                driverAvailabilityDTO.getTimeTo()));
         driverAvailability.setLocation(location);
 
         super.save(driverAvailability);
@@ -105,6 +110,30 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
         }
         return null;
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public List<DriverAvailabilityDTO> getAllDriverAvailabilities() {
+        List<DriverAvailability> driverAvailabilityList = super.getAll();
+        List<DriverAvailabilityDTO> driverAvailabilityDTOs = new ArrayList<>();
+        for (DriverAvailability driverAvailability : driverAvailabilityList) {
+            DriverAvailabilityDTO driverAvailabilityDTO = new DriverAvailabilityDTO();
+            driverAvailabilityDTO.setDriverId(Integer.toString(driverAvailability.getDriver().getDriverId()));
+            driverAvailabilityDTO.setVehicleId(Integer.toString(driverAvailability.getVehicle().getVehicleId()));
+            driverAvailabilityDTO.setLocationId(Integer.toString(driverAvailability.getLocation().getId()));
+            driverAvailabilityDTO.setDateString(driverAvailability.getDate());
+
+            String timeSlotString = driverAvailability.getTimeSlot();
+            java.util.Date fromTime = TimeSlotUtil.getFromTimeFromTimeSlotString(driverAvailability.getDate(),
+                    timeSlotString);
+            java.util.Date toTime = TimeSlotUtil.getToTimeFromTimeSlotString(driverAvailability.getDate(),
+                    timeSlotString);
+            driverAvailabilityDTO.setTimeFrom(fromTime);
+            driverAvailabilityDTO.setTimeTo(toTime);
+            driverAvailabilityDTOs.add(driverAvailabilityDTO);
+        }
+        return driverAvailabilityDTOs;
+    }
+
 }
 
 

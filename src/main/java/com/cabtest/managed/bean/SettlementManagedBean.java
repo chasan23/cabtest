@@ -4,6 +4,7 @@ import com.cabtest.model.Settlement;
 import com.cabtest.service.SettlementService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,7 +19,7 @@ public class SettlementManagedBean {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
-    private static final Log LOG = LogFactory.getLog(SettlementManagedBean.class);
+    private static final Logger LOG = Logger.getLogger(SettlementManagedBean.class);
 
     @ManagedProperty(value = "#{settlementService}")
     SettlementService settlementService;
@@ -53,8 +54,8 @@ public class SettlementManagedBean {
         try {
             Settlement settlement = new Settlement();
             settlement.setId(Integer.parseInt(this.getId()));
-            settlement.setDriverId(Integer.parseInt(this.getDriverId()));
-            settlement.setVehicleId(Integer.parseInt(this.getVehicleId()));
+//            settlement.setDriverId(Integer.parseInt(this.getDriverId()));
+//            settlement.setVehicleId(Integer.parseInt(this.getVehicleId()));
             settlement.setDriverCharge(Float.parseFloat(this.getDriverCharge()));
             settlement.setServiceCharge(Float.parseFloat(this.getServiceCharge()));
             settlement.setVehicleCharge(Float.parseFloat(this.getVehicleCharge()));

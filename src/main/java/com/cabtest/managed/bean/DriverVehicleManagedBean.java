@@ -5,6 +5,7 @@ import com.cabtest.model.DriverVehicle;
 import com.cabtest.service.DriverVehicleService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,7 +19,7 @@ public class DriverVehicleManagedBean {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
-    private static final Log LOG = LogFactory.getLog(DriverVehicleManagedBean.class);
+    private static final Logger LOG = Logger.getLogger(DriverVehicleManagedBean.class);
 
     @ManagedProperty(value = "#{driverVehicleService}")
     DriverVehicleService driverVehicleService;

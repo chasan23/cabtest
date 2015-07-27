@@ -1,6 +1,9 @@
-package com.cabtest.model;
+package com.cabtest.dto;
 
-public class DriverDetails {
+import com.cabtest.model.Contact;
+import com.cabtest.model.Driver;
+
+public class DriverDTO {
 
     private int driverId;
     private String firstName;
@@ -13,7 +16,7 @@ public class DriverDetails {
     private String address;
 
 
-    public DriverDetails(Driver driver) {
+    public DriverDTO(Driver driver) {
         this.setFirstName(driver.getFirstName());
         this.setDriverId(driver.getDriverId());
         this.setLastName(driver.getLastName());

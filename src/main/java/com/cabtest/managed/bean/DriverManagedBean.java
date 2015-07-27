@@ -2,10 +2,11 @@ package com.cabtest.managed.bean;
 
 import com.cabtest.model.Contact;
 import com.cabtest.model.Driver;
-import com.cabtest.model.DriverDetails;
+import com.cabtest.dto.DriverDTO;
 import com.cabtest.service.DriverRegisterService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,7 +19,7 @@ import java.util.List;
 public class DriverManagedBean {
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
-    private static final Log LOG = LogFactory.getLog(DriverManagedBean.class);
+    private static final Logger LOG = Logger.getLogger(DriverManagedBean.class);
 
     @ManagedProperty(value = "#{driverService}")
     DriverRegisterService driverRegisterService;
@@ -30,7 +31,6 @@ public class DriverManagedBean {
     String mobilePhone;
     String email;
     String address;
-    String availability;
 
     public String addDriver() {
         try {
@@ -77,8 +77,8 @@ public class DriverManagedBean {
             updatedDriver.setDriverId(Integer.parseInt(this.getDriverId()));
             updatedDriver.setContact(contact);
 
-            DriverDetails driverDetails = new DriverDetails(updatedDriver);
-            getDriverRegisterService().updateDriver(driverDetails);
+            DriverDTO driverDTO = new DriverDTO(updatedDriver);
+            getDriverRegisterService().updateDriver(driverDTO);
             return SUCCESS;
         } catch (Exception e) {
             LOG.error("Error while trying to update driver.", e);
@@ -99,7 +99,6 @@ public class DriverManagedBean {
         this.setFirstName("");
         this.setLastName("");
         this.setAge("");
-        this.setAvailability("");
         this.setHomePhone("");
         this.setMobilePhone("");
         this.setEmail("");
@@ -179,22 +178,14 @@ public class DriverManagedBean {
         this.address = address;
     }
 
-    public String getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
-    public List<DriverDetails> getDriverList() {
+    public List<DriverDTO> getDriverList() {
         List<Driver> drivers = getDriverRegisterService().getDriverList();
-        List<DriverDetails> driverDetailsList = new ArrayList<>();
+        List<DriverDTO> driverDTOList = new ArrayList<>();
         for (Driver driver : drivers) {
-            DriverDetails driverDetails = new DriverDetails(driver);
-            driverDetailsList.add(driverDetails);
+            DriverDTO driverDTO = new DriverDTO(driver);
+            driverDTOList.add(driverDTO);
         }
-        return driverDetailsList;
+        return driverDTOList;
     }
 
 }

@@ -4,7 +4,7 @@ import com.cabtest.dao.ContactDAO;
 import com.cabtest.dao.DriverDAO;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Driver;
-import com.cabtest.model.DriverDetails;
+import com.cabtest.dto.DriverDTO;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -47,7 +47,7 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
 
     @Override
     @Transactional
-    public void updateDriver(DriverDetails updatedDriver) {
+    public void updateDriver(DriverDTO updatedDriver) {
         Driver existingDriver = getDriverDAO().findByKey(updatedDriver.getDriverId());
         existingDriver.setAge(updatedDriver.getAge());
 

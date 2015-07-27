@@ -37,6 +37,12 @@ public class Vehicle {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "vehicles")
     Set<Driver> drivers = new HashSet<>(0);
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "vehicle")
+    Set<Assignment> assignments = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "vehicle")
+    Set<Settlement> settlements = new HashSet<>();
+
     public Vehicle() {
     }
 
@@ -78,5 +84,43 @@ public class Vehicle {
 
     public void setAvailability(Set<DriverAvailability> availability) {
         this.availability = availability;
+    }
+
+    public Set<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(Set<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
+    public Set<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(Set<Driver> drivers) {
+        this.drivers = drivers;
+    }
+
+    public Set<Settlement> getSettlements() {
+        return settlements;
+    }
+
+    public void setSettlements(Set<Settlement> settlements) {
+        this.settlements = settlements;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vehicleId=" + vehicleId +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", model='" + model + '\'' +
+                ", availability=" + availability +
+                ", drivers=" + drivers +
+                ", assignments=" + assignments +
+                ", settlements=" + settlements +
+                '}';
     }
 }

@@ -2,6 +2,9 @@ package com.cabtest.service;
 
 import com.cabtest.model.Settlement;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * Vehical Service Interface
  *
@@ -11,4 +14,5 @@ import com.cabtest.model.Settlement;
  */
 public interface SettlementService extends GenericPersistenceService<Settlement, Integer> {
 
+    List<Settlement> getEntriesToSettle(Date settlementDate);
 }

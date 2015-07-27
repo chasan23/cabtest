@@ -2,9 +2,12 @@ package com.cabtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -19,8 +22,9 @@ public class Billing implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int billingId;
 
-    @Column(name = "ASSIGNMENT_ID")
-    private int assignmentId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ASSIGNMENT_ID", nullable = false)
+    private Assignment assignment;
 
     @Column(name = "AMOUNT")
     private int amount;
@@ -33,12 +37,12 @@ public class Billing implements Serializable {
         this.billingId = billingId;
     }
 
-    public int getAssignmentId() {
-        return assignmentId;
+    public Assignment getAssignment() {
+        return assignment;
     }
 
-    public void setAssignmentId(int assignmentId) {
-        this.assignmentId = assignmentId;
+    public void setAssignment(Assignment assignment) {
+        this.assignment = assignment;
     }
 
     public int getAmount() {

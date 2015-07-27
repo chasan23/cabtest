@@ -1,9 +1,13 @@
-package com.cabtest.model;
+package com.cabtest.dto;
 
+
+import com.cabtest.model.Booking;
+import com.cabtest.model.Contact;
+import com.cabtest.model.Customer;
 
 import java.util.Date;
 
-public class BookingDetails {
+public class BookingDTO {
 
     private int bookingId;
     private int customerId;
@@ -21,7 +25,7 @@ public class BookingDetails {
     private String email;
     private String address;
 
-    public BookingDetails(Booking booking) {
+    public BookingDTO(Booking booking) {
         this.setBookingId(booking.getBookingId());
         this.setVehicleType(booking.getVehicleType());
         this.setTime(new Date(booking.getTime().getTime()));

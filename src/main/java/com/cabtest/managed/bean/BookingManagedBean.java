@@ -1,12 +1,13 @@
 package com.cabtest.managed.bean;
 
 import com.cabtest.model.Booking;
-import com.cabtest.model.BookingDetails;
+import com.cabtest.dto.BookingDTO;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Customer;
 import com.cabtest.service.BookingRegisterService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,7 +24,7 @@ public class BookingManagedBean {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
-    private static final Log LOG = LogFactory.getLog(BookingManagedBean.class);
+    private static final Logger LOG = Logger.getLogger(BookingManagedBean.class);
 
     @ManagedProperty(value = "#{bookingService}")
     BookingRegisterService bookingRegisterService;
@@ -245,15 +246,15 @@ public class BookingManagedBean {
         this.duration = duration;
     }
 
-    public List<BookingDetails> getBookingList() {
+    public List<BookingDTO> getBookingList() {
         List<Booking> bookings = getBookingRegisterService().getBookingList();
-        List<BookingDetails> bookingDetailsList = new ArrayList<>();
+        List<BookingDTO> bookingDTOList = new ArrayList<>();
         for (Booking booking : bookings) {
-            BookingDetails bookingDetails = new BookingDetails(booking);
-            bookingDetailsList.add(bookingDetails);
+            BookingDTO bookingDTO = new BookingDTO(booking);
+            bookingDTOList.add(bookingDTO);
         }
 
-        return bookingDetailsList;
+        return bookingDTOList;
     }
 
 }

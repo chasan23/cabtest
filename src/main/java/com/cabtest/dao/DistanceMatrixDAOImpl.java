@@ -1,7 +1,17 @@
 package com.cabtest.dao;
 
+import com.cabtest.bean.TimeSlot;
 import com.cabtest.model.DistanceMatrix;
+import com.cabtest.model.DriverAvailability;
+import com.cabtest.model.Location;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Vehical DAO
@@ -14,5 +24,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DistanceMatrixDAOImpl extends GenericDAOImpl<DistanceMatrix, Integer> implements DistanceMatrixDAO {
 
-
+    @Override
+    public Map<Integer,Location> getLocations(int originId, int maxTravelTime) {
+        Query query = getCurrentSession().createQuery("from DISTANCE_MATRIX where TIME <= :maxTravelTime and ( " +
+                "LOCATION_A = :originId  or LOCATION_B = :originId)");
+        query.setParameter("maxTravelTime", maxTravelTime);
+        query.setParameter("originId", originId);
+        List<DistanceMatrix> locations =  (ArrayList<DistanceMatrix>) query.list();
+        Map<Integer, Location> locationByTime = new HashMap<>();
+        for (DistanceMatrix location : locations) {
+            if(location.getLocationA().getId() != originId) {
+                locationByTime.put(location.getTime(), location.getLocationA());
+            } else {
+                locationByTime.put(location.getTime(), location.getLocationB());
+            }
+        }
+        return locationByTime;
+    }
 }

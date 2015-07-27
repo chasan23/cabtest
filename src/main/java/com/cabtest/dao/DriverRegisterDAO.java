@@ -1,15 +1,15 @@
 package com.cabtest.dao;
 
-import com.cabtest.model.DriverDetails;
+import com.cabtest.dto.DriverDTO;
 
 import java.util.List;
 
 public interface DriverRegisterDAO {
-    void saveDriver(DriverDetails driverDetails);
+    void saveDriver(DriverDTO driverDTO);
 
-    void updateDriver(DriverDetails driverDetails);
+    void updateDriver(DriverDTO driverDTO);
 
-    void deleteDriver(DriverDetails driverDetails);
+    void deleteDriver(DriverDTO driverDTO);
 
-    void getDriverList(List<DriverDetails> driverdetailsList);
+    void getDriverList(List<DriverDTO> driverdetailsList);
 }

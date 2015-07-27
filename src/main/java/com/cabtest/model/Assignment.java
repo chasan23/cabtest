@@ -2,12 +2,18 @@ package com.cabtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "ASSIGNMENT", catalog = "cab")
@@ -20,17 +26,23 @@ public class Assignment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int assignmentId;
 
-    @Column(name = "BOOKING_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "BOOKING_ID", nullable = false)
     private Booking booking;
 
-    @Column(name = "VEHICLE_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "VEHICLE_ID", nullable = false)
     private Vehicle vehicle;
 
-    @Column(name = "DRIVER_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DRIVER_ID", nullable = false)
     private Driver driver;
 
     @Column(name = "TIME")
     private Timestamp time;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "assignment")
+    private Set<Billing> billings = new HashSet<>();
 
     public Vehicle getVehicle() {
         return vehicle;
@@ -70,5 +82,25 @@ public class Assignment implements Serializable {
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public Set<Billing> getBillings() {
+        return billings;
+    }
+
+    public void setBillings(Set<Billing> billings) {
+        this.billings = billings;
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "assignmentId=" + assignmentId +
+                ", booking=" + booking +
+                ", vehicle=" + vehicle +
+                ", driver=" + driver +
+                ", time=" + time +
+                ", billings=" + billings +
+                '}';
     }
 }

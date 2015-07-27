@@ -4,13 +4,11 @@ package com.cabtest.managed.bean;
 import com.cabtest.dto.DriverAvailabilityDTO;
 import com.cabtest.model.DriverAvailability;
 import com.cabtest.service.DriverAvailabilityService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class DriverAvailabilityManagedBean {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS = "success";
     private static final String ERROR = "error";
-    private static final Log LOG = LogFactory.getLog(DriverAvailabilityManagedBean.class);
+    private static final Logger LOG = Logger.getLogger(DriverAvailabilityManagedBean.class);
 
     @ManagedProperty(value = "#{driverAvailabilityService}")
     DriverAvailabilityService driverAvailabilityService;
@@ -48,6 +46,7 @@ public class DriverAvailabilityManagedBean {
         try {
             DriverAvailabilityDTO driverAvailabilityDTO = new DriverAvailabilityDTO();
             driverAvailabilityDTO.setDriverId(driverId);
+            driverAvailabilityDTO.setVehicleId(vehicleId);
             driverAvailabilityDTO.setDate(date);
             driverAvailabilityDTO.setTimeFrom(timeFrom);
             driverAvailabilityDTO.setTimeTo(timeTo);
@@ -86,10 +85,8 @@ public class DriverAvailabilityManagedBean {
         return ERROR;
     }
 
-    public List<DriverAvailability> getDriverAvailabilityList() {
-        driverAvailabilityList = new ArrayList<DriverAvailability>();
-        driverAvailabilityList.addAll(getDriverAvailabilityService().getAll());
-        return driverAvailabilityList;
+    public List<DriverAvailabilityDTO> getDriverAvailabilityList() {
+        return getDriverAvailabilityService().getAllDriverAvailabilities();
     }
 
     public DriverAvailabilityService getDriverAvailabilityService() {

@@ -19,19 +19,28 @@ public class Location {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id ;
+    private int id;
 
     @Column(name = "LOCATION")
-    String location ;
+    private String location;
 
     @Column(name = "DISTRICT")
-    String district ;
+    private String district;
 
     @Column(name = "PROVINCE")
-    String province;
+    private String province;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "location")
-    Set<DriverAvailability> availability = new HashSet<>(0);
+    private Set<DriverAvailability> availability = new HashSet<>(0);
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "location")
+    private Set<Booking> bookings = new HashSet<>(0);
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "locationA")
+    private Set<DistanceMatrix> distanceMatrixEntriesA = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "locationB")
+    private Set<DistanceMatrix> distanceMatrixEntriesB = new HashSet<>();
 
     public Location() {
     }
@@ -74,5 +83,40 @@ public class Location {
 
     public void setAvailability(Set<DriverAvailability> availability) {
         this.availability = availability;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + getId() +
+                ", location='" + getLocation() + '\'' +
+                ", district='" + getDistrict() + '\'' +
+                ", province='" + getProvince() + '\'' +
+                ", availability=" + getAvailability() +
+                '}';
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public Set<DistanceMatrix> getDistanceMatrixEntriesA() {
+        return distanceMatrixEntriesA;
+    }
+
+    public void setDistanceMatrixEntriesA(Set<DistanceMatrix> distanceMatrixEntriesA) {
+        this.distanceMatrixEntriesA = distanceMatrixEntriesA;
+    }
+
+    public Set<DistanceMatrix> getDistanceMatrixEntriesB() {
+        return distanceMatrixEntriesB;
+    }
+
+    public void setDistanceMatrixEntriesB(Set<DistanceMatrix> distanceMatrixEntriesB) {
+        this.distanceMatrixEntriesB = distanceMatrixEntriesB;
     }
 }

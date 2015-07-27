@@ -8,9 +8,13 @@ public class DriverAvailabilityDTO {
     String driverId;
     String vehicleId;
     Date date;
+    String dateString;
     Date timeFrom;
+    String timeFromString;
     Date timeTo;
+    String timeToString;
     String locationId;
+    String timeSlot;
 
     public String getDriverId() {
         return driverId;
@@ -42,6 +46,7 @@ public class DriverAvailabilityDTO {
 
     public void setTimeFrom(Date timeFrom) {
         this.timeFrom = timeFrom;
+        setTimeFromString(timeFrom);
     }
 
     public Date getTimeTo() {
@@ -50,6 +55,7 @@ public class DriverAvailabilityDTO {
 
     public void setTimeTo(Date timeTo) {
         this.timeTo = timeTo;
+        setTimeToString(timeTo);
     }
 
     public String getLocationId() {
@@ -66,5 +72,41 @@ public class DriverAvailabilityDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(String timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
+
+    public void setDateString(Date date) {
+        this.dateString = date.toString();
+    }
+
+    public String getTimeFromString() {
+        return timeFromString;
+    }
+
+    public void setTimeFromString(Date timeFrom) {
+        this.timeFromString = timeFrom.toString();
+    }
+
+    public String getTimeToString() {
+        return timeToString;
+    }
+
+    public void setTimeToString(Date timeTo) {
+        this.timeToString = timeTo.toString();
     }
 }
