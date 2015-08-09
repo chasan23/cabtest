@@ -2,6 +2,7 @@ package com.cabtest.managed.bean;
 
 
 import com.cabtest.model.DistanceMatrix;
+import com.cabtest.model.Location;
 import com.cabtest.service.DistanceMatrixService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -43,8 +44,8 @@ public class DistanceMatrixManagedBean {
     public String addDistanceMatrix() {
         try {
             DistanceMatrix distanceMatrix = new DistanceMatrix();
-            distanceMatrix.setLocationA(Integer.parseInt(this.getLocationA()));
-            distanceMatrix.setLocationB(Integer.parseInt(this.getLocationB()));
+            distanceMatrix.setLocationA(new Location(Integer.parseInt(this.getLocationA())));
+            distanceMatrix.setLocationB(new Location(Integer.parseInt(this.getLocationB())));
             distanceMatrix.setTime(Integer.parseInt(this.getTime()));
 
             getDistanceMatrixService().save(distanceMatrix);
@@ -59,8 +60,8 @@ public class DistanceMatrixManagedBean {
         try {
             DistanceMatrix distanceMatrix = new DistanceMatrix();
             distanceMatrix.setId(Integer.parseInt(this.getId()));
-            distanceMatrix.setLocationA(Integer.parseInt(this.getLocationA()));
-            distanceMatrix.setLocationB(Integer.parseInt(this.getLocationB()));
+            distanceMatrix.setLocationA(new Location(Integer.parseInt(this.getLocationA())));
+            distanceMatrix.setLocationB(new Location(Integer.parseInt(this.getLocationB())));
             distanceMatrix.setTime(Integer.parseInt(this.getTime()));
             getDistanceMatrixService().update(distanceMatrix);
             return SUCCESS;

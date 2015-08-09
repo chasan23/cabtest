@@ -45,6 +45,10 @@ public class Location {
     public Location() {
     }
 
+    public Location(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
