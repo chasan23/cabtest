@@ -20,17 +20,11 @@ public class DistanceMatrix {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID", nullable = false)
-    Location locationA;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID", nullable = false)
-    Location locationB;
+    @Column(name = "LOCATION_A_B")
+    String locationAB;
 
     @Column(name = "TIME")
     int time;
-
 
     public DistanceMatrix() {
     }
@@ -43,20 +37,12 @@ public class DistanceMatrix {
         this.id = id;
     }
 
-    public Location getLocationA() {
-        return locationA;
+    public String getLocationAB() {
+        return locationAB;
     }
 
-    public void setLocationA(Location locationA) {
-        this.locationA = locationA;
-    }
-
-    public Location getLocationB() {
-        return locationB;
-    }
-
-    public void setLocationB(Location locationB) {
-        this.locationB = locationB;
+    public void setLocationAB(String locationAB) {
+        this.locationAB = locationAB;
     }
 
     public int getTime() {

@@ -73,9 +73,9 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
         Booking existingBooking = getBookingDAO().findByKey(updatedBooking.getBookingId());
         existingBooking.setVehicleType(updatedBooking.getVehicleType());
         existingBooking.setTime(updatedBooking.getTime());
-        existingBooking.setOriginId(updatedBooking.getOriginId());
+        existingBooking.setOrigin(updatedBooking.getOrigin());
         existingBooking.setOriginAddress(updatedBooking.getOriginAddress());
-        existingBooking.setDestinationId(updatedBooking.getDestinationId());
+        existingBooking.setDestination(updatedBooking.getDestination());
         existingBooking.setDuration(updatedBooking.getDuration());
 
         Customer existingCustomer = existingBooking.getCustomer();

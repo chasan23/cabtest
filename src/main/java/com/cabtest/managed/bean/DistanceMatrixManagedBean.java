@@ -1,6 +1,7 @@
 package com.cabtest.managed.bean;
 
 
+import com.cabtest.dto.DistanceMatrixDTO;
 import com.cabtest.model.DistanceMatrix;
 import com.cabtest.model.Location;
 import com.cabtest.service.DistanceMatrixService;
@@ -44,10 +45,8 @@ public class DistanceMatrixManagedBean {
     public String addDistanceMatrix() {
         try {
             DistanceMatrix distanceMatrix = new DistanceMatrix();
-            distanceMatrix.setLocationA(new Location(Integer.parseInt(this.getLocationA())));
-            distanceMatrix.setLocationB(new Location(Integer.parseInt(this.getLocationB())));
+            distanceMatrix.setLocationAB(this.getLocationA() + ":" + this.getLocationB());
             distanceMatrix.setTime(Integer.parseInt(this.getTime()));
-
             getDistanceMatrixService().save(distanceMatrix);
             return SUCCESS;
         } catch (Exception e) {
@@ -60,8 +59,7 @@ public class DistanceMatrixManagedBean {
         try {
             DistanceMatrix distanceMatrix = new DistanceMatrix();
             distanceMatrix.setId(Integer.parseInt(this.getId()));
-            distanceMatrix.setLocationA(new Location(Integer.parseInt(this.getLocationA())));
-            distanceMatrix.setLocationB(new Location(Integer.parseInt(this.getLocationB())));
+            distanceMatrix.setLocationAB(this.getLocationA() + ":" + this.getLocationB());
             distanceMatrix.setTime(Integer.parseInt(this.getTime()));
             getDistanceMatrixService().update(distanceMatrix);
             return SUCCESS;
@@ -80,9 +78,11 @@ public class DistanceMatrixManagedBean {
         }
         return ERROR;
     }
-    public List<DistanceMatrix> getDistanceMatrixList() {
-        distanceMatrixList = new ArrayList<DistanceMatrix>();
-        distanceMatrixList.addAll(getDistanceMatrixService().getAll());
+    public List<DistanceMatrixDTO> getDistanceMatrixList() {
+        List<DistanceMatrixDTO> distanceMatrixList = new ArrayList<DistanceMatrixDTO>();
+        for (DistanceMatrix distanceMatrix : getDistanceMatrixService().getAll()) {
+            distanceMatrixList.add(new DistanceMatrixDTO(distanceMatrix));
+        }
         return distanceMatrixList;
     }
 

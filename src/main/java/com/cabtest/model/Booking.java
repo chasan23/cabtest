@@ -23,14 +23,16 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
 
-    @Column(name = "ORIGIN_ID")
-    private int originId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ORIGIN_ID", nullable = false)
+    private Location origin;
 
     @Column(name = "ORIGIN_ADDRESS")
     private String originAddress;
 
-    @Column(name = "DESTINATION_ID")
-    private int destinationId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DESTINATION_ID", nullable = false)
+    private Location destination;
 
     @Column(name = "VEHICLE_TYPE")
     private String vehicleType;
@@ -72,12 +74,12 @@ public class Booking {
         this.time = time;
     }
 
-    public int getOriginId() {
-        return originId;
+    public Location getOrigin() {
+        return origin;
     }
 
-    public void setOriginId(int originId) {
-        this.originId = originId;
+    public void setOrigin(Location origin) {
+        this.origin = origin;
     }
 
     public String getOriginAddress() {
@@ -88,12 +90,12 @@ public class Booking {
         this.originAddress = originAddress;
     }
 
-    public int getDestinationId() {
-        return destinationId;
+    public Location getDestination() {
+        return destination;
     }
 
-    public void setDestinationId(int destinationId) {
-        this.destinationId = destinationId;
+    public void setDestination(Location destination) {
+        this.destination = destination;
     }
 
     public int getDuration() {
@@ -145,9 +147,9 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "bookingId=" + bookingId +
-                ", originId=" + originId +
+                ", origin=" + origin +
                 ", originAddress='" + originAddress + '\'' +
-                ", destinationId=" + destinationId +
+                ", destination=" + destination +
                 ", vehicleType='" + vehicleType + '\'' +
                 ", time=" + time +
                 ", duration=" + duration +

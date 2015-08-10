@@ -59,7 +59,7 @@ public class AssignmentAgent implements Runnable {
 
         TimeSlot endTime = startTime.add(duration);
 
-        int originId = booking.getOriginId();
+        int originId = booking.getOrigin().getId();
 
         Map<TimeSlot, List<Location>> allowedDriverLocations = distanceMatrixService.getLocations(originId,
                                                                                                   maxArriveTime);

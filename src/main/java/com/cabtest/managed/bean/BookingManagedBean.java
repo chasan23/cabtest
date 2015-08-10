@@ -4,9 +4,8 @@ import com.cabtest.model.Booking;
 import com.cabtest.dto.BookingDTO;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Customer;
+import com.cabtest.model.Location;
 import com.cabtest.service.BookingRegisterService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
@@ -83,9 +82,9 @@ public class BookingManagedBean {
         Booking booking = new Booking();
         booking.setVehicleType(this.getType());
         booking.setTime(new Timestamp(this.getTime().getTime()));
-        booking.setOriginId(Integer.parseInt(this.getOriginId()));
+        booking.setOrigin(new Location(Integer.parseInt(this.getOriginId())));
         booking.setOriginAddress(this.getOriginAddress());
-        booking.setDestinationId(Integer.parseInt(this.getDestinationId()));
+        booking.setDestination(new Location(Integer.parseInt(this.getDestinationId())));
         booking.setDuration(Integer.parseInt(this.getDuration()));
         return booking;
     }

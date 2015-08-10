@@ -66,7 +66,7 @@
 
             <tr>
                 <td><h:outputLabel for="destinationid" value="Destination Id : "/></td>
-                <td><p:inputText id="destinationid" value="#{bookingMB.destinationId}"/>
+                <td><p:inputText id="destinationid" value="#{bookingMB.destination}"/>
                 </td>
             </tr>
 
@@ -164,7 +164,7 @@
                 <f:facet name="header">
                     <h:outputText value="Destinayion Id"/>
                 </f:facet>
-                <h:outputText value="#{bookingDTO.destinationId}"/>
+                <h:outputText value="#{bookingDTO.destination}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">

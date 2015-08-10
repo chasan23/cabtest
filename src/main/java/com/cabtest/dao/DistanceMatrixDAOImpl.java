@@ -24,21 +24,31 @@ import java.util.Map;
 @Repository
 public class DistanceMatrixDAOImpl extends GenericDAOImpl<DistanceMatrix, Integer> implements DistanceMatrixDAO {
 
+    private LocationDAO locationDAO;
+
     @Override
     public Map<Integer,Location> getLocations(int originId, int maxTravelTime) {
         Query query = getCurrentSession().createQuery("from DISTANCE_MATRIX where TIME <= :maxTravelTime and ( " +
-                "LOCATION_A = :originId  or LOCATION_B = :originId)");
+                "LOCATION_A_B LIKE :locationABId)");
+
         query.setParameter("maxTravelTime", maxTravelTime);
-        query.setParameter("originId", originId);
+        query.setParameter("locationABId", "%:" + originId + "%");
         List<DistanceMatrix> locations =  (ArrayList<DistanceMatrix>) query.list();
         Map<Integer, Location> locationByTime = new HashMap<>();
         for (DistanceMatrix location : locations) {
-            if(location.getLocationA().getId() != originId) {
-                locationByTime.put(location.getTime(), location.getLocationA());
-            } else {
-                locationByTime.put(location.getTime(), location.getLocationB());
-            }
+            String locationAB = location.getLocationAB();
+            int locationAId = Integer.parseInt(locationAB.split(":")[0]);
+            Location locationA = getLocationDAO().findByKey(locationAId);
+            locationByTime.put(location.getTime(), locationA);
         }
         return locationByTime;
+    }
+
+    public LocationDAO getLocationDAO() {
+        return locationDAO;
+    }
+
+    public void setLocationDAO(LocationDAO locationDAO) {
+        this.locationDAO = locationDAO;
     }
 }

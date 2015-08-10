@@ -33,14 +33,11 @@ public class Location {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "location")
     private Set<DriverAvailability> availability = new HashSet<>(0);
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "location")
-    private Set<Booking> bookings = new HashSet<>(0);
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "origin")
+    private Set<Booking> bookingsOrigin = new HashSet<>(0);
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "locationA")
-    private Set<DistanceMatrix> distanceMatrixEntriesA = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "locationB")
-    private Set<DistanceMatrix> distanceMatrixEntriesB = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "destination")
+    private Set<Booking> bookingsDestination = new HashSet<>(0);
 
     public Location() {
     }
@@ -100,27 +97,19 @@ public class Location {
                 '}';
     }
 
-    public Set<Booking> getBookings() {
-        return bookings;
+    public Set<Booking> getBookingsDestination() {
+        return bookingsDestination;
     }
 
-    public void setBookings(Set<Booking> bookings) {
-        this.bookings = bookings;
+    public void setBookingsDestination(Set<Booking> bookingsDestination) {
+        this.bookingsDestination = bookingsDestination;
     }
 
-    public Set<DistanceMatrix> getDistanceMatrixEntriesA() {
-        return distanceMatrixEntriesA;
+    public Set<Booking> getBookingsOrigin() {
+        return bookingsOrigin;
     }
 
-    public void setDistanceMatrixEntriesA(Set<DistanceMatrix> distanceMatrixEntriesA) {
-        this.distanceMatrixEntriesA = distanceMatrixEntriesA;
-    }
-
-    public Set<DistanceMatrix> getDistanceMatrixEntriesB() {
-        return distanceMatrixEntriesB;
-    }
-
-    public void setDistanceMatrixEntriesB(Set<DistanceMatrix> distanceMatrixEntriesB) {
-        this.distanceMatrixEntriesB = distanceMatrixEntriesB;
+    public void setBookingsOrigin(Set<Booking> bookingsOrigin) {
+        this.bookingsOrigin = bookingsOrigin;
     }
 }

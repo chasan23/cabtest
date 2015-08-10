@@ -29,9 +29,9 @@ public class BookingDTO {
         this.setBookingId(booking.getBookingId());
         this.setVehicleType(booking.getVehicleType());
         this.setTime(new Date(booking.getTime().getTime()));
-        this.setOriginId(booking.getOriginId());
+        this.setOriginId(booking.getOrigin().getId());
         this.setOriginAddress(booking.getOriginAddress());
-        this.setDestinationId(booking.getDestinationId());
+        this.setDestinationId(booking.getDestination().getId());
         this.setDuration(booking.getDuration());
 
         Customer customer = booking.getCustomer();
