@@ -3,8 +3,6 @@ package com.cabtest.managed.bean;
 
 import com.cabtest.model.Location;
 import com.cabtest.service.LocationService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
@@ -81,6 +79,7 @@ public class LocationManagedBean {
         }
         return ERROR;
     }
+
     public List<Location> getLocationList() {
         locationList = new ArrayList<Location>();
         locationList.addAll(getLocationService().getAll());

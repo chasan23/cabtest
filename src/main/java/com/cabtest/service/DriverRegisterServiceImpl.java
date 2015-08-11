@@ -2,9 +2,9 @@ package com.cabtest.service;
 
 import com.cabtest.dao.ContactDAO;
 import com.cabtest.dao.DriverDAO;
+import com.cabtest.dto.DriverDTO;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Driver;
-import com.cabtest.dto.DriverDTO;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

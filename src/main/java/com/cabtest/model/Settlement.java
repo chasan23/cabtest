@@ -13,37 +13,30 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "SETTLEMENT", catalog = "cab")
+@Table(name = "SETTLEMENT_ENTRY", catalog = "cab")
 public class Settlement implements Serializable {
 
     private static final long serialVersionUID = 7895139095426977088L;
-
+    @Column(name = "IS_PROCESSED")
+    public boolean isProcessed;
     @Id
     @Column(name = "ID", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "VEHICLE_ID", nullable = false)
     private Vehicle vehicle;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DRIVER_ID", nullable = false)
     private Driver driver;
-
     @Column(name = "DATE")
     private Timestamp date;
-
     @Column(name = "DRIVER_CHARGE")
     private double driverCharge;
-
     @Column(name = "SERVICE_CHARGE")
     private double serviceCharge;
-
     @Column(name = "VEHICLE_CHARGE")
     private double vehicleCharge;
-
-    public boolean isProcessed;
 
     public Vehicle getVehicle() {
         return vehicle;
@@ -119,6 +112,7 @@ public class Settlement implements Serializable {
                 ", driverCharge=" + driverCharge +
                 ", serviceCharge=" + serviceCharge +
                 ", vehicleCharge=" + vehicleCharge +
+                ", isProcessed=" + isProcessed +
                 '}';
     }
 }

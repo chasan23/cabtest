@@ -24,6 +24,6 @@ public class SettlementDAOImpl extends GenericDAOImpl<Settlement, Integer> imple
         Query query = getCurrentSession().createQuery("from SETTLEMENT_ENTRY where DATE <= :date and is_processed = " +
                 "false");
         query.setParameter("date", date);
-        return  (ArrayList<Settlement>) query.list();
+        return (ArrayList<Settlement>) query.list();
     }
 }

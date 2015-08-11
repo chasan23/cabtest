@@ -2,8 +2,6 @@ package com.cabtest.managed.bean;
 
 import com.cabtest.model.Settlement;
 import com.cabtest.service.SettlementService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;

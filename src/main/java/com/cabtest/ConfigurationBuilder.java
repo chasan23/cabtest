@@ -2,7 +2,7 @@ package com.cabtest;
 
 public class ConfigurationBuilder {
 
-    public static float getTimeSlotSizeInMinutes(){
+    public static float getTimeSlotSizeInMinutes() {
         return 30;
     }
 
@@ -10,31 +10,31 @@ public class ConfigurationBuilder {
         return getTimeSlotSizeInMinutes() * 60 * 1000;
     }
 
-    public static double getDriverChargePercentage(){
+    public static double getDriverChargePercentage() {
         return 20;
     }
 
-    public static double getServiceChargePercentage(){
+    public static double getServiceChargePercentage() {
         return 20;
     }
 
-    public static double getVehicleChargePercentage(){
+    public static double getVehicleChargePercentage() {
         return 20;
     }
 
-    public static double getDriverChargeFixed(){
+    public static double getDriverChargeFixed() {
         return 100;
     }
 
-    public static double getServiceChargeFixed(){
+    public static double getServiceChargeFixed() {
         return 100;
     }
 
-    public static double getVehicleChargeFixed(){
+    public static double getVehicleChargeFixed() {
         return 300;
     }
 
-    public static int getMonthlySettlementDate(){
+    public static int getMonthlySettlementDate() {
         return 25;
     }
 

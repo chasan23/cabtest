@@ -94,6 +94,7 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
         super.save(driverAvailability);
     }
 
+    @Transactional
     public DriverVehicle getFirstAvailableDriver(Date date, List<Location> allowedLocations, TimeSlot statTime,
                                                  TimeSlot endTime,
                                                  String vehicleType) {

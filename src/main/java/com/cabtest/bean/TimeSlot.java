@@ -20,7 +20,7 @@ public class TimeSlot {
         this.value = value;
     }
 
-    public TimeSlot add(TimeSlot timeSlot){
+    public TimeSlot add(TimeSlot timeSlot) {
         return new TimeSlot(value + timeSlot.getValue());
     }
 }

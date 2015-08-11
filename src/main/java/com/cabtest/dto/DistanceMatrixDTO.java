@@ -1,12 +1,15 @@
 package com.cabtest.dto;
 
 import com.cabtest.model.DistanceMatrix;
+import com.cabtest.model.Location;
 
 public class DistanceMatrixDTO {
 
     int id;
-    String locationA;
-    String locationB;
+    String locationNameA;
+    String locationNameB;
+    Location locationA;
+    Location locationB;
     int time;
 
 
@@ -14,13 +17,7 @@ public class DistanceMatrixDTO {
     }
 
     public DistanceMatrixDTO(DistanceMatrix distanceMatrix) {
-        String locationAB = distanceMatrix.getLocationAB();
-        String locationA = locationAB.split(":")[0];
-        String locationB = locationAB.split(":")[1];
-        DistanceMatrixDTO distanceMatrixDTO = new DistanceMatrixDTO();
         this.id = distanceMatrix.getId();
-        this.locationA = locationA;
-        this.locationB = locationB;
         this.time = distanceMatrix.getTime();
     }
 
@@ -32,20 +29,28 @@ public class DistanceMatrixDTO {
         this.id = id;
     }
 
-    public String getLocationA() {
-        return locationA;
+    public String getLocationNameA() {
+        return locationNameA;
     }
 
-    public void setLocationA(String locationA) {
-        this.locationA = locationA;
+    public void setLocationNameA(String locationNameA) {
+        this.locationNameA = locationNameA;
     }
 
-    public String getLocationB() {
-        return locationB;
+    public void setLocationNameA(Location locationNameA) {
+        this.locationNameA = locationNameA.getLocation();
     }
 
-    public void setLocationB(String locationB) {
-        this.locationB = locationB;
+    public String getLocationNameB() {
+        return locationNameB;
+    }
+
+    public void setLocationNameB(String locationNameB) {
+        this.locationNameB = locationNameB;
+    }
+
+    public void setLocationNameB(Location locationNameB) {
+        this.locationNameB = locationNameB.getLocation();
     }
 
     public int getTime() {
@@ -54,5 +59,23 @@ public class DistanceMatrixDTO {
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public Location getLocationB() {
+        return locationB;
+    }
+
+    public void setLocationB(Location locationB) {
+        this.locationB = locationB;
+        this.locationNameB = locationB.getLocation();
+    }
+
+    public Location getLocationA() {
+        return locationA;
+    }
+
+    public void setLocationA(Location locationA) {
+        this.locationA = locationA;
+        this.locationNameA = locationA.getLocation();
     }
 }

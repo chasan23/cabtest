@@ -89,11 +89,13 @@ public class Location {
     @Override
     public String toString() {
         return "Location{" +
-                "id=" + getId() +
-                ", location='" + getLocation() + '\'' +
-                ", district='" + getDistrict() + '\'' +
-                ", province='" + getProvince() + '\'' +
-                ", availability=" + getAvailability() +
+                "id=" + id +
+                ", location='" + location + '\'' +
+                ", district='" + district + '\'' +
+                ", province='" + province + '\'' +
+                ", availability=" + availability +
+                ", bookingsOrigin=" + bookingsOrigin +
+                ", bookingsDestination=" + bookingsDestination +
                 '}';
     }
 

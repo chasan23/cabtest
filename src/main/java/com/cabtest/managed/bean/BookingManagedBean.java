@@ -1,7 +1,7 @@
 package com.cabtest.managed.bean;
 
-import com.cabtest.model.Booking;
 import com.cabtest.dto.BookingDTO;
+import com.cabtest.model.Booking;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Customer;
 import com.cabtest.model.Location;

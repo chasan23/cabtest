@@ -17,15 +17,15 @@
 
 
             <tr>
-                <td><h:outputLabel for="locationA" value="Location A : "/></td>
-                <td><p:inputText id="locationA" value="#{distanceMatrixMB.locationA}">
+                <td><h:outputLabel for="locationIdA" value="Location A : "/></td>
+                <td><p:inputText id="locationIdA" value="#{distanceMatrixMB.locationIdA}">
                 </p:inputText></td>
             </tr>
             <tr>
-                <td><h:outputLabel for="locationB"
+                <td><h:outputLabel for="locationIdB"
                                    value="Location B : "/></td>
-                <td><p:inputText id="locationB"
-                                 value="#{distanceMatrixMB.locationB}">
+                <td><p:inputText id="locationIdB"
+                                 value="#{distanceMatrixMB.locationIdB}">
 
                     <p:ajax event="blur" update="locationBMsg"/>
                 </p:inputText> <p:message id="locationBMsg" for="locationBMsg"
@@ -66,13 +66,13 @@
                 <f:facet name="header">
                     <h:outputText value="Location A"/>
                 </f:facet>
-                <h:outputText value="#{distanceMatrixDetails.locationA}"/>
+                <h:outputText value="#{distanceMatrixDetails.locationNameA}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Location B"/>
                 </f:facet>
-                <h:outputText value="#{distanceMatrixDetails.locationB}"/>
+                <h:outputText value="#{distanceMatrixDetails.locationNameB}"/>
             </p:column>
             <p:column>
                 <f:facet name="header">
@@ -83,5 +83,42 @@
 
         </p:dataTable>
     </h:form>
+    <table>
+        <tr>
+            <td>
+                <h:form>
+                    <p:dataTable id="locations" var="locationDetails"
+                                 value="#{locationMB.locationList}" style="width: 10%">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Location ID"/>
+                            </f:facet>
+                            <h:outputText value="#{locationDetails.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Location "/>
+                            </f:facet>
+                            <h:outputText value="#{locationDetails.location}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="District"/>
+                            </f:facet>
+                            <h:outputText value="#{locationDetails.district}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Province"/>
+                            </f:facet>
+                            <h:outputText value="#{locationDetails.province}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </td>
+        </tr>
+    </table>
 </h:body>
 </html>

@@ -21,27 +21,21 @@ public class Driver extends Person implements Serializable {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "driver")
     Set<DriverAvailability> availability = new HashSet<>(0);
-
-    @Column(name = "FIRST_NAME")
-    private String firstName;
-
-    @Column(name = "LAST_NAME")
-    private String lastName;
-
-    @Column(name = "AGE")
-    private int age;
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "DRIVER_VEHICLE", catalog = "cab", joinColumns = {
-            @JoinColumn(name = "DRIVER_ID", nullable = false, updatable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "VEHICLE_ID", nullable = false, updatable = false) })
+            @JoinColumn(name = "DRIVER_ID", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "VEHICLE_ID", nullable = false, updatable = false)})
     Set<Vehicle> vehicles = new HashSet<>(0);
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "driver")
     Set<Assignment> assignments = new HashSet<>();
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "driver")
     Set<Settlement> settlements = new HashSet<>();
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+    @Column(name = "LAST_NAME")
+    private String lastName;
+    @Column(name = "AGE")
+    private int age;
 
     public Driver() {
     }

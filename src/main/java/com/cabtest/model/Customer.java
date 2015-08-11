@@ -59,9 +59,9 @@ public class Customer extends Person implements Serializable {
     @Override
     public String toString() {
         return "Customer{" +
-               "firstName='" + firstName + '\'' +
-               ", lastName='" + lastName + '\'' +
-               ", bookings=" + bookings +
-               '}';
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", bookings=" + bookings +
+                '}';
     }
 }

@@ -6,11 +6,8 @@ import com.cabtest.model.Booking;
 import com.cabtest.model.DriverVehicle;
 import com.cabtest.model.Location;
 import com.cabtest.service.AssignmentService;
-import com.cabtest.service.BookingRegisterService;
 import com.cabtest.service.DistanceMatrixService;
 import com.cabtest.service.DriverAvailabilityService;
-import com.cabtest.service.DriverRegisterService;
-import com.cabtest.service.VehicleRegisterService;
 import com.cabtest.util.TimeSlotUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -32,13 +29,13 @@ public class AssignmentAgent implements Runnable {
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             System.out.println("running task 1 ");
             try {
                 System.out.println("running task 2");
                 Booking booking = bookingQueue.take();
                 System.out.println("running task 3");
-                if(booking != null) {
+                if (booking != null) {
                     performAssignment(booking);
                 }
             } catch (InterruptedException e) {
@@ -62,7 +59,7 @@ public class AssignmentAgent implements Runnable {
         int originId = booking.getOrigin().getId();
 
         Map<TimeSlot, List<Location>> allowedDriverLocations = distanceMatrixService.getLocations(originId,
-                                                                                                  maxArriveTime);
+                maxArriveTime);
         for (TimeSlot arrivalTime : allowedDriverLocations.keySet()) {
             DriverVehicle driver = driverAvailabilityService.getFirstAvailableDriver(TimeSlotUtil.getDate
                     (hireStartTime), allowedDriverLocations.get(arrivalTime), startTime, endTime, booking.getVehicleType());
@@ -72,6 +69,7 @@ public class AssignmentAgent implements Runnable {
                 assignment.setDriver(driver.getDriver());
                 assignment.setVehicle(driver.getVehicle());
                 assignment.setTime(new Timestamp(new Date().getTime()));
+                assignment.setBooking(booking);
                 assignmentService.save(assignment);
                 break;
             }

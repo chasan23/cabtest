@@ -3,17 +3,15 @@ package com.cabtest.managed.bean;
 
 import com.cabtest.dto.DistanceMatrixDTO;
 import com.cabtest.model.DistanceMatrix;
-import com.cabtest.model.Location;
 import com.cabtest.service.DistanceMatrixService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.cabtest.service.LocationService;
 import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import java.util.ArrayList;
 import java.util.List;
+
 @ManagedBean(name = "distanceMatrixMB")
 @RequestScoped
 public class DistanceMatrixManagedBean {
@@ -26,17 +24,22 @@ public class DistanceMatrixManagedBean {
     @ManagedProperty(value = "#{distanceMatrixService}")
     DistanceMatrixService distanceMatrixService;
 
+    @ManagedProperty(value = "#{locationService}")
+    LocationService locationService;
+
     List<DistanceMatrix> distanceMatrixList;
 
     String id;
-    String locationA;
-    String locationB;
+    String locationIdA;
+    String locationIdB;
+    String locationNameA;
+    String locationNameB;
     String time;
 
 
     public void reset() {
-        this.setLocationA("");
-        this.setLocationB("");
+        this.setLocationIdA("");
+        this.setLocationIdB("");
         this.setTime("");
 
     }
@@ -45,7 +48,7 @@ public class DistanceMatrixManagedBean {
     public String addDistanceMatrix() {
         try {
             DistanceMatrix distanceMatrix = new DistanceMatrix();
-            distanceMatrix.setLocationAB(this.getLocationA() + ":" + this.getLocationB());
+            distanceMatrix.setLocationAB(this.getLocationIdA() + ":" + this.getLocationIdB());
             distanceMatrix.setTime(Integer.parseInt(this.getTime()));
             getDistanceMatrixService().save(distanceMatrix);
             return SUCCESS;
@@ -59,7 +62,7 @@ public class DistanceMatrixManagedBean {
         try {
             DistanceMatrix distanceMatrix = new DistanceMatrix();
             distanceMatrix.setId(Integer.parseInt(this.getId()));
-            distanceMatrix.setLocationAB(this.getLocationA() + ":" + this.getLocationB());
+            distanceMatrix.setLocationAB(this.getLocationIdA() + ":" + this.getLocationIdB());
             distanceMatrix.setTime(Integer.parseInt(this.getTime()));
             getDistanceMatrixService().update(distanceMatrix);
             return SUCCESS;
@@ -78,12 +81,9 @@ public class DistanceMatrixManagedBean {
         }
         return ERROR;
     }
+
     public List<DistanceMatrixDTO> getDistanceMatrixList() {
-        List<DistanceMatrixDTO> distanceMatrixList = new ArrayList<DistanceMatrixDTO>();
-        for (DistanceMatrix distanceMatrix : getDistanceMatrixService().getAll()) {
-            distanceMatrixList.add(new DistanceMatrixDTO(distanceMatrix));
-        }
-        return distanceMatrixList;
+        return getDistanceMatrixService().getDistanceMatrix();
     }
 
     public DistanceMatrixService getDistanceMatrixService() {
@@ -102,20 +102,20 @@ public class DistanceMatrixManagedBean {
         this.id = id;
     }
 
-    public String getLocationA() {
-        return locationA;
+    public String getLocationIdA() {
+        return locationIdA;
     }
 
-    public void setLocationA(String locationA) {
-        this.locationA = locationA;
+    public void setLocationIdA(String locationIdA) {
+        this.locationIdA = locationIdA;
     }
 
-    public String getLocationB() {
-        return locationB;
+    public String getLocationIdB() {
+        return locationIdB;
     }
 
-    public void setLocationB(String locationB) {
-        this.locationB = locationB;
+    public void setLocationIdB(String locationIdB) {
+        this.locationIdB = locationIdB;
     }
 
     public String getTime() {
@@ -124,6 +124,30 @@ public class DistanceMatrixManagedBean {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public LocationService getLocationService() {
+        return locationService;
+    }
+
+    public void setLocationService(LocationService locationService) {
+        this.locationService = locationService;
+    }
+
+    public String getLocationNameA() {
+        return locationNameA;
+    }
+
+    public void setLocationNameA(String locationNameA) {
+        this.locationNameA = locationNameA;
+    }
+
+    public String getLocationNameB() {
+        return locationNameB;
+    }
+
+    public void setLocationNameB(String locationNameB) {
+        this.locationNameB = locationNameB;
     }
 }
 

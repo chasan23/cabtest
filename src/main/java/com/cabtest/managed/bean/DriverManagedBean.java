@@ -1,11 +1,9 @@
 package com.cabtest.managed.bean;
 
+import com.cabtest.dto.DriverDTO;
 import com.cabtest.model.Contact;
 import com.cabtest.model.Driver;
-import com.cabtest.dto.DriverDTO;
 import com.cabtest.service.DriverRegisterService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;

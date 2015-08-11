@@ -86,13 +86,13 @@ public class Contact {
     @Override
     public String toString() {
         return "Contact{" +
-               "contactId=" + contactId +
-               ", homePhone='" + homePhone + '\'' +
-               ", mobilePhone='" + mobilePhone + '\'' +
-               ", email='" + email + '\'' +
-               ", address='" + address + '\'' +
-               ", persons=" + persons +
-               '}';
+                "contactId=" + contactId +
+                ", homePhone='" + homePhone + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", persons=" + persons +
+                '}';
     }
 
     @Override

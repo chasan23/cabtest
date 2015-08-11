@@ -24,10 +24,15 @@ public class DriverAvailabilityDAOImpl extends GenericDAOImpl<DriverAvailability
 
     @Override
     public List<DriverAvailability> getAvailableDrivers(Date date, List<Location> locations) {
+        List<Integer> locationIds = new ArrayList<>();
+        for (Location location : locations) {
+            getCurrentSession().update(location);
+            locationIds.add(location.getId());
+        }
         Query query = getCurrentSession().createQuery("from DriverAvailability where date = :date and location in " +
-                                                      ":locations");
+                ":location");
         query.setParameter("date", date);
-        query.setParameter("locations", locations);
+        query.setParameterList("location", locations);
         return (ArrayList<DriverAvailability>) query.list();
     }
 }

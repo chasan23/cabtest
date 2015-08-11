@@ -3,8 +3,6 @@ package com.cabtest.managed.bean;
 
 import com.cabtest.model.VehicleAvailability;
 import com.cabtest.service.VehicleAvailabilityService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
@@ -13,6 +11,7 @@ import javax.faces.bean.RequestScoped;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 @ManagedBean(name = "vehicleAvailabilityMB")
 @RequestScoped
 public class VehicleAvailabilityManagedBean {
@@ -81,6 +80,7 @@ public class VehicleAvailabilityManagedBean {
         }
         return ERROR;
     }
+
     public List<VehicleAvailability> getVehicleAvailabilityList() {
         vehicleAvailabilityList = new ArrayList<VehicleAvailability>();
         vehicleAvailabilityList.addAll(getVehicleAvailabilityService().getAll());

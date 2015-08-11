@@ -1,13 +1,10 @@
 package com.cabtest.dao;
 
-import com.cabtest.bean.TimeSlot;
 import com.cabtest.model.DistanceMatrix;
-import com.cabtest.model.DriverAvailability;
 import com.cabtest.model.Location;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,19 +24,18 @@ public class DistanceMatrixDAOImpl extends GenericDAOImpl<DistanceMatrix, Intege
     private LocationDAO locationDAO;
 
     @Override
-    public Map<Integer,Location> getLocations(int originId, int maxTravelTime) {
-        Query query = getCurrentSession().createQuery("from DISTANCE_MATRIX where TIME <= :maxTravelTime and ( " +
-                "LOCATION_A_B LIKE :locationABId)");
+    public Map<Integer, Integer> getLocations(int originId, int maxTravelTime) {
+        Query query = getCurrentSession().createQuery("from DistanceMatrix where time <= :maxTravelTime and ( " +
+                "locationAB LIKE :locationABId)");
 
         query.setParameter("maxTravelTime", maxTravelTime);
         query.setParameter("locationABId", "%:" + originId + "%");
-        List<DistanceMatrix> locations =  (ArrayList<DistanceMatrix>) query.list();
-        Map<Integer, Location> locationByTime = new HashMap<>();
+        List<DistanceMatrix> locations = (ArrayList<DistanceMatrix>) query.list();
+        Map<Integer, Integer> locationByTime = new HashMap<>();
         for (DistanceMatrix location : locations) {
             String locationAB = location.getLocationAB();
             int locationAId = Integer.parseInt(locationAB.split(":")[0]);
-            Location locationA = getLocationDAO().findByKey(locationAId);
-            locationByTime.put(location.getTime(), locationA);
+            locationByTime.put(location.getTime(), locationAId);
         }
         return locationByTime;
     }

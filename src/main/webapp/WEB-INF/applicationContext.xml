@@ -13,8 +13,8 @@
     <bean id="billing" class="com.cabtest.model.Billing"/>
     <bean id="driverAvailability" class="com.cabtest.model.DriverAvailability"/>
     <bean id="vehicleAvailability" class="com.cabtest.model.VehicleAvailability"/>
-    <bean id="distanceMatrix"      class="com.cabtest.model.DistanceMatrix"/>
-    <bean id="location"  class="com.cabtest.model.Location"/>
+    <bean id="distanceMatrix" class="com.cabtest.model.DistanceMatrix"/>
+    <bean id="location" class="com.cabtest.model.Location"/>
     <bean id="settlement" class="com.cabtest.model.Settlement"/>
     <bean id="assignment" class="com.cabtest.model.Assignment"/>
 
@@ -52,6 +52,7 @@
 
     <bean id="distanceMatrixService" class="com.cabtest.service.DistanceMatrixServiceImpl">
         <property name="distanceMatrixDAO" ref="distanceMatrixDAO"/>
+        <property name="locationDAO" ref="locationDAO"/>
     </bean>
 
     <bean id="locationService" class="com.cabtest.service.LocationServiceImpl">
@@ -117,9 +118,9 @@
     </bean>
 
     <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-        <property name="corePoolSize" value="1" />
-        <property name="maxPoolSize" value="1" />
-        <property name="queueCapacity" value="25" />
+        <property name="corePoolSize" value="1"/>
+        <property name="maxPoolSize" value="1"/>
+        <property name="queueCapacity" value="25"/>
     </bean>
 
     <bean id="agentExecutor" class="com.cabtest.agent.AgentExecutor">

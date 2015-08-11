@@ -29,7 +29,7 @@ public class VehicleRegisterServiceImpl extends GenericPersistenceServiceImpl<Ve
 
     @Override
     public Vehicle getAvailableVehicle(String vehicleType) {
-      return null;
+        return null;
     }
 }
 

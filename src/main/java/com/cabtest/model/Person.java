@@ -64,8 +64,8 @@ public abstract class Person implements Serializable {
     @Override
     public String toString() {
         return "Person{" +
-               "id=" + id +
-               ", contact=" + contact +
-               '}';
+                "id=" + id +
+                ", contact=" + contact +
+                '}';
     }
 }
