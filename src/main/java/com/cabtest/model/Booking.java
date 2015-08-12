@@ -47,6 +47,9 @@ public class Booking {
     @JoinColumn(name = "CUSTOMER_ID", nullable = false)
     private Customer customer;
 
+    @Column(name = "IS_ASSIGNED")
+    private char isAssigned;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "booking")
     private Set<Assignment> assignments = new HashSet<>();
 
@@ -115,6 +118,14 @@ public class Booking {
         this.customer = customer;
     }
 
+    public boolean isAssigned() {
+        return isAssigned == '1';
+    }
+
+    public void setIsAssigned(boolean isAssigned) {
+        this.isAssigned = isAssigned ? '1' : '0';
+    }
+
     public Set<Assignment> getAssignments() {
         return assignments;
     }
@@ -154,6 +165,7 @@ public class Booking {
                 ", time=" + time +
                 ", duration=" + duration +
                 ", customer=" + customer +
+                ", isAssigned=" + isAssigned +
                 ", assignments=" + assignments +
                 '}';
     }

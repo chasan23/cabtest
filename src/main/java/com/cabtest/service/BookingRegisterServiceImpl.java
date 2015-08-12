@@ -77,6 +77,7 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
         existingBooking.setOriginAddress(updatedBooking.getOriginAddress());
         existingBooking.setDestination(updatedBooking.getDestination());
         existingBooking.setDuration(updatedBooking.getDuration());
+        existingBooking.setIsAssigned(updatedBooking.isAssigned());
 
         Customer existingCustomer = existingBooking.getCustomer();
         Customer updateCustomer = updatedBooking.getCustomer();
@@ -101,6 +102,14 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
 
     @Override
     @Transactional
+    public void updateIsAssigned(Booking updatedBooking) {
+        Booking existingBooking = getBookingDAO().findByKey(updatedBooking.getBookingId());
+        existingBooking.setIsAssigned(updatedBooking.isAssigned());
+        getBookingDAO().update(existingBooking);
+    }
+
+    @Override
+    @Transactional
     public void deleteBooking(Booking booking) {
         booking.setCustomer(null);
         bookingDAO.delete(booking);
@@ -110,6 +119,11 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
     @Transactional
     public List<Booking> getBookingList() {
         return bookingDAO.getAll();
+    }
+
+    @Transactional
+    public List<Booking> getUnassignedBookingList() {
+        return bookingDAO.getUnassignedBookingList();
     }
 
     @Override

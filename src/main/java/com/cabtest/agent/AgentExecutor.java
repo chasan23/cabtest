@@ -21,7 +21,7 @@ public class AgentExecutor {
         this.assignmentAgent = assignmentAgent;
         this.bookingRegisterService = bookingRegisterService;
 
-        List<Booking> bookings = bookingRegisterService.getBookingList();
+        List<Booking> bookings = bookingRegisterService.getUnassignedBookingList();
         bookingQueue = new LinkedBlockingDeque<>(bookings);
         assignmentAgent.setBookingQueue(bookingQueue);
 

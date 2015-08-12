@@ -133,6 +133,8 @@
         <property name="distanceMatrixService" ref="distanceMatrixService"/>
         <property name="driverAvailabilityService" ref="driverAvailabilityService"/>
         <property name="assignmentService" ref="assignmentService"/>
+        <property name="bookingRegisterService" ref="bookingService"/>
+        <property name="driverRegisterService" ref="driverService"/>
     </bean>
 
     <!-- Data Source Declaration -->

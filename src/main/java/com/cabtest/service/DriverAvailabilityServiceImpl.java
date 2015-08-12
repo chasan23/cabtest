@@ -101,12 +101,14 @@ public class DriverAvailabilityServiceImpl extends GenericPersistenceServiceImpl
         List<DriverAvailability> driverAvailabilities = driverAvailabilityDAO.getAvailableDrivers(
                 date, allowedLocations);
         for (DriverAvailability driverAvailability : driverAvailabilities) {
-            String availableTimeSlotString = driverAvailability.getTimeSlot();
-            BigInteger requiredTimeSlots = TimeSlotUtil.getTimeSlotPeriodBinaryValue(statTime, endTime);
-            BigInteger availableTimeSlots = new BigInteger(availableTimeSlotString, 2);
-            BigInteger result = availableTimeSlots.and(requiredTimeSlots);
-            if (result.equals(requiredTimeSlots)) {
-                return new DriverVehicle(driverAvailability.getDriver(), driverAvailability.getVehicle());
+            if (driverAvailability.getDriver().isAvailable()) {
+                String availableTimeSlotString = driverAvailability.getTimeSlot();
+                BigInteger requiredTimeSlots = TimeSlotUtil.getTimeSlotPeriodBinaryValue(statTime, endTime);
+                BigInteger availableTimeSlots = new BigInteger(availableTimeSlotString, 2);
+                BigInteger result = availableTimeSlots.and(requiredTimeSlots);
+                if (result.equals(requiredTimeSlots)) {
+                    return new DriverVehicle(driverAvailability.getDriver(), driverAvailability.getVehicle());
+                }
             }
         }
         return null;

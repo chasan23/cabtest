@@ -37,6 +37,10 @@ public class Driver extends Person implements Serializable {
     @Column(name = "AGE")
     private int age;
 
+
+    @Column(name = "IS_AVAILABLE")
+    private char isAvailable;
+
     public Driver() {
     }
 
@@ -90,6 +94,14 @@ public class Driver extends Person implements Serializable {
 
     public void setVehicles(Set<Vehicle> vehicles) {
         this.vehicles = vehicles;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable == '1';
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable ? '1' : '0';
     }
 
     @Override

@@ -90,4 +90,12 @@ public class DriverRegisterServiceImpl implements DriverRegisterService {
         return null;
     }
 
+    @Override
+    @Transactional
+    public void updateIsAvailable(Driver updatedDriver) {
+        Driver existingDriver = getDriverDAO().findByKey(updatedDriver.getDriverId());
+        existingDriver.setIsAvailable(updatedDriver.isAvailable());
+        getDriverDAO().update(existingDriver);
+    }
+
 }
