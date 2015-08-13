@@ -1,5 +1,6 @@
 package com.cabtest.service;
 
+import com.cabtest.agent.AssignmentAgent;
 import com.cabtest.dao.BookingDAO;
 import com.cabtest.dao.ContactDAO;
 import com.cabtest.dao.CustomerDAO;
@@ -17,6 +18,7 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
     private BookingDAO bookingDAO;
     private CustomerDAO customerDAO;
     private ContactDAO contactDAO;
+    private AssignmentAgent assignmentAgent;
 
     public BookingRegisterServiceImpl() {
         super();
@@ -65,6 +67,7 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
 
         getBookingDAO().save(booking);
 
+        assignmentAgent.addToBookingQueue(booking);
     }
 
     @Override
@@ -132,5 +135,8 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
         bookingDAO.deleteByKey(id);
     }
 
+    public void setAssignmentAgent(AssignmentAgent assignmentAgent) {
+        this.assignmentAgent = assignmentAgent;
+    }
 }
 

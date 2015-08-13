@@ -5,6 +5,7 @@ import com.cabtest.bean.ReceiverType;
 import com.cabtest.bean.TimeSlot;
 import com.cabtest.model.Assignment;
 import com.cabtest.model.Billing;
+import com.cabtest.model.Booking;
 import com.cabtest.model.Settlement;
 import com.cabtest.model.SettlementAggregate;
 import com.cabtest.service.AssignmentService;
@@ -25,14 +26,7 @@ import java.util.concurrent.BlockingDeque;
 
 public class SettlementAgent implements Runnable {
     private BlockingDeque<Billing> billingQueue;
-    private DriverRegisterService driverRegisterService;
-    private DriverAvailabilityService driverAvailabilityService;
-    private BookingRegisterService bookingRegisterService;
-    private VehicleRegisterService vehicleRegisterService;
-    private AssignmentService assignmentService;
-    private DistanceMatrixService distanceMatrixService;
     private SettlementService settlementService;
-    private TimeSlot maxArriveTime = new TimeSlot(4);
 
     @Override
     public void run() {
@@ -138,5 +132,13 @@ public class SettlementAgent implements Runnable {
 
     public void setBillingQueue(BlockingDeque<Billing> billingQueue) {
         this.billingQueue = billingQueue;
+    }
+
+    public void addToBillingQueue(Billing billing) {
+        billingQueue.add(billing);
+    }
+
+    public void setSettlementService(SettlementService settlementService) {
+        this.settlementService = settlementService;
     }
 }

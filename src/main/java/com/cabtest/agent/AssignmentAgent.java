@@ -51,6 +51,10 @@ public class AssignmentAgent implements Runnable {
         }
     }
 
+    public void addToBookingQueue(Booking booking) {
+        bookingQueue.add(booking);
+    }
+
     private void performAssignment(Booking booking) {
 
         int hireDuration = booking.getDuration();

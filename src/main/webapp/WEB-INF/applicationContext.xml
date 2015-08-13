@@ -33,6 +33,7 @@
         <property name="bookingDAO" ref="bookingDAO"/>
         <property name="customerDAO" ref="customerDAO"/>
         <property name="contactDAO" ref="contactDAO"/>
+        <property name="assignmentAgent" ref="assignmentAgent"/>
     </bean>
 
     <bean id="billingService" class="com.cabtest.service.BillingRegisterServiceImpl">
@@ -126,7 +127,9 @@
     <bean id="agentExecutor" class="com.cabtest.agent.AgentExecutor">
         <constructor-arg type="org.springframework.core.task.TaskExecutor" ref="taskExecutor"/>
         <constructor-arg type="com.cabtest.agent.AssignmentAgent" ref="assignmentAgent"/>
+        <constructor-arg type="com.cabtest.agent.SettlementAgent" ref="settlementAgent"/>
         <constructor-arg type="com.cabtest.service.BookingRegisterService" ref="bookingService"/>
+        <constructor-arg type="com.cabtest.service.BillingRegisterService" ref="billingService"/>
     </bean>
 
     <bean id="assignmentAgent" class="com.cabtest.agent.AssignmentAgent">
@@ -135,6 +138,10 @@
         <property name="assignmentService" ref="assignmentService"/>
         <property name="bookingRegisterService" ref="bookingService"/>
         <property name="driverRegisterService" ref="driverService"/>
+    </bean>
+
+    <bean id="settlementAgent" class="com.cabtest.agent.SettlementAgent">
+        <property name="settlementService" ref="settlementService"/>
     </bean>
 
     <!-- Data Source Declaration -->
