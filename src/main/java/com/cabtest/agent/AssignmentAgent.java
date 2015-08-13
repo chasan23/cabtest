@@ -1,5 +1,6 @@
 package com.cabtest.agent;
 
+import com.cabtest.bean.SMSMessage;
 import com.cabtest.bean.TimeSlot;
 import com.cabtest.model.Assignment;
 import com.cabtest.model.Booking;
@@ -10,6 +11,7 @@ import com.cabtest.service.BookingRegisterService;
 import com.cabtest.service.DistanceMatrixService;
 import com.cabtest.service.DriverAvailabilityService;
 import com.cabtest.service.DriverRegisterService;
+import com.cabtest.service.SendSMSService;
 import com.cabtest.util.TimeSlotUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -31,6 +33,7 @@ public class AssignmentAgent implements Runnable {
     private DistanceMatrixService distanceMatrixService;
     private BookingRegisterService bookingRegisterService;
     private DriverRegisterService driverRegisterService;
+    private SendSMSService sendSMSService;
     private TimeSlot maxArriveTime = new TimeSlot(4);
 
     @Override
@@ -88,9 +91,18 @@ public class AssignmentAgent implements Runnable {
                 bookingRegisterService.updateIsAssigned(booking);
                 driverRegisterService.updateIsAvailable(driver.getDriver());
                 assignmentService.save(assignment);
+                SMSMessage smsMessage = new SMSMessage(booking.getCustomer().getContact().getMobilePhone()
+                        , buildAssignmentSMS(assignment));
+                sendSMSService.send(smsMessage);
                 break;
             }
         }
+    }
+
+    private String buildAssignmentSMS(Assignment assignment) {
+        return "Your booking is assigned. Please find the details. \n Vehicle : " + assignment.getVehicle()
+                .getRegistrationNumber() + ", " + "Driver : " + assignment.getDriver().getFirstName()
+                + ", Mobile No : " + assignment.getDriver().getContact().getMobilePhone();
     }
 
     public void setBookingQueue(BlockingDeque<Booking> bookingQueue) {
@@ -115,6 +127,10 @@ public class AssignmentAgent implements Runnable {
 
     public void setDriverRegisterService(DriverRegisterService driverRegisterService) {
         this.driverRegisterService = driverRegisterService;
+    }
+
+    public void setSendSMSService(SendSMSService sendSMSService) {
+        this.sendSMSService = sendSMSService;
     }
 }
 
