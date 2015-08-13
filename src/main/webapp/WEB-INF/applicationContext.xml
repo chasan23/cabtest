@@ -34,6 +34,7 @@
         <property name="customerDAO" ref="customerDAO"/>
         <property name="contactDAO" ref="contactDAO"/>
         <property name="assignmentAgent" ref="assignmentAgent"/>
+        <property name="sendSMSService" ref="smsService"/>
     </bean>
 
     <bean id="billingService" class="com.cabtest.service.BillingRegisterServiceImpl">
@@ -68,6 +69,7 @@
         <property name="assignmentDAO" ref="assignmentDAO"/>
     </bean>
 
+    <bean id="smsService" class="com.cabtest.service.SendSMSServiceImpl"/>
 
     <!-- DAO Declaration -->
     <bean id="vehicleDAO" class="com.cabtest.dao.VehicleDAOImpl">
@@ -138,6 +140,7 @@
         <property name="assignmentService" ref="assignmentService"/>
         <property name="bookingRegisterService" ref="bookingService"/>
         <property name="driverRegisterService" ref="driverService"/>
+        <property name="sendSMSService" ref="smsService"/>
     </bean>
 
     <bean id="settlementAgent" class="com.cabtest.agent.SettlementAgent">

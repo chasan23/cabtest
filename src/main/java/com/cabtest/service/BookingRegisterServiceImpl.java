@@ -1,6 +1,7 @@
 package com.cabtest.service;
 
 import com.cabtest.agent.AssignmentAgent;
+import com.cabtest.bean.SMSMessage;
 import com.cabtest.dao.BookingDAO;
 import com.cabtest.dao.ContactDAO;
 import com.cabtest.dao.CustomerDAO;
@@ -19,6 +20,7 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
     private CustomerDAO customerDAO;
     private ContactDAO contactDAO;
     private AssignmentAgent assignmentAgent;
+    private SendSMSService sendSMSService;
 
     public BookingRegisterServiceImpl() {
         super();
@@ -67,6 +69,8 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
 
         getBookingDAO().save(booking);
 
+        SMSMessage smsMessage = new SMSMessage(contact.getMobilePhone(), "Booking successfully added.");
+        sendSMSService.send(smsMessage);
         assignmentAgent.addToBookingQueue(booking);
     }
 
@@ -101,6 +105,9 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
         existingBooking.setCustomer(existingCustomer);
         existingCustomer.getBookings().add(existingBooking);
         getBookingDAO().update(existingBooking);
+
+        SMSMessage smsMessage = new SMSMessage(updatedContact.getMobilePhone(), "Booking successfully updated.");
+        sendSMSService.send(smsMessage);
     }
 
     @Override
@@ -137,6 +144,10 @@ public class BookingRegisterServiceImpl implements BookingRegisterService {
 
     public void setAssignmentAgent(AssignmentAgent assignmentAgent) {
         this.assignmentAgent = assignmentAgent;
+    }
+
+    public void setSendSMSService(SendSMSService sendSMSService) {
+        this.sendSMSService = sendSMSService;
     }
 }
 
