@@ -42,6 +42,6 @@ public class BillingRegisterServiceImpl extends GenericPersistenceServiceImpl<Bi
 
     @Override
     public List<Billing> getUnprocessedBillingEntries() {
-        return new ArrayList<>();
+        return billingDAO.getUnprocessedBillingEntries();
     }
 }

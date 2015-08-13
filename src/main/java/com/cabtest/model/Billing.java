@@ -29,6 +29,9 @@ public class Billing implements Serializable {
     @Column(name = "AMOUNT")
     private int amount;
 
+    @Column(name = "IS_PROCESSED")
+    private char isProcessed;
+
     public int getBillingId() {
         return billingId;
     }
@@ -51,5 +54,13 @@ public class Billing implements Serializable {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public boolean isProcessed() {
+        return isProcessed == '1';
+    }
+
+    public void setIsProcessed(boolean isProcessed) {
+        this.isProcessed = isProcessed ? '1' : '0';
     }
 }
