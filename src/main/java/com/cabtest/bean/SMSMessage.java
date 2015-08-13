@@ -8,4 +8,12 @@ public class SMSMessage {
         this.mobileNumber = mobileNumber;
         this.message = message;
     }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

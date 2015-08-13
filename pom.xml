@@ -115,6 +115,14 @@
             <version>6.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.harshadura</groupId>
+            <artifactId>gsm</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/smsdura-1.0.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
     <profiles>

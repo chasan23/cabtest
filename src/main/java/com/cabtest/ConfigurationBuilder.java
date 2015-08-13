@@ -1,5 +1,7 @@
 package com.cabtest;
 
+import com.cabtest.bean.ModemConfiguration;
+
 public class ConfigurationBuilder {
 
     public static float getTimeSlotSizeInMinutes() {
@@ -40,5 +42,9 @@ public class ConfigurationBuilder {
 
     public static int getCabServiceIdentifier() {
         return 0;
+    }
+
+    public static ModemConfiguration getModemConfiguration() {
+        return new ModemConfiguration("COM3", 115200, "ZTE", "0000", "+9477000003");
     }
 }
