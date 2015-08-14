@@ -12,14 +12,14 @@ public class SendSMSServiceImpl implements SendSMSService {
 
     @Override
     public void send(SMSMessage smsMessage) {
-        GsmModem gsmModem = new GsmModem();
-        ModemConfiguration modemConfiguration = ConfigurationBuilder.getModemConfiguration();
-        GsmModem.configModem(modemConfiguration.getPort(), modemConfiguration.getBitRate(), modemConfiguration.getModemName(),
-                modemConfiguration.getModemPin(), modemConfiguration.getSmsc());
         try {
+            GsmModem gsmModem = new GsmModem();
+            ModemConfiguration modemConfiguration = ConfigurationBuilder.getModemConfiguration();
+            GsmModem.configModem(modemConfiguration.getPort(), modemConfiguration.getBitRate(), modemConfiguration.getModemName(),
+                    modemConfiguration.getModemPin(), modemConfiguration.getSmsc());
             gsmModem.Sender(smsMessage.getMessage(), smsMessage.getMobileNumber());
         } catch (Exception e) {
-            LOG.error("Error while sending SMS to : " + smsMessage.getMobileNumber());
+            LOG.warn("Error while sending SMS to : " + smsMessage.getMobileNumber());
         }
     }
 }
