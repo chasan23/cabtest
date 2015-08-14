@@ -72,5 +72,21 @@ public class VehicleAvailability {
     public void setLocationId(int locationId) {
         this.locationId = locationId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        VehicleAvailability that = (VehicleAvailability) o;
+
+        return id == that.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }
 

@@ -49,4 +49,20 @@ public class DistanceMatrix {
     public void setTime(int time) {
         this.time = time;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DistanceMatrix that = (DistanceMatrix) o;
+
+        return id == that.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

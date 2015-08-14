@@ -8,11 +8,14 @@ import org.springframework.stereotype.Repository;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings("unchecked")
 @Repository
-public abstract class GenericDAOImpl<E, K extends Serializable> implements GenericDAO<E, K>, Serializable{
+public abstract class GenericDAOImpl<E, K extends Serializable> implements GenericDAO<E, K>, Serializable {
 
     private SessionFactory sessionFactory;
     private Class<E> clazz;
@@ -70,7 +73,11 @@ public abstract class GenericDAOImpl<E, K extends Serializable> implements Gener
 
     @Override
     public List<E> getAll() {
-        return this.getCurrentSession().createCriteria(this.getCurrentClazz()).list();
+        Set<E> set = new HashSet<>();
+        set.addAll(this.getCurrentSession().createCriteria(this.getCurrentClazz()).list());
+        List<E> duplicatesRemoved = new ArrayList();
+        duplicatesRemoved.addAll(set);
+        return duplicatesRemoved;
     }
 
 }

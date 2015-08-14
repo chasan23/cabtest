@@ -33,24 +33,24 @@ public class DistanceMatrixDTO {
         return locationNameA;
     }
 
-    public void setLocationNameA(String locationNameA) {
-        this.locationNameA = locationNameA;
-    }
-
     public void setLocationNameA(Location locationNameA) {
         this.locationNameA = locationNameA.getLocation();
+    }
+
+    public void setLocationNameA(String locationNameA) {
+        this.locationNameA = locationNameA;
     }
 
     public String getLocationNameB() {
         return locationNameB;
     }
 
-    public void setLocationNameB(String locationNameB) {
-        this.locationNameB = locationNameB;
-    }
-
     public void setLocationNameB(Location locationNameB) {
         this.locationNameB = locationNameB.getLocation();
+    }
+
+    public void setLocationNameB(String locationNameB) {
+        this.locationNameB = locationNameB;
     }
 
     public int getTime() {

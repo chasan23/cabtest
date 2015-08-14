@@ -39,4 +39,20 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Login login = (Login) o;
+
+        return !(userId != null ? !userId.equals(login.userId) : login.userId != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return userId != null ? userId.hashCode() : 0;
+    }
 }

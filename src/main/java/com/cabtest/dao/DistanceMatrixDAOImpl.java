@@ -1,7 +1,6 @@
 package com.cabtest.dao;
 
 import com.cabtest.model.DistanceMatrix;
-import com.cabtest.model.Location;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 

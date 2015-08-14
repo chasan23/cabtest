@@ -123,4 +123,20 @@ public class Vehicle {
                 ", settlements=" + settlements +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Vehicle vehicle = (Vehicle) o;
+
+        return vehicleId == vehicle.vehicleId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return vehicleId;
+    }
 }

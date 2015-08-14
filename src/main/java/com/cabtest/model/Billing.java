@@ -63,4 +63,20 @@ public class Billing implements Serializable {
     public void setIsProcessed(boolean isProcessed) {
         this.isProcessed = isProcessed ? '1' : '0';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Billing billing = (Billing) o;
+
+        return billingId == billing.billingId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return billingId;
+    }
 }

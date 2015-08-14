@@ -86,12 +86,12 @@ public class DriverAvailabilityDTO {
         return dateString;
     }
 
-    public void setDateString(Date date) {
-        this.dateString = date.toString();
-    }
-
     public void setDateString(String dateString) {
         this.dateString = dateString;
+    }
+
+    public void setDateString(Date date) {
+        this.dateString = date.toString();
     }
 
     public String getTimeFromString() {

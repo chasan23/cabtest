@@ -114,4 +114,20 @@ public class Location {
     public void setBookingsOrigin(Set<Booking> bookingsOrigin) {
         this.bookingsOrigin = bookingsOrigin;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Location location = (Location) o;
+
+        return id == location.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

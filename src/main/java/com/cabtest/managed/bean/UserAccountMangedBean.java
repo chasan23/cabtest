@@ -1,12 +1,9 @@
 package com.cabtest.managed.bean;
 
 
-import com.cabtest.model.Location;
 import com.cabtest.model.Login;
-import com.cabtest.service.LocationService;
 import com.cabtest.service.LoginService;
 import org.apache.log4j.Logger;
-import sun.rmi.runtime.Log;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -78,6 +75,10 @@ public class UserAccountMangedBean {
         return accountList;
     }
 
+    public void setAccountList(List<Login> accountList) {
+        this.accountList = accountList;
+    }
+
     public LoginService getLoginService() {
         return loginService;
     }
@@ -100,10 +101,6 @@ public class UserAccountMangedBean {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setAccountList(List<Login> accountList) {
-        this.accountList = accountList;
     }
 }
 

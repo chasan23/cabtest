@@ -2,19 +2,11 @@ package com.cabtest.agent;
 
 import com.cabtest.ConfigurationBuilder;
 import com.cabtest.bean.ReceiverType;
-import com.cabtest.bean.TimeSlot;
 import com.cabtest.model.Assignment;
 import com.cabtest.model.Billing;
-import com.cabtest.model.Booking;
 import com.cabtest.model.Settlement;
 import com.cabtest.model.SettlementAggregate;
-import com.cabtest.service.AssignmentService;
-import com.cabtest.service.BookingRegisterService;
-import com.cabtest.service.DistanceMatrixService;
-import com.cabtest.service.DriverAvailabilityService;
-import com.cabtest.service.DriverRegisterService;
 import com.cabtest.service.SettlementService;
-import com.cabtest.service.VehicleRegisterService;
 import com.cabtest.util.SettlementUtil;
 
 import java.sql.Timestamp;

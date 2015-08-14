@@ -135,26 +135,6 @@ public class Booking {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Booking booking = (Booking) o;
-
-        return bookingId == booking.bookingId;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return bookingId;
-    }
-
-    @Override
     public String toString() {
         return "Booking{" +
                 "bookingId=" + bookingId +
@@ -168,5 +148,21 @@ public class Booking {
                 ", isAssigned=" + isAssigned +
                 ", assignments=" + assignments +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Booking booking = (Booking) o;
+
+        return bookingId == booking.bookingId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return bookingId;
     }
 }

@@ -103,4 +103,20 @@ public class Assignment implements Serializable {
                 ", billings=" + billings +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Assignment that = (Assignment) o;
+
+        return assignmentId == that.assignmentId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return assignmentId;
+    }
 }

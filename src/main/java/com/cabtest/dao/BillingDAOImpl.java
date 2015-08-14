@@ -1,7 +1,6 @@
 package com.cabtest.dao;
 
 import com.cabtest.model.Billing;
-import com.cabtest.model.Booking;
 import org.hibernate.Query;
 
 import java.util.List;

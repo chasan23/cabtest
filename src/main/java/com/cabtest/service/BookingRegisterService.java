@@ -2,7 +2,6 @@ package com.cabtest.service;
 
 import com.cabtest.model.Booking;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 
