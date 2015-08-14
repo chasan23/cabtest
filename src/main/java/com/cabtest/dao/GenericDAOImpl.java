@@ -12,7 +12,7 @@ import java.util.List;
 
 @SuppressWarnings("unchecked")
 @Repository
-public abstract class GenericDAOImpl<E, K extends Serializable> implements GenericDAO<E, K> {
+public abstract class GenericDAOImpl<E, K extends Serializable> implements GenericDAO<E, K>, Serializable{
 
     private SessionFactory sessionFactory;
     private Class<E> clazz;

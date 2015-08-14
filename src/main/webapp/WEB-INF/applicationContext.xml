@@ -17,6 +17,7 @@
     <bean id="location" class="com.cabtest.model.Location"/>
     <bean id="settlement" class="com.cabtest.model.Settlement"/>
     <bean id="assignment" class="com.cabtest.model.Assignment"/>
+    <bean id="login" class="com.cabtest.model.Login"/>
 
 
     <!-- Service Declaration -->
@@ -69,6 +70,10 @@
         <property name="assignmentDAO" ref="assignmentDAO"/>
     </bean>
 
+    <bean id="loginService" class="com.cabtest.service.LoginServiceImpl">
+        <property name="loginDAO" ref="loginDAO"/>
+    </bean>
+
     <bean id="smsService" class="com.cabtest.service.SendSMSServiceImpl"/>
 
     <!-- DAO Declaration -->
@@ -93,6 +98,10 @@
     </bean>
 
     <bean id="billingDAO" class="com.cabtest.dao.BillingDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="loginDAO" class="com.cabtest.dao.LoginDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -178,6 +187,7 @@
                 <value>com.cabtest.model.Location</value>
                 <value>com.cabtest.model.Settlement</value>
                 <value>com.cabtest.model.Assignment</value>
+                <value>com.cabtest.model.Login</value>
             </list>
         </property>
         <property name="hibernateProperties">

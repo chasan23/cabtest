@@ -5,10 +5,8 @@ import com.cabtest.dao.BillingDAO;
 import com.cabtest.dao.GenericDAO;
 import com.cabtest.model.Billing;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,7 +22,7 @@ public class BillingRegisterServiceImpl extends GenericPersistenceServiceImpl<Bi
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void save(Billing billing) {
         super.save(billing);
         settlementAgent.addToBillingQueue(billing);
@@ -41,6 +39,7 @@ public class BillingRegisterServiceImpl extends GenericPersistenceServiceImpl<Bi
     }
 
     @Override
+    @Transactional
     public List<Billing> getUnprocessedBillingEntries() {
         return billingDAO.getUnprocessedBillingEntries();
     }

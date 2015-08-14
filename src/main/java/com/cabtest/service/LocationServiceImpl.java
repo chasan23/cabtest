@@ -5,9 +5,11 @@ import com.cabtest.dao.LocationDAO;
 import com.cabtest.model.Location;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
+
 @Service
 public class LocationServiceImpl extends GenericPersistenceServiceImpl<Location, Integer>
-        implements LocationService {
+        implements LocationService, Serializable {
 
     private LocationDAO locationDAO;
 

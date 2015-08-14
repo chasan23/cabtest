@@ -3,7 +3,7 @@ package com.cabtest.dao;
 import java.io.Serializable;
 import java.util.List;
 
-public interface GenericDAO<E, K extends Serializable> {
+public interface GenericDAO<E, K extends Serializable>  extends Serializable{
 
     E findByKey(K key);
 

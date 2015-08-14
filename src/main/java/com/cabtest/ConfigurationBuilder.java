@@ -1,6 +1,7 @@
 package com.cabtest;
 
 import com.cabtest.bean.ModemConfiguration;
+import com.cabtest.model.Login;
 
 public class ConfigurationBuilder {
 
@@ -46,5 +47,9 @@ public class ConfigurationBuilder {
 
     public static ModemConfiguration getModemConfiguration() {
         return new ModemConfiguration("COM3", 115200, "ZTE", "0000", "+9477000003");
+    }
+
+    public static Login getAdminLoginDetails() {
+        return new Login("admin", "admin");
     }
 }

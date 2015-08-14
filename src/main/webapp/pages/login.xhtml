@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>login</title>
+</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputText value="Username"/></td>
+                <td><p:inputText id="username" value="#{loginMB.user}"/></td>
+            </tr>
+            <tr>
+                <td><h:outputText value="Password"/></td>
+                <td><p:password id="password" value="#{loginMB.pwd}"/></td>
+            </tr>
+            <tr>
+                <td><p:commandButton id="login" value="Login"
+                                     action="#{loginMB.validateUsernamePassword}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+</h:body>
+</html>

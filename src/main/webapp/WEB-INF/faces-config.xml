@@ -15,6 +15,13 @@
 
     <!-- configuration of navigation rules -->
     <navigation-rule>
+        <from-view-id>/pages/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/pages/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
         <from-view-id>/pages/vehicle.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>success</from-outcome>
@@ -100,6 +107,18 @@
         <navigation-case>
             <from-outcome>success</from-outcome>
             <to-view-id>/pages/driverAvailability.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/pages/error.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/pages/account.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/account.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>error</from-outcome>
